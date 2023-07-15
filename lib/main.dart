@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const TagLag());
