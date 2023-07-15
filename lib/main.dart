@@ -52,7 +52,7 @@ class _MainAppState extends State<MainApp> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    /* return MaterialApp(
       title: "hi",
       home: Scaffold(
         appBar: AppBar(title: const Text("Tag Lag")),
@@ -70,6 +70,24 @@ class _MainAppState extends State<MainApp> {
           onTap: _onItemTapped,
         ),
       ),
+    ); */
+
+    return MaterialApp(
+      home: LayoutBuilder(builder: (context, constraints) {
+        return Scaffold(bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.assistant_photo), label: "Challenges"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_cart), label: "Shop"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.handshake), label: "Rules"),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+          ),
+          );
+      }),
     );
   }
 
