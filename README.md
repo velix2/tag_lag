@@ -1,3 +1,3 @@
 # tag_lag
 
-A new Flutter project.
+Fun tag game app inspired by the YouTube show Jet Lag

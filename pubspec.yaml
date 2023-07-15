@@ -9,7 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-cupertino_icons: ^1.0.5
+  cupertino_icons: ^1.0.5
+  provider: ^6.0.0
+  path_provider: ^2.0.15
+
 
 dev_dependencies:
   flutter_test:
@@ -18,3 +21,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/rules.json
