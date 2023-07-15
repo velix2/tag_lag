@@ -1,0 +1,4 @@
+{"challenges":[
+    {"header":"Climb a tree.", "text":"Find a tree that can support one of your teammembers weights. One member must climb this tree so that every part of their body is over 1.5 meters above ground level. The selected member must be able to stay at this height for at least 2 minutes.", "coins":300, "veto_time":20, "time":45}
+    {"header":"Find twenty birds", "text":"You must photograph at least 20 different birds. Each bird must be clearly recognizable as one. Only real and alive birds count.", "coins":200, "veto_time":"20", "time":45}
+]}

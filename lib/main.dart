@@ -75,9 +75,14 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-class ChallengesPage extends StatelessWidget {
+class ChallengesPage extends StatefulWidget {
   const ChallengesPage({super.key});
 
+  @override
+  State<ChallengesPage> createState() => _ChallengesPageState();
+}
+
+class _ChallengesPageState extends State<ChallengesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,14 +142,7 @@ class _RulePageState extends State<RulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "Tag Lag",
-        ),
-        // Same here!
-        /*
-        actions: [IconButton(onPressed: onPressedSettings, icon: const Icon(Icons.settings))],
-      */
+        title: const Text("Tag Lag"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(25),
