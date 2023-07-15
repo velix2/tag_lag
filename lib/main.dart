@@ -15,12 +15,88 @@ class TagLag extends StatelessWidget {
     return MaterialApp(
       // Hide the debug banner
       debugShowCheckedModeBanner: false,
-      title: 'Kindacode.com',
+      title: 'Tag Lag',
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      home: const RulePage(),
+      home: const MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  int selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    Widget page;
+    switch (selectedIndex) {
+      case 0:
+        page = const ChallengesPage();
+        break;
+      case 1:
+        page = const ShopPage();
+        break;
+      case 2:
+        page = const RulePage();
+        break;
+      default:
+        throw UnimplementedError('no widget for $selectedIndex');
+    }
+
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(Icons.assistant_photo), label: "Challenges"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart), label: "Shop"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.handshake), label: "Rules"),
+          ],
+          currentIndex: selectedIndex,
+          onTap: (value) {
+            setState(() {
+              selectedIndex = value;
+            });
+          },
+        ),
+        body: page,
+      );
+    });
+  }
+}
+
+class ChallengesPage extends StatelessWidget {
+  const ChallengesPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Challenges"),
+      ),
+    );
+  }
+}
+
+class ShopPage extends StatelessWidget {
+  const ShopPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Shop"),
+      ),
     );
   }
 }
@@ -51,6 +127,12 @@ class _RulePageState extends State<RulePage> {
     readJson();
   }
 
+  // Just experimented with the app bar a bit, can be removed. :)S
+/*
+  void onPressedSettings() {
+    print("Settings");
+  } */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +141,10 @@ class _RulePageState extends State<RulePage> {
         title: const Text(
           "Tag Lag",
         ),
+        // Same here!
+        /*
+        actions: [IconButton(onPressed: onPressedSettings, icon: const Icon(Icons.settings))],
+      */
       ),
       body: Padding(
         padding: const EdgeInsets.all(25),
