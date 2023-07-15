@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const TagLag());
@@ -18,8 +19,11 @@ class TagLag extends StatelessWidget {
       title: 'Tag Lag',
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red, brightness: Brightness.light),
       ),
+     // darkTheme: ThemeData.dark(useMaterial3: true),
+     // themeMode: ThemeMode.dark,
+
       home: const MainPage(),
     );
   }
@@ -147,7 +151,7 @@ class _RulePageState extends State<RulePage> {
       */
       ),
       body: Padding(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             // Display the data loaded from sample.json
@@ -156,13 +160,43 @@ class _RulePageState extends State<RulePage> {
                     child: ListView.builder(
                       itemCount: _items.length,
                       itemBuilder: (context, index) {
+                        /*
                         return Card(
+                          color: Theme.of(context).cardColor,
                           key: ValueKey(_items[index]["id"]),
                           margin: const EdgeInsets.all(10),
                           child: ListTile(
                             leading: Text(_items[index]["id"]),
                             title: Text(_items[index]["rule"]),
                             subtitle: Text(_items[index]["explanation"]),
+                          ),
+                        ); */
+
+                        return Card(
+                          color: Theme.of(context).cardColor,
+                          margin: const EdgeInsets.all(8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Theme(
+                              data: Theme.of(context)
+                                  .copyWith(dividerColor: Colors.transparent,),
+                              child: ExpansionTile(
+                                title:Text(_items[index]["rule"],),
+                                leading: Text(
+                                        _items[index]["id"] + ".",
+                                        textScaleFactor: 2,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context).colorScheme.primary),
+                                      ),
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(_items[index]["explanation"], style: TextStyle(color: Theme.of(context).hintColor),),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         );
                       },
