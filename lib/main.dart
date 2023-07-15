@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -79,16 +78,47 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-class ChallengesPage extends StatelessWidget {
+class ChallengesPage extends StatefulWidget {
   const ChallengesPage({super.key});
+
+  @override
+  State<ChallengesPage> createState() => _ChallengesPageState();
+}
+
+class _ChallengesPageState extends State<ChallengesPage> {
+  // ignore: unused_field
+  List _items = [];
+
+  // Fetch content from the json file
+  Future<void> readJson() async {
+    final String response =
+        await rootBundle.loadString('assets/challenges.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["challenges"]..shuffle();
+      print(_items);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Challenges"),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text("Challenges"),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              children: [
+                ElevatedButton.icon(
+                    onPressed: readJson,
+                    icon: const Icon(Icons.shuffle),
+                    label: const Text("Pull Challenge!")),
+                _items.isNotEmpty
+                    ? Expanded(child: Text(_items.first["header"]))
+                    : Container()
+              ],
+            )));
   }
 }
 
@@ -141,14 +171,7 @@ class _RulePageState extends State<RulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "Tag Lag",
-        ),
-        // Same here!
-        /*
-        actions: [IconButton(onPressed: onPressedSettings, icon: const Icon(Icons.settings))],
-      */
+        title: const Text("Tag Lag"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
