@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
 
 void main() {
@@ -83,13 +82,39 @@ class ChallengesPage extends StatefulWidget {
 }
 
 class _ChallengesPageState extends State<ChallengesPage> {
+  // ignore: unused_field
+  List _items = [];
+
+  // Fetch content from the json file
+  Future<void> readJson() async {
+    final String response =
+        await rootBundle.loadString('assets/challenges.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["challenges"]..shuffle();
+      print(_items);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Challenges"),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text("Challenges"),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              children: [
+                ElevatedButton.icon(
+                    onPressed: readJson,
+                    icon: const Icon(Icons.shuffle),
+                    label: const Text("Pull Challenge!")),
+                _items.isNotEmpty
+                    ? Expanded(child: Text(_items.first["header"]))
+                    : Container()
+              ],
+            )));
   }
 }
 
