@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'dart:math';
 
 void main() {
   runApp(const TagLag());
@@ -11,20 +13,35 @@ class TagLag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // Hide the debug banner
-      debugShowCheckedModeBanner: false,
-      title: 'Tag Lag',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.red, brightness: Brightness.light),
-      ),
-      // darkTheme: ThemeData.dark(useMaterial3: true),
-      // themeMode: ThemeMode.dark,
 
-      home: const MainPage(),
+    return ChangeNotifierProvider(
+      create: (context) => TagLagState(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Tag Lag',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.red, brightness: Brightness.light),
+        ),
+        // darkTheme: ThemeData.dark(useMaterial3: true),
+        // themeMode: ThemeMode.dark,
+
+        home: const MainPage(),
+      )
     );
+  }
+}
+
+class TagLagState extends ChangeNotifier {
+  List challenges = [];
+  int currentChallengeIndex = 0;
+
+  void shuffleChallenges() {
+    final _random = new Random();
+    currentChallengeIndex = _random.nextInt(challenges.length);
+    print("TESTTESTTEST");
+    print(currentChallengeIndex);
   }
 }
 
@@ -87,54 +104,81 @@ class ChallengesPage extends StatefulWidget {
 
 class _ChallengesPageState extends State<ChallengesPage> {
   // ignore: unused_field
-  List _items = [];
+  List challengesList = [];
 
   // Fetch content from the json file
-  Future<void> readJson() async {
+  Future<void> readChallenges() async {
     final String response =
         await rootBundle.loadString('assets/challenges.json');
     final data = await json.decode(response);
     setState(() {
-      _items = data["challenges"]..shuffle();
+      challengesList = data["challenges"];
     });
   }
 
   @override
+  void initState() {
+    super.initState();
+    // Call the readJson method when the app starts
+    readChallenges();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var appState = context.watch<TagLagState>();
+    appState.challenges = challengesList;
+    var currentChallengeIndex = appState.currentChallengeIndex;
     return Scaffold(
         appBar: AppBar(
           title: const Text("Challenges"),
+          backgroundColor: Colors.red,
         ),
         body: Padding(
             padding: const EdgeInsets.all(25),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton.icon(
-                    onPressed: readJson,
-                    icon: const Icon(Icons.shuffle),
-                    label: const Text("Pull Challenge!")),
-                _items.isNotEmpty
+                ConstrainedBox(
+                  constraints: BoxConstraints(),
+                  child: ElevatedButton.icon(
+                      onPressed: appState.shuffleChallenges,
+                      icon: const Icon(Icons.shuffle),
+                      style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10))),
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              const EdgeInsets.all(30))),
+                      label: const Text("Pull Challenge!")),
+                ),
+                appState.challenges.isNotEmpty
                     ? Expanded(
-                        child: ElevatedButton(
+                        child: Card(
+                            child: TextButton(
                         onPressed: () => showDialog(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
-                                  title: Text(_items.first["header"]),
-                                  content: Text(_items.first["text"]),
+                                  title: Text(appState.challenges.elementAt(appState.currentChallengeIndex)["header"]),
+                                  content: Text(appState.challenges.elementAt(appState.currentChallengeIndex)["text"]),
                                   actions: [
                                     IconButton(
                                         onPressed: () {},
                                         icon: const Icon(Icons.check))
                                   ],
-                                )),
-                        child: Text(_items.first["header"]),
-                      ))
+                                )
+                              ),
+                        child: Text(appState.challenges.elementAt(appState.currentChallengeIndex)["header"]),
+                            )
+                        )
+                    )
                     : Container()
               ],
-            )));
+            )
+        )
+    );
   }
 }
-
 class ShopPage extends StatelessWidget {
   const ShopPage({super.key});
 
@@ -143,6 +187,7 @@ class ShopPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Shop"),
+        backgroundColor: Colors.red,
       ),
     );
   }
@@ -156,14 +201,14 @@ class RulePage extends StatefulWidget {
 }
 
 class _RulePageState extends State<RulePage> {
-  List _items = [];
+  List ruleList = [];
 
   // Fetch content from the json file
-  Future<void> readJson() async {
+  Future<void> readRules() async {
     final String response = await rootBundle.loadString('assets/rules.json');
     final data = await json.decode(response);
     setState(() {
-      _items = data["rules"];
+      ruleList = data["rules"];
     });
   }
 
@@ -171,7 +216,7 @@ class _RulePageState extends State<RulePage> {
   void initState() {
     super.initState();
     // Call the readJson method when the app starts
-    readJson();
+    readRules();
   }
 
   // Just experimented with the app bar a bit, can be removed. :)S
@@ -185,16 +230,17 @@ class _RulePageState extends State<RulePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tag Lag"),
+        backgroundColor: Colors.red,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
             // Display the data loaded from sample.json
-            _items.isNotEmpty
+            ruleList.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
-                      itemCount: _items.length,
+                      itemCount: ruleList.length,
                       itemBuilder: (context, index) {
                         /*
                         return Card(
@@ -210,7 +256,7 @@ class _RulePageState extends State<RulePage> {
 
                         return Card(
                           color: Theme.of(context).cardColor,
-                          margin: const EdgeInsets.all(8),
+                          margin: const EdgeInsets.all(10),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Theme(
@@ -219,10 +265,10 @@ class _RulePageState extends State<RulePage> {
                               ),
                               child: ExpansionTile(
                                 title: Text(
-                                  _items[index]["rule"],
+                                  ruleList[index]["rule"],
                                 ),
                                 leading: Text(
-                                  _items[index]["id"] + ".",
+                                  ruleList[index]["id"] + ".",
                                   textScaleFactor: 2,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -234,7 +280,7 @@ class _RulePageState extends State<RulePage> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      _items[index]["explanation"],
+                                      ruleList[index]["explanation"],
                                       style: TextStyle(
                                           color: Theme.of(context).hintColor),
                                     ),
