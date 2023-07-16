@@ -36,12 +36,18 @@ class TagLag extends StatelessWidget {
 class TagLagState extends ChangeNotifier {
   List challenges = [];
   int currentChallengeIndex = 0;
+  bool hasActiveChallenge = false;
+  int coinBalance = 500;
 
   void shuffleChallenges() {
-    final _random = new Random();
-    currentChallengeIndex = _random.nextInt(challenges.length);
-    print("TESTTESTTEST");
-    print(currentChallengeIndex);
+    final random = Random();
+    currentChallengeIndex = random.nextInt(challenges.length);
+    hasActiveChallenge = true;
+  }
+
+  void completedChallenge() {
+    coinBalance += challenges[currentChallengeIndex]["coins"] as int;
+    hasActiveChallenge = false;
   }
 }
 
@@ -103,6 +109,7 @@ class ChallengesPage extends StatefulWidget {
 }
 
 class _ChallengesPageState extends State<ChallengesPage> {
+
   // ignore: unused_field
   List challengesList = [];
 
@@ -126,7 +133,9 @@ class _ChallengesPageState extends State<ChallengesPage> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<TagLagState>();
-    appState.challenges = challengesList;
+    if (appState.challenges.isEmpty) {
+      appState.challenges = challengesList;
+    }
     var currentChallengeIndex = appState.currentChallengeIndex;
     return Scaffold(
         appBar: AppBar(
@@ -139,7 +148,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ConstrainedBox(
-                  constraints: BoxConstraints(),
+                  constraints: const BoxConstraints(),
                   child: ElevatedButton.icon(
                       onPressed: appState.shuffleChallenges,
                       icon: const Icon(Icons.shuffle),
@@ -152,18 +161,21 @@ class _ChallengesPageState extends State<ChallengesPage> {
                               const EdgeInsets.all(30))),
                       label: const Text("Pull Challenge!")),
                 ),
-                appState.challenges.isNotEmpty
+                appState.hasActiveChallenge
                     ? Expanded(
                         child: Card(
                             child: TextButton(
                         onPressed: () => showDialog(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
-                                  title: Text(appState.challenges.elementAt(appState.currentChallengeIndex)["header"]),
-                                  content: Text(appState.challenges.elementAt(appState.currentChallengeIndex)["text"]),
+                                  title: Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"]),
+                                  content: Column(
+                                    children: [
+                                      Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"].toString() + "coins"),
+                                      Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["text"])]),
                                   actions: [
                                     IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {appState.completedChallenge(); Navigator.pop(context);},
                                         icon: const Icon(Icons.check))
                                   ],
                                 )
@@ -179,16 +191,25 @@ class _ChallengesPageState extends State<ChallengesPage> {
     );
   }
 }
-class ShopPage extends StatelessWidget {
+
+class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
 
   @override
+  State<ShopPage> createState() => _ShopPageState();
+}
+
+class _ShopPageState extends State<ShopPage> {
+
+  @override
   Widget build(BuildContext context) {
+    var appState = context.watch<TagLagState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Shop"),
         backgroundColor: Colors.red,
       ),
+      body: Text(appState.coinBalance.toString()),
     );
   }
 }
