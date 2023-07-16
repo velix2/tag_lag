@@ -1,8 +1,11 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
+import 'dart:async';
 
 void main() {
   runApp(const TagLag());
@@ -107,7 +110,6 @@ class ChallengesPage extends StatefulWidget {
 }
 
 class _ChallengesPageState extends State<ChallengesPage> {
-
   // ignore: unused_field
   List challengesList = [];
 
@@ -168,30 +170,106 @@ class _ChallengesPageState extends State<ChallengesPage> {
                     ? Expanded(
                         child: Card(
                             child: TextButton(
-                        onPressed: () => showDialog(
+                        onPressed: () {showDialog(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
                                   title: Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"]),
                                   content: Column(
                                     children: [
-                                      Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"].toString() + "coins"),
+                                      Text("${appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"]} Coins"),
                                       Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["text"])]),
                                   actions: [
-                                    IconButton(
-                                        onPressed: () {
-                                          appState.completedChallenge();
-                                          Navigator.pop(context);
-                                          setState(() {
-                                            appState.hasActiveChallenge = false;
-                                          });
-                                        },
-                                        icon: const Icon(Icons.check))
+                                      TextButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) => AlertDialog(
+                                            title: const Text("Confirm Veto"),
+                                            content: Column(
+                                              children: [
+                                                const Text(
+                                                  "Are you sure you want to Veto this Challenge?"
+                                                ),
+                                                Text(
+                                                  "You and your team will have to stay exactly where you are for the next ${appState.challenges[appState.currentChallengeIndex]["veto_time"]} minutes. you may visit the nearest public toilets or get some food, but when the time is over, you and your teammates have to be exactly where you were when the veto period started. You may not pull or complete challenges, tag a team or progress in any way within this time. If you are currently on a moving vehicle (public transport), then get off at the next stop and remain there until your time is over."
+                                                ),
+                                                Text(
+                                                  "If you confirm, please set a timer on your phone for ${appState.challenges[appState.currentChallengeIndex]["veto_time"]} minutes."
+                                                )
+                                              ]
+                                            ),
+                                            actions: [
+                                              TextButton.icon(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                icon: const Icon(Icons.close),
+                                                label: const Text("Cancel")
+                                              ),
+                                              TextButton.icon(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  setState(() {
+                                                    appState.hasActiveChallenge = false;
+                                                  });
+                                                },
+                                                icon: const Icon(Icons.check),
+                                                label: const Text("Veto Challenge")
+                                              ),
+                                            ],
+                                          )
+                                        );
+                                      },
+                                      icon: const Icon(Icons.lock_clock_rounded),
+                                      label: const Text("Veto")),
+                                    TextButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) => AlertDialog(
+                                            title: const Text("Confirm Challenge Completion"),
+                                            content: Column(
+                                              children: [
+                                                const Text(
+                                                  "Are you sure you have completed your challenge?"
+                                                ),
+                                                Text(appState.challenges[appState.currentChallengeIndex]["header"]),
+                                              ]
+                                            ),
+                                            actions: [
+                                              TextButton.icon(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                icon: Icon(Icons.close),
+                                                label: Text("No"),
+                                              ),
+                                              TextButton.icon(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  appState.completedChallenge();
+                                                  setState(() {
+                                                    appState.hasActiveChallenge = false;
+                                                  });
+                                                },
+                                                icon: Icon(Icons.check),
+                                                label: Text("Yes"),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      icon: const Icon(Icons.check),
+                                      label: const Text("Challenge Complete")),
                                   ],
-                                )
-                              ),
+                            ),
+                        );
+                        },
                         child: Text(appState.challenges.elementAt(appState.currentChallengeIndex)["header"]),
-                            )
-                        )
+                            ),
+                        ),
                     )
                     : Container()
               ],
