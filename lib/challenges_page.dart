@@ -103,9 +103,6 @@ class _ChallengesPageState extends State<ChallengesPage> {
                                   Text(
                                     "You and your team will have to stay exactly where you are for the next ${appState.challenges[appState.currentChallengeIndex]["veto_time"]} minutes. you may visit the nearest public toilets or get some food, but when the time is over, you and your teammates have to be exactly where you were when the veto period started. You may not pull or complete challenges, tag a team or progress in any way within this time. If you are currently on a moving vehicle (public transport), then get off at the next stop and remain there until your time is over."
                                   ),
-                                  Text(
-                                    "If you confirm, please set a timer on your phone for ${appState.challenges[appState.currentChallengeIndex]["veto_time"]} minutes."
-                                  )
                                 ]
                               ),
                               actions: [
@@ -121,6 +118,9 @@ class _ChallengesPageState extends State<ChallengesPage> {
                                     Navigator.pop(context);
                                     setState(() {
                                       appState.hasActiveChallenge = false;
+                                      appState.vetoStartTime = DateTime.now();
+                                      appState.vetoTimeTotal = Duration(minutes: appState.challenges[appState.currentChallengeIndex]["veto_time"]);
+                                      appState.vetoEndTime = appState.vetoStartTime.add(appState.vetoTimeTotal);
                                     });
                                   },
                                   icon: const Icon(Icons.check),
