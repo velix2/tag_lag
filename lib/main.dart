@@ -42,12 +42,10 @@ class TagLagState extends ChangeNotifier {
   void shuffleChallenges() {
     final random = Random();
     currentChallengeIndex = random.nextInt(challenges.length);
-    hasActiveChallenge = true;
   }
 
   void completedChallenge() {
     coinBalance += challenges[currentChallengeIndex]["coins"] as int;
-    hasActiveChallenge = false;
   }
 }
 
@@ -150,7 +148,12 @@ class _ChallengesPageState extends State<ChallengesPage> {
                 ConstrainedBox(
                   constraints: const BoxConstraints(),
                   child: ElevatedButton.icon(
-                      onPressed: appState.shuffleChallenges,
+                      onPressed: () {
+                        appState.shuffleChallenges();
+                        setState(() {
+                          appState.hasActiveChallenge = true;
+                        });
+                      },
                       icon: const Icon(Icons.shuffle),
                       style: ButtonStyle(
                           shape:
@@ -175,7 +178,13 @@ class _ChallengesPageState extends State<ChallengesPage> {
                                       Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["text"])]),
                                   actions: [
                                     IconButton(
-                                        onPressed: () {appState.completedChallenge(); Navigator.pop(context);},
+                                        onPressed: () {
+                                          appState.completedChallenge();
+                                          Navigator.pop(context);
+                                          setState(() {
+                                            appState.hasActiveChallenge = false;
+                                          });
+                                        },
                                         icon: const Icon(Icons.check))
                                   ],
                                 )
