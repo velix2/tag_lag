@@ -17,10 +17,11 @@ class TagLag extends StatelessWidget {
       title: 'Tag Lag',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red, brightness: Brightness.light),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.red, brightness: Brightness.light),
       ),
-     // darkTheme: ThemeData.dark(useMaterial3: true),
-     // themeMode: ThemeMode.dark,
+      // darkTheme: ThemeData.dark(useMaterial3: true),
+      // themeMode: ThemeMode.dark,
 
       home: const MainPage(),
     );
@@ -95,7 +96,6 @@ class _ChallengesPageState extends State<ChallengesPage> {
     final data = await json.decode(response);
     setState(() {
       _items = data["challenges"]..shuffle();
-      print(_items);
     });
   }
 
@@ -114,7 +114,21 @@ class _ChallengesPageState extends State<ChallengesPage> {
                     icon: const Icon(Icons.shuffle),
                     label: const Text("Pull Challenge!")),
                 _items.isNotEmpty
-                    ? Expanded(child: Text(_items.first["header"]))
+                    ? Expanded(
+                        child: ElevatedButton(
+                        onPressed: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text(_items.first["header"]),
+                                  content: Text(_items.first["text"]),
+                                  actions: [
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(Icons.check))
+                                  ],
+                                )),
+                        child: Text(_items.first["header"]),
+                      ))
                     : Container()
               ],
             )));
@@ -200,21 +214,30 @@ class _RulePageState extends State<RulePage> {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(dividerColor: Colors.transparent,),
+                              data: Theme.of(context).copyWith(
+                                dividerColor: Colors.transparent,
+                              ),
                               child: ExpansionTile(
-                                title:Text(_items[index]["rule"],),
+                                title: Text(
+                                  _items[index]["rule"],
+                                ),
                                 leading: Text(
-                                        _items[index]["id"] + ".",
-                                        textScaleFactor: 2,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Theme.of(context).colorScheme.primary),
-                                      ),
+                                  _items[index]["id"] + ".",
+                                  textScaleFactor: 2,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                                ),
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(_items[index]["explanation"], style: TextStyle(color: Theme.of(context).hintColor),),
+                                    child: Text(
+                                      _items[index]["explanation"],
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
                                   ),
                                 ],
                               ),
