@@ -37,11 +37,28 @@ class TagLag extends StatelessWidget {
 }
 
 class TagLagState extends ChangeNotifier {
+
+  // all app-wide variables having to do with CHALLENGES
   List challenges = []; // a list of all challenges
   int currentChallengeIndex = 0; // what challenge is currently being done?
   bool hasActiveChallenge = false; // is there an active challenge?
 
+  // all app-wide variables having to do with COINS
   int coinBalance = 500; // how many coins are in the teams bank?
+
+  // all app-wide variables having to do with VETOING
+  var vetoStartTime = DateTime.now(); // Storing the timepoint that the last veto period was started
+  var vetoTimeTotal = Duration(minutes: 0); // The amount of time the last/current veto period lasts
+  var vetoEndTime = DateTime.now(); // The point in time where the veto period ends
+  var vetoTimeLeft = Duration(minutes: 0);
+  bool hasActiveVeto = false;
+
+  void checkVetoTime() {
+    vetoTimeLeft = vetoEndTime.difference(DateTime.now());
+    if (vetoTimeLeft.isNegative) {
+      hasActiveVeto = false;
+    }
+  }
 
   //shuffle the list of challenges, for extra randomnes
   void shuffleChallenges() {

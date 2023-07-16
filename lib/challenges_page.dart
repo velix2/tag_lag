@@ -31,7 +31,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
   @override
   void initState() {
     super.initState();
-    // Call the readJson method when the app starts
+    // Call the readJson method when this page gets loaded
     readChallenges();
   }
 
@@ -41,6 +41,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
     if (appState.challenges.isEmpty) {
       appState.challenges = challengesList;
     }
+    appState.checkVetoTime();
     var currentChallengeIndex = appState.currentChallengeIndex;
     return Scaffold(
       appBar: AppBar(
@@ -52,8 +53,32 @@ class _ChallengesPageState extends State<ChallengesPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(),
+            (appState.hasActiveVeto) ? Expanded(
+              child: Column(
+                children: [
+                  Text(
+                    "You're currently blocked by a veto period. You have ${
+                      appState.vetoTimeLeft.abs().toString().substring(0, 1)
+                    } hours, ${
+                      appState.vetoTimeLeft.abs().toString().substring(2, 4)
+                    } minutes and ${
+                      appState.vetoTimeLeft.abs().toString().substring(5, 7)
+                    } seconds left to wait"
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        appState.vetoTimeLeft = appState.vetoEndTime.difference(DateTime.now());
+                        appState.checkVetoTime();
+                      });
+                    },
+                    icon: const Icon(Icons.refresh),
+                    label: const Text("Refresh")
+                  )
+                ]
+              )
+            ) : Container(),
+            (!appState.hasActiveVeto && !appState.hasActiveChallenge) ? Expanded(
               child: ElevatedButton.icon(
                 onPressed: () {
                   appState.shuffleChallenges();
@@ -74,8 +99,8 @@ class _ChallengesPageState extends State<ChallengesPage> {
                 ),
                 label: const Text("Pull Challenge!")
               ),
-            ),
-            appState.hasActiveChallenge ? Expanded(
+            ) : Container(),
+            (appState.hasActiveChallenge && !appState.hasActiveVeto) ? Expanded(
               child: TextButton(
                 onPressed: () {showDialog(
                   context: context,
@@ -118,9 +143,11 @@ class _ChallengesPageState extends State<ChallengesPage> {
                                     Navigator.pop(context);
                                     setState(() {
                                       appState.hasActiveChallenge = false;
-                                      appState.vetoStartTime = DateTime.now();
+                                      appState.hasActiveVeto = true;
                                       appState.vetoTimeTotal = Duration(minutes: appState.challenges[appState.currentChallengeIndex]["veto_time"]);
-                                      appState.vetoEndTime = appState.vetoStartTime.add(appState.vetoTimeTotal);
+                                      appState.vetoStartTime = DateTime.now();
+                                      appState.vetoEndTime = DateTime.now().add(Duration(minutes: appState.challenges[appState.currentChallengeIndex]["veto_time"]));
+                                      appState.checkVetoTime();
                                     });
                                   },
                                   icon: const Icon(Icons.check),
@@ -180,8 +207,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
               },
               child: Text(appState.challenges.elementAt(appState.currentChallengeIndex)["header"]),
               ),
-            )
-            : Container()
+            ) : Container()
           ],
         )
       )
