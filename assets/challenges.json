@@ -2,15 +2,39 @@
     [
         {
             "header":"Climb a tree.",
-            "text":"Find a tree that can support one of your teammembers weights. One member must climb this tree so that every part of their body is over 1.5 meters above ground level. The selected member must be able to stay at this height for at least 2 minutes.",
+            "text":"Find a tree that can support one of your teammembers weights. One member must climb this tree so that every part of their body is over 1.5 meters above ground level. The selected member must be able to stay at this height for at least 2 minutes. The entire two minutes must be filmed.",
             "coins":150,
-            "veto_time":20
+            "veto_time":15
         },
         {
-            "header":"Find twenty birds",
+            "header":"Find twenty birds.",
             "text":"You must photograph at least 20 different birds. Each bird must be clearly recognizable as one. Only real and alive birds count.",
-            "coins":200,
+            "coins":150,
+            "veto_time":15
+        },
+        {
+            "header":"Visit the airport",
+            "text":"You and your partner have to take a selfie inside the official MUC airport. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in the airport. You may start this challenge at any spot of your liking. As soon as you start, you may take any public transport and don't have to pay for it under the following conditions: 1. You go there and back in the most direct and fastest way possible, and 2. On your way back, you will have to (again) take the fastest/most direct way to the exact spot where you started the challenge. You may stay at the airport for however long you want.",
+            "coins":1000,
+            "veto_time":45
+        },
+        {
+            "header":"Visit an IKEA",
+            "text":"You and your partner have to take a selfie inside any IKEA within the game borders. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in an IKEA. You may start this challenge at any spot of your liking. As soon as you start, you may take any public transport and don't have to pay for it under the following conditions: 1. You go there and back in the most direct and fastest way possible, and 2. On your way back, you will have to (again) take the fastest/most direct way to the exact spot where you started the challenge. You may stay at the IKEA for however long you want.",
+            "coins":750,
+            "veto_time":40
+        },
+        {
+            "header":"Be faster than public transport.",
+            "text":"One of your teammembers has to get on any viable medium of public transport. As soon as they are on this, the other portner has to run to the next station of the first player by foot. If the second teammember manages to arrive at that station before the first one does, then the challenge is completed. Your team has two attempts, if both fail, the challenge is automatically vetoed. Viable mediums are: U-Bahn, Bus, ...",
+            "coins":500,
             "veto_time":25
+        },
+        {
+            "header":"Go exactly one Kilometer",
+            "text":"One teammember closes their eyes and points in front of themselves. They then start spinning, slow enough not to feel dizzy. At any point during this, their partner sais 'Stop' and the first person stops spinning. Now open Maps, and measure distance in the direction they're pointing in (Long press on your location, swipe menu up => 'Measure distance'). Determine the point that lies exactly one kilometer in this direction, now take a screenshot where you can see your location and the point you just measured out. Now get to the closest publically accessible spot to this point (i.e. the nearest street). You are not allowed to use any form of public transport, so you must go there by foot. Once you arrived, take another screenshot of your location, and a selfie at your spot.",
+            "coins":300,
+            "veto_time":20
         }
     ]
 }
