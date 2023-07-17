@@ -61,6 +61,10 @@ class TagLagState extends ChangeNotifier {
     }
   }
 
+  void buy(int cost) {
+    coinBalance = coinBalance - cost;
+  }
+
   //shuffle the list of challenges, for extra randomnes
   void shuffleChallenges() {
     final random = Random();
@@ -110,7 +114,7 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.assistant_photo), label: "Challenges"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart), label: "Shop"),
+                icon: Icon(Icons.train), label: "Transport"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.handshake), label: "Rules"),
             BottomNavigationBarItem(
