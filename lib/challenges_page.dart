@@ -56,25 +56,34 @@ class _ChallengesPageState extends State<ChallengesPage> {
             (appState.hasActiveVeto) ? Expanded( //During Veto
               child: Column(
                 children: [
-                  Text(
-                    "You're currently blocked by a veto period. You have ${
-                      appState.vetoTimeLeft.abs().toString().substring(0, 1)
-                    } hours, ${
-                      appState.vetoTimeLeft.abs().toString().substring(2, 4)
-                    } minutes and ${
-                      appState.vetoTimeLeft.abs().toString().substring(5, 7)
-                    } seconds left to wait"
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Text(
+                            "You're currently blocked by a veto period. You have ${
+                              appState.vetoTimeLeft.abs().toString().substring(0, 1)
+                            } hours, ${
+                              appState.vetoTimeLeft.abs().toString().substring(2, 4)
+                            } minutes and ${
+                              appState.vetoTimeLeft.abs().toString().substring(5, 7)
+                            } seconds left to wait"
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              setState(() {
+                                appState.vetoTimeLeft = appState.vetoEndTime.difference(DateTime.now());
+                                appState.checkVetoTime();
+                              });
+                            },
+                            icon: const Icon(Icons.refresh),
+                            label: const Text("Refresh")
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        appState.vetoTimeLeft = appState.vetoEndTime.difference(DateTime.now());
-                        appState.checkVetoTime();
-                      });
-                    },
-                    icon: const Icon(Icons.refresh),
-                    label: const Text("Refresh")
-                  )
                 ]
               )
             ) : Container(),
