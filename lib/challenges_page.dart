@@ -53,7 +53,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            (appState.hasActiveVeto) ? Expanded(
+            (appState.hasActiveVeto) ? Expanded( //During Veto
               child: Column(
                 children: [
                   Text(
@@ -78,7 +78,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
                 ]
               )
             ) : Container(),
-            (!appState.hasActiveVeto && !appState.hasActiveChallenge) ? Expanded(
+            (!appState.hasActiveVeto && !appState.hasActiveChallenge) ? Expanded( //No Challenge active and no Veto
               child: ElevatedButton.icon(
                 onPressed: () {
                   appState.shuffleChallenges();
@@ -100,7 +100,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
                 label: const Text("Pull Challenge!")
               ),
             ) : Container(),
-            (appState.hasActiveChallenge && !appState.hasActiveVeto) ? Expanded(
+            (appState.hasActiveChallenge && !appState.hasActiveVeto) ? Expanded( //Challenge Active
               child: TextButton(
                 onPressed: () {showDialog(
                   context: context,
