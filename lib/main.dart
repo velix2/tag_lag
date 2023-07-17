@@ -47,11 +47,11 @@ class TagLagState extends ChangeNotifier {
   // all app-wide variables having to do with VETOING
   var vetoStartTime = DateTime
       .now(); // Storing the timepoint that the last veto period was started
-  var vetoTimeTotal = Duration(
+  var vetoTimeTotal = const Duration(
       minutes: 0); // The amount of time the last/current veto period lasts
   var vetoEndTime =
       DateTime.now(); // The point in time where the veto period ends
-  var vetoTimeLeft = Duration(minutes: 0);
+  var vetoTimeLeft = const Duration(minutes: 0);
   bool hasActiveVeto = false;
 
   void checkVetoTime() {
