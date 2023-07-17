@@ -3,7 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
+
+import 'main.dart';
 
 class ExperimentalPage extends StatefulWidget {
   const ExperimentalPage({super.key});
@@ -16,7 +19,7 @@ class _ExperimentalPageState extends State<ExperimentalPage>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _animation;
-  AnimationStatus _status = AnimationStatus.dismissed;
+  static AnimationStatus _status = AnimationStatus.dismissed;
 
   @override
   void initState() {
@@ -34,6 +37,7 @@ class _ExperimentalPageState extends State<ExperimentalPage>
 
   @override
   Widget build(BuildContext context) {
+     var appState = context.watch<TagLagState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Test Page"),
@@ -56,10 +60,11 @@ class _ExperimentalPageState extends State<ExperimentalPage>
                       transform: Matrix4.identity()
                         ..setEntry(3, 2, 0.0015)
                         ..rotateY(pi - pi * _animation.value),
-                      child: _animation.value <= 0.5
+                      child: (_animation.value <= 0.5 || !appState.hasActiveChallenge)
                           ? GestureDetector(
                               onTap: () {
                                   _controller.forward();
+                                  appState.hasActiveChallenge = true;
                               },
                               child: Card(
                                   margin: const EdgeInsets.all(20),
