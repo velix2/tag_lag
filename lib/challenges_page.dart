@@ -262,14 +262,14 @@ class _ChallengesPageState extends State<ChallengesPage>
   }
 }
 
-
 class ChallengeCardBody extends StatelessWidget {
   const ChallengeCardBody({
     super.key,
     required Animation animation,
     required this.appState,
     required AnimationController controller,
-  }) : _animation = animation, _controller = controller;
+  })  : _animation = animation,
+        _controller = controller;
 
   final Animation _animation;
   final TagLagState appState;
@@ -308,7 +308,6 @@ class ChallengeCardBody extends StatelessWidget {
   }
 }
 
-
 class CardBack extends StatelessWidget {
   const CardBack({
     super.key,
@@ -316,9 +315,7 @@ class CardBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        margin: EdgeInsets.all(20),
-        child: Center(child: Text("Back")));
+    return Card(margin: EdgeInsets.all(20), child: Center(child: Text("Back")));
   }
 }
 
@@ -335,24 +332,25 @@ class CardFront extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          _controller.forward();
-          appState.hasActiveChallenge = true;
-        },
-        child: Card(
-            margin: const EdgeInsets.all(20),
-            child: Transform(
-                alignment: FractionalOffset.center,
-                transform: Matrix4.rotationY(pi),
-                child: Center(
-                  child: (!appState.hasActiveChallenge) ? const Column(
-                      mainAxisAlignment:
-                          MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.shuffle),
-                        Text("Tap to pull challenge...")
-                      ]) : const SizedBox(),
-                ))),
-      );
+      onTap: () {
+        _controller.forward();
+        appState.hasActiveChallenge = true;
+      },
+      child: Card(
+          margin: const EdgeInsets.all(20),
+          child: Transform(
+              alignment: FractionalOffset.center,
+              transform: Matrix4.rotationY(pi),
+              child: Center(
+                child: (!appState.hasActiveChallenge)
+                    ? const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                            Icon(Icons.shuffle),
+                            Text("Tap to pull challenge...")
+                          ])
+                    : const SizedBox(),
+              ))),
+    );
   }
 }

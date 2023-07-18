@@ -40,6 +40,7 @@ class _ShopPageState extends State<ShopPage> {
     var appState = context.watch<TagLagState>();
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.train),
         title: const Text("Shop"),
         backgroundColor: Colors.red,
       ),
@@ -96,7 +97,7 @@ class _BuyButtonState extends State<BuyButton> {
     //var appState = context.watch<TagLagState>();
     return ElevatedButton.icon(
       onPressed: widget.onPressed,
-      label: Text("One ${widget.medium} station"),
+      label: Text("One ${widget.medium} station, Price: ${widget.cost}"),
       icon: widget.mediumIcon,
     );
   }
