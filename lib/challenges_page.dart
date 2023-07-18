@@ -329,7 +329,9 @@ class ChallengeCardBody extends StatelessWidget {
                     child: (_animation.value <= 0.5 ||
                             !appState.hasActiveChallenge)
                         ? CardFront(controller: _controller, appState: appState)
-                        : CardBack(appState: appState,)),
+                        : CardBack(
+                            appState: appState,
+                          )),
               ),
             ),
           ),
@@ -345,13 +347,12 @@ class CardBack extends StatelessWidget {
     required this.appState,
   });
 
-    final TagLagState appState;
-
+  final TagLagState appState;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -359,24 +360,61 @@ class CardBack extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    flex: 2,
-                    child: Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),textAlign: TextAlign.left)
-                    ),
-
+                      flex: 2,
+                      child: Text(
+                          appState.challenges.elementAtOrNull(
+                              appState.currentChallengeIndex)["header"],
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 24),
+                          textAlign: TextAlign.left)),
                   Expanded(
                     flex: 1,
                     child: Card(
                       color: Colors.white,
                       elevation: 0,
                       child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Row(children: [
-                          Icon(Icons.attach_money_rounded, size: 30, color: Color(0xff55ff55),),
-                          Expanded(child: Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"].toString(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromARGB(255, 35, 35, 35)),textAlign: TextAlign.center,)),
-                        ],),
+                        padding: const EdgeInsets.all(5),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.attach_money_rounded,
+                              size: 30,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            Expanded(
+                                child: Text(
+                              appState.challenges
+                                  .elementAtOrNull(
+                                      appState.currentChallengeIndex)["coins"]
+                                  .toString(),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 35, 35, 35)),
+                              textAlign: TextAlign.center,
+                            )),
+                          ],
+                        ),
                       ),
                     ),
                   )
+                ],
+              ),
+              Expanded(
+                  child: Text(appState.challenges.elementAtOrNull(
+                      appState.currentChallengeIndex)["text"])),
+              Row(
+                children: [
+                  TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.lock_clock_rounded),
+                      label: Text("Veto")),
+                      Expanded(child: SizedBox(),),
+                  ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.check),
+                      label: Text("Complete"),),
+                      
                 ],
               ),
             ],
