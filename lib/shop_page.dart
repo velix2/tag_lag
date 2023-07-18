@@ -67,6 +67,9 @@ class _ShopPageState extends State<ShopPage> {
                         appState.buy(medium["cost"]);
                       });
                     },
+                    enabled: (appState.coinBalance - medium["cost"]).isNegative?
+                      false:
+                      true,
                   ),
                 )
             ]
@@ -80,11 +83,12 @@ class _ShopPageState extends State<ShopPage> {
 class BuyButton extends StatefulWidget {
   String medium;
   int cost;
-  Icon mediumIcon;
+  var mediumIcon;
   void Function() onPressed;
+  bool enabled;
 
   BuyButton(
-    {super.key, required this.cost, required this.medium, required this.mediumIcon, required this.onPressed}
+    {super.key, required this.cost, required this.medium, required this.mediumIcon, required this.onPressed, required this.enabled}
   );
 
   @override
@@ -96,7 +100,9 @@ class _BuyButtonState extends State<BuyButton> {
   Widget build(BuildContext context) {
     //var appState = context.watch<TagLagState>();
     return ElevatedButton.icon(
-      onPressed: widget.onPressed,
+      onPressed: widget.enabled?
+        widget.onPressed:
+        null,
       label: Text("One ${widget.medium} station, Price: ${widget.cost}"),
       icon: widget.mediumIcon,
     );
