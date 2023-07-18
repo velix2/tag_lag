@@ -75,30 +75,25 @@ class _ChallengesPageState extends State<ChallengesPage>
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text(
-                      "History"
-                    ),
-                    content: SizedBox(
-                      width: 200,
-                      height: 400,
-                      child: ListView.builder(
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: Text("Item $index"),
-                          );
-                        }
-                      ),
-                    ),
-                  )
-                );
-              },
-              icon: const Icon(Icons.history)
-            ),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                            title: const Text("History"),
+                            content: SizedBox(
+                              width: 200,
+                              height: 400,
+                              child: ListView.builder(
+                                  itemCount: 5,
+                                  itemBuilder: (context, index) {
+                                    return Card(
+                                      child: Text("Item $index"),
+                                    );
+                                  }),
+                            ),
+                          ));
+                },
+                icon: const Icon(Icons.history)),
           )
         ],
       ),
@@ -334,7 +329,7 @@ class ChallengeCardBody extends StatelessWidget {
                     child: (_animation.value <= 0.5 ||
                             !appState.hasActiveChallenge)
                         ? CardFront(controller: _controller, appState: appState)
-                        : CardBack()),
+                        : CardBack(appState: appState,)),
               ),
             ),
           ),
@@ -347,11 +342,40 @@ class ChallengeCardBody extends StatelessWidget {
 class CardBack extends StatelessWidget {
   const CardBack({
     super.key,
+    required this.appState,
   });
+
+    final TagLagState appState;
+
 
   @override
   Widget build(BuildContext context) {
-    return Card(margin: EdgeInsets.all(20), child: Center(child: Text("Back")));
+    return Card(
+        margin: EdgeInsets.all(20),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    flex: 9,
+                    child: Text("Challenge Title", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),textAlign: TextAlign.left)
+                    ),
+
+                  Expanded(
+                    flex: 1,
+                    child: Row(children: [
+                      Icon(Icons.attach_money_rounded, size: 30),
+                      Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),textAlign: TextAlign.left,),
+                    ],),
+                  )
+
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }
 

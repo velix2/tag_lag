@@ -106,7 +106,10 @@ class CardBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         margin: EdgeInsets.all(20),
-        child: Center(child: Text("Back")));
+        child: Column(children: [
+          Text("Challenge Title"),
+        ],)
+        );
   }
 }
 
