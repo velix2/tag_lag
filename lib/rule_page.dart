@@ -33,7 +33,7 @@ class _RulePageState extends State<RulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tag Lag"),
+        title: const Text("Rules"),
         backgroundColor: Colors.red,
       ),
       body: Padding(
