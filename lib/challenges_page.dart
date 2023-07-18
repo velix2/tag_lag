@@ -68,8 +68,39 @@ class _ChallengesPageState extends State<ChallengesPage>
     var currentChallengeIndex = appState.currentChallengeIndex;
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.flag),
         title: const Text("Challenges"),
         backgroundColor: Colors.red,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text(
+                      "History"
+                    ),
+                    content: SizedBox(
+                      width: 200,
+                      height: 400,
+                      child: ListView.builder(
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            child: Text("Item $index"),
+                          );
+                        }
+                      ),
+                    ),
+                  )
+                );
+              },
+              icon: const Icon(Icons.history)
+            ),
+          )
+        ],
       ),
       /*body: Padding(
             padding: const EdgeInsets.all(25),
