@@ -2,11 +2,11 @@
     [
         {
             "name":"U-Bahn",
-            "cost":100
+            "cost":10
         },
         {
             "name":"Bus",
-            "cost":30
+            "cost":3
         }
     ]
 }
