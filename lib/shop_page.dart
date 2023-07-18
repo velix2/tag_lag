@@ -1,6 +1,10 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
+import 'dart:convert';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -10,6 +14,26 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+
+  List mediumsList = [];
+
+  // Fetch content from the json file
+  Future<void> readMediums() async {
+    final String response =
+        await rootBundle.loadString('assets/mediums.json');
+    final data = await json.decode(response);
+    setState(() {
+      mediumsList = data["mediums"];
+      print(mediumsList);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the readJson method when this page gets loaded
+    readMediums();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +52,24 @@ class _ShopPageState extends State<ShopPage> {
             )
           ),
           const Divider(),
-          BuyButton(
-            cost: 75,
-            medium: "U-Bahn",
-            mediumIcon: const Icon(Icons.train),
-            onPressed: () {
-              setState(() {
-                appState.coinBalance = appState.coinBalance - 75;
-              });
-            },
-          ),
+          Column(
+            children: [
+              for (var medium in mediumsList)
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: BuyButton(
+                    cost: medium["cost"],
+                    medium: medium["name"],
+                    mediumIcon: const Icon(Icons.train),
+                    onPressed: () {
+                      setState(() {
+                        appState.buy(medium["cost"]);
+                      });
+                    },
+                  ),
+                )
+            ]
+          )
         ],
       ),
     );
@@ -48,7 +80,7 @@ class BuyButton extends StatefulWidget {
   String medium;
   int cost;
   Icon mediumIcon;
-  var onPressed;
+  void Function() onPressed;
 
   BuyButton(
     {super.key, required this.cost, required this.medium, required this.mediumIcon, required this.onPressed}
@@ -61,7 +93,7 @@ class BuyButton extends StatefulWidget {
 class _BuyButtonState extends State<BuyButton> {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<TagLagState>();
+    //var appState = context.watch<TagLagState>();
     return ElevatedButton.icon(
       onPressed: widget.onPressed,
       label: Text("One ${widget.medium} station"),
