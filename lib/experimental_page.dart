@@ -47,33 +47,51 @@ class _ExperimentalPageState extends State<ExperimentalPage>
         title: const Text(
             "Test Page"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(25),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 500,
-                  child: Transform(
-                      alignment: FractionalOffset.center,
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 0.0015)
-                        ..rotateY(pi - pi * _animation.value),
-                      child: (_animation.value <= 0.5 ||
-                              !appState.hasActiveChallenge)
-                          ? CardFront(controller: _controller, appState: appState)
-                          : CardBack()),
-                ),
+      body: ChallengeCardBody(animation: _animation, appState: appState, controller: _controller),
+    );
+  }
+}
+
+class ChallengeCardBody extends StatelessWidget {
+  const ChallengeCardBody({
+    super.key,
+    required Animation animation,
+    required this.appState,
+    required AnimationController controller,
+  }) : _animation = animation, _controller = controller;
+
+  final Animation _animation;
+  final TagLagState appState;
+  final AnimationController _controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(25),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: double.infinity,
+                height: 500,
+                child: Transform(
+                    alignment: FractionalOffset.center,
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.0015)
+                      ..rotateY(pi - pi * _animation.value),
+                    child: (_animation.value <= 0.5 ||
+                            !appState.hasActiveChallenge)
+                        ? CardFront(controller: _controller, appState: appState)
+                        : CardBack()),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
