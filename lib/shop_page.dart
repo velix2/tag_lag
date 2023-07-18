@@ -66,14 +66,19 @@ class _ShopPageState extends State<ShopPage> {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: Text("Confirm"),
+                          title: const Text("Confirm"),
+                          content: Column(
+                            children: [
+                              Text("You're buying "),
+                            ],
+                          ),
                           actions: [
                             TextButton.icon(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
                               icon: const Icon(Icons.close),
-                              label: const Text("No")
+                              label: const Text("Cancel")
                             ),
                             TextButton.icon(
                               onPressed: () {
@@ -83,7 +88,7 @@ class _ShopPageState extends State<ShopPage> {
                                  });
                               },
                               icon: const Icon(Icons.check),
-                              label: const Text("Yes")
+                              label: const Text("Confirm")
                             )
                           ],
                         )
