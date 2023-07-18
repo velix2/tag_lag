@@ -353,24 +353,30 @@ class CardBack extends StatelessWidget {
     return Card(
         margin: EdgeInsets.all(20),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
               Row(
                 children: [
                   Expanded(
-                    flex: 9,
-                    child: Text("Challenge Title", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),textAlign: TextAlign.left)
+                    flex: 2,
+                    child: Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),textAlign: TextAlign.left)
                     ),
 
                   Expanded(
                     flex: 1,
-                    child: Row(children: [
-                      Icon(Icons.attach_money_rounded, size: 30),
-                      Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),textAlign: TextAlign.left,),
-                    ],),
+                    child: Card(
+                      color: Colors.white,
+                      elevation: 0,
+                      child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Row(children: [
+                          Icon(Icons.attach_money_rounded, size: 30, color: Color(0xff55ff55),),
+                          Expanded(child: Text(appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"].toString(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromARGB(255, 35, 35, 35)),textAlign: TextAlign.center,)),
+                        ],),
+                      ),
+                    ),
                   )
-
                 ],
               ),
             ],
