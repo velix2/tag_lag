@@ -24,7 +24,8 @@ class _ChallengesPageState extends State<ChallengesPage>
   //Stuff for card animation
   late AnimationController _controller;
   late Animation _animation;
-  late AnimationStatus _status;
+  // ignore: unused_field
+  static AnimationStatus _status = AnimationStatus.dismissed;
 
   // Fetch content from the json file
   Future<void> readChallenges() async {
@@ -393,16 +394,27 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                     //Navigator.pop(context);
                                                     showDialog(
                                                         context: context,
-                                                  
                                                         builder:
                                                             (BuildContext
                                                                     context) =>
                                                                 AlertDialog(
-                                                                  insetPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 160.0),
+                                                                  insetPadding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      horizontal:
+                                                                          20.0,
+                                                                      vertical:
+                                                                          160.0),
                                                                   title: Row(
                                                                     children: [
-                                                                      const Icon(Icons.lock_clock_rounded),
-                                                                      SizedBox.fromSize(size: const Size(15, 15),),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .lock_clock_rounded),
+                                                                      SizedBox
+                                                                          .fromSize(
+                                                                        size: const Size(
+                                                                            15,
+                                                                            15),
+                                                                      ),
                                                                       const Text(
                                                                           "Confirm Veto"),
                                                                     ],
@@ -410,11 +422,18 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                   content: Column(
                                                                       children: [
                                                                         const Text(
-                                                                            "Are you sure you want to Veto this Challenge?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24), textAlign: TextAlign.center,),
+                                                                          "Are you sure you want to Veto this Challenge?",
+                                                                          style: TextStyle(
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontSize: 24),
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                        ),
                                                                         Expanded(
-                                                                          child: Center(
-                                                                            child: Text(
-                                                                                "You and your team will have to stay exactly where you are for the next ${appState.challenges[appState.currentChallengeIndex]["veto_time"]} minutes. you may visit the nearest public toilets or get some food, but when the time is over, you and your teammates have to be exactly where you were when the veto period started. You may not pull or complete challenges, tag a team or progress in any way within this time. If you are currently on a moving vehicle (public transport), then get off at the next stop and remain there until your time is over."),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text("You and your team will have to stay exactly where you are for the next ${appState.challenges[appState.currentChallengeIndex]["veto_time"]} minutes. you may visit the nearest public toilets or get some food, but when the time is over, you and your teammates have to be exactly where you were when the veto period started. You may not pull or complete challenges, tag a team or progress in any way within this time. If you are currently on a moving vehicle (public transport), then get off at the next stop and remain there until your time is over."),
                                                                           ),
                                                                         ),
                                                                       ]),
@@ -451,16 +470,65 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                   ],
                                                                 ));
                                                   },
-                                                  icon: Icon(
+                                                  icon: const Icon(
                                                       Icons.lock_clock_rounded),
-                                                  label: Text("Veto")),
-                                              Expanded(
+                                                  label: const Text("Veto")),
+                                              const Expanded(
                                                 child: SizedBox(),
                                               ),
                                               ElevatedButton.icon(
-                                                onPressed: () {},
-                                                icon: Icon(Icons.check),
-                                                label: Text("Complete"),
+                                                onPressed: () {
+                                                  //ON TAP: COMPLETE
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        AlertDialog(
+                                                      title: const Text(
+                                                          "Confirm Challenge Completion"),
+                                                      content:
+                                                          Column(children: [
+                                                        const Text(
+                                                            "Are you sure you have completed your challenge?"),
+                                                        Text(appState
+                                                                    .challenges[
+                                                                appState
+                                                                    .currentChallengeIndex]
+                                                            ["header"]),
+                                                      ]),
+                                                      actions: [
+                                                        TextButton.icon(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          icon: const Icon(
+                                                              Icons.close),
+                                                          label:
+                                                              const Text("No"),
+                                                        ),
+                                                        TextButton.icon(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            appState
+                                                                .completedChallenge();
+                                                            setState(() {
+                                                              appState.hasActiveChallenge =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          icon: const Icon(
+                                                              Icons.check),
+                                                          label:
+                                                              const Text("Yes"),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                                icon: const Icon(Icons.check),
+                                                label: const Text("Complete"),
                                               ),
                                             ],
                                           ),
