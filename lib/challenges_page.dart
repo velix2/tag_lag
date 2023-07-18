@@ -67,37 +67,37 @@ class _ChallengesPageState extends State<ChallengesPage>
     appState.checkVetoTime();
     var currentChallengeIndex = appState.currentChallengeIndex;
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.flag),
-        title: const Text("Challenges"),
-        backgroundColor: Colors.red,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: IconButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                            title: const Text("History"),
-                            content: SizedBox(
-                              width: 200,
-                              height: 400,
-                              child: ListView.builder(
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) {
-                                    return Card(
-                                      child: Text("Item $index"),
-                                    );
-                                  }),
-                            ),
-                          ));
-                },
-                icon: const Icon(Icons.history)),
-          )
-        ],
-      ),
-      /*body: Padding(
+        appBar: AppBar(
+          leading: const Icon(Icons.flag),
+          title: const Text("Challenges"),
+          backgroundColor: Colors.red,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                              title: const Text("History"),
+                              content: SizedBox(
+                                width: 200,
+                                height: 400,
+                                child: ListView.builder(
+                                    itemCount: 5,
+                                    itemBuilder: (context, index) {
+                                      return Card(
+                                        child: Text("Item $index"),
+                                      );
+                                    }),
+                              ),
+                            ));
+                  },
+                  icon: const Icon(Icons.history)),
+            )
+          ],
+        ),
+        /*body: Padding(
             padding: const EdgeInsets.all(25),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -287,135 +287,188 @@ class _ChallengesPageState extends State<ChallengesPage>
               ],
             ))
             */
-      body: ChallengeCardBody(
-          animation: _animation, appState: appState, controller: _controller),
-    );
-  }
-}
-
-class ChallengeCardBody extends StatelessWidget {
-  const ChallengeCardBody({
-    super.key,
-    required Animation animation,
-    required this.appState,
-    required AnimationController controller,
-  })  : _animation = animation,
-        _controller = controller;
-
-  final Animation _animation;
-  final TagLagState appState;
-  final AnimationController _controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(25),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: double.infinity,
-                height: 500,
-                child: Transform(
-                    alignment: FractionalOffset.center,
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.0015)
-                      ..rotateY(pi - pi * _animation.value),
-                    child: (_animation.value <= 0.5 ||
-                            !appState.hasActiveChallenge)
-                        ? CardFront(controller: _controller, appState: appState)
-                        : CardBack(
-                            appState: appState,
-                          )),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CardBack extends StatelessWidget {
-  const CardBack({
-    super.key,
-    required this.appState,
-  });
-
-  final TagLagState appState;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-        margin: const EdgeInsets.all(20),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
+        body: Padding(
+          padding: const EdgeInsets.all(25),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                      flex: 2,
-                      child: Text(
-                          appState.challenges.elementAtOrNull(
-                              appState.currentChallengeIndex)["header"],
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
-                          textAlign: TextAlign.left)),
-                  Expanded(
-                    flex: 1,
-                    child: Card(
-                      color: Colors.white,
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.attach_money_rounded,
-                              size: 30,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            Expanded(
-                                child: Text(
-                              appState.challenges
-                                  .elementAtOrNull(
-                                      appState.currentChallengeIndex)["coins"]
-                                  .toString(),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Color.fromARGB(255, 35, 35, 35)),
-                              textAlign: TextAlign.center,
-                            )),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Expanded(
-                  child: Text(appState.challenges.elementAtOrNull(
-                      appState.currentChallengeIndex)["text"])),
-              Row(
-                children: [
-                  TextButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Icons.lock_clock_rounded),
-                      label: Text("Veto")),
-                      Expanded(child: SizedBox(),),
-                  ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Icons.check),
-                      label: Text("Complete"),),
-                      
-                ],
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 500,
+                    child: Transform(
+                        alignment: FractionalOffset.center,
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.0015)
+                          ..rotateY(pi - pi * _animation.value),
+                        child:
+                            (_animation.value <= 0.5 ||
+                                    !appState.hasActiveChallenge)
+                                ? CardFront(
+                                    controller: _controller, appState: appState)
+                                : Card(
+                                    margin: const EdgeInsets.all(20),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                  flex: 2,
+                                                  child: Text(
+                                                      appState.challenges
+                                                              .elementAtOrNull(
+                                                                  appState
+                                                                      .currentChallengeIndex)[
+                                                          "header"],
+                                                      style: const TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 24),
+                                                      textAlign:
+                                                          TextAlign.left)),
+                                              Expanded(
+                                                flex: 1,
+                                                child: Card(
+                                                  color: Colors.white,
+                                                  elevation: 0,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(5),
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .attach_money_rounded,
+                                                          size: 30,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                        ),
+                                                        Expanded(
+                                                            child: Text(
+                                                          appState.challenges
+                                                              .elementAtOrNull(
+                                                                  appState
+                                                                      .currentChallengeIndex)[
+                                                                  "coins"]
+                                                              .toString(),
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 20,
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          35,
+                                                                          35,
+                                                                          35)),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Expanded(
+                                              child: Text(appState.challenges
+                                                      .elementAtOrNull(appState
+                                                          .currentChallengeIndex)[
+                                                  "text"])),
+                                          Row(
+                                            children: [
+                                              TextButton.icon(
+                                                  onPressed: () {
+                                                    //ON TAP
+                                                    //Navigator.pop(context);
+                                                    showDialog(
+                                                        context: context,
+                                                  
+                                                        builder:
+                                                            (BuildContext
+                                                                    context) =>
+                                                                AlertDialog(
+                                                                  insetPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 160.0),
+                                                                  title: Row(
+                                                                    children: [
+                                                                      const Icon(Icons.lock_clock_rounded),
+                                                                      SizedBox.fromSize(size: const Size(15, 15),),
+                                                                      const Text(
+                                                                          "Confirm Veto"),
+                                                                    ],
+                                                                  ),
+                                                                  content: Column(
+                                                                      children: [
+                                                                        const Text(
+                                                                            "Are you sure you want to Veto this Challenge?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24), textAlign: TextAlign.center,),
+                                                                        Expanded(
+                                                                          child: Center(
+                                                                            child: Text(
+                                                                                "You and your team will have to stay exactly where you are for the next ${appState.challenges[appState.currentChallengeIndex]["veto_time"]} minutes. you may visit the nearest public toilets or get some food, but when the time is over, you and your teammates have to be exactly where you were when the veto period started. You may not pull or complete challenges, tag a team or progress in any way within this time. If you are currently on a moving vehicle (public transport), then get off at the next stop and remain there until your time is over."),
+                                                                          ),
+                                                                        ),
+                                                                      ]),
+                                                                  actions: [
+                                                                    TextButton.icon(
+                                                                        onPressed: () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        },
+                                                                        icon: const Icon(Icons.close),
+                                                                        label: const Text("Cancel")),
+                                                                    TextButton.icon(
+                                                                        onPressed: () {
+                                                                          Navigator.pop(
+                                                                              context);
+
+                                                                          setState(
+                                                                              () {
+                                                                            appState.hasActiveChallenge =
+                                                                                false;
+                                                                            appState.hasActiveVeto =
+                                                                                true;
+                                                                            appState.vetoTimeTotal =
+                                                                                Duration(minutes: appState.challenges[appState.currentChallengeIndex]["veto_time"]);
+                                                                            appState.vetoStartTime =
+                                                                                DateTime.now();
+                                                                            appState.vetoEndTime =
+                                                                                DateTime.now().add(Duration(minutes: appState.challenges[appState.currentChallengeIndex]["veto_time"]));
+                                                                            appState.checkVetoTime();
+                                                                          });
+                                                                        },
+                                                                        icon: const Icon(Icons.check),
+                                                                        label: const Text("Veto Challenge")),
+                                                                  ],
+                                                                ));
+                                                  },
+                                                  icon: Icon(
+                                                      Icons.lock_clock_rounded),
+                                                  label: Text("Veto")),
+                                              Expanded(
+                                                child: SizedBox(),
+                                              ),
+                                              ElevatedButton.icon(
+                                                onPressed: () {},
+                                                icon: Icon(Icons.check),
+                                                label: Text("Complete"),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ))),
+                  ),
+                ),
               ),
             ],
           ),
