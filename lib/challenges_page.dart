@@ -56,6 +56,11 @@ class _ChallengesPageState extends State<ChallengesPage>
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<TagLagState>();
+
+    if (appState.hasActiveChallenge) {
+      _controller.forward();
+    }
+
     if (appState.challenges.isEmpty) {
       appState.challenges = challengesList;
     }
