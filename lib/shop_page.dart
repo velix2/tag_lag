@@ -63,9 +63,31 @@ class _ShopPageState extends State<ShopPage> {
                     medium: medium["name"],
                     mediumIcon: const Icon(Icons.train),
                     onPressed: () {
-                      setState(() {
-                        appState.buy(medium["cost"]);
-                      });
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: Text("Confirm"),
+                          actions: [
+                            TextButton.icon(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.close),
+                              label: const Text("No")
+                            ),
+                            TextButton.icon(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                setState(() {
+                                  appState.buy(medium["cost"]);
+                                 });
+                              },
+                              icon: const Icon(Icons.check),
+                              label: const Text("Yes")
+                            )
+                          ],
+                        )
+                      );
                     },
                     enabled: (appState.coinBalance - medium["cost"]).isNegative?
                       false:
