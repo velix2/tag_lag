@@ -1,6 +1,14 @@
 {"mediums":
     [
         {
+            "name":"Regional Train",
+            "cost":25
+        },
+        {
+            "name":"S-Bahn",
+            "cost":15
+        },
+        {
             "name":"U-Bahn",
             "cost":10
         },

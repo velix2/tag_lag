@@ -33,6 +33,7 @@ class _RulePageState extends State<RulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.handshake),
         title: const Text("Rules"),
         backgroundColor: Colors.red,
       ),
