@@ -1,21 +1,25 @@
 {"mediums":
     [
         {
+            "id":0,
             "name":"Regional Train",
             "cost":15,
             "iconId":0
         },
         {
+            "id":1,
             "name":"S-Bahn",
             "cost":10,
             "iconId":1
         },
         {
+            "id":2,
             "name":"U-Bahn",
             "cost":7,
             "iconId":2
         },
         {
+            "id":3,
             "name":"Bus",
             "cost":3,
             "iconId":3

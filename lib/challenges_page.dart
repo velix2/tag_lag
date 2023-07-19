@@ -452,7 +452,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                           (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
                                                           ScaffoldMessenger.of(context).showSnackBar(
                                                             SnackBar(
-                                                              content: Text("You can't do this, you're cursed!"),
+                                                              content: const Text("You can't do this, you're cursed!"),
                                                               action: SnackBarAction(
                                                                 label: "Ok",
                                                                 onPressed: () {},
@@ -540,7 +540,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                         (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
                                                         ScaffoldMessenger.of(context).showSnackBar(
                                                             SnackBar(
-                                                              content: Text("You can't do this, you're cursed!"),
+                                                              content: const Text("You can't do this, you're cursed!"),
                                                               action: SnackBarAction(
                                                                 label: "Ok",
                                                                 onPressed: () {},

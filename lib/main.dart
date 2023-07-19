@@ -47,6 +47,9 @@ class TagLagState extends ChangeNotifier {
   // all app-wide variables having to do with COINS
   int coinBalance = 50; // how many coins are in the teams bank?
 
+  // all app-wide variables having to do with TRANSPORT
+  List pastBuys = [];
+
   // all app-wide variables having to do with VETOING
   var vetoStartTime = DateTime
       .now(); // Storing the timepoint that the last veto period was started
@@ -89,7 +92,7 @@ class TagLagState extends ChangeNotifier {
     currentChallengeIndex = random.nextInt(challenges.length);
   }
 
-  // when a challenge is completed, add the coins it brings to the teams wallet
+  // when a challenge is completed, add the coins it brings to the teams wallet and moves it from challenges to pastChallenges
   void completedChallenge() {
     coinBalance += challenges[currentChallengeIndex]["coins"] as int;
     pastChallenges.add(challenges.removeAt(currentChallengeIndex));

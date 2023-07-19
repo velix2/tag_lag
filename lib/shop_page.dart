@@ -49,6 +49,35 @@ class _ShopPageState extends State<ShopPage> {
         leading: const Icon(Icons.train),
         title: const Text("Shop"),
         backgroundColor: Colors.red,
+        actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                              title: const Text("History"),
+                              content: SizedBox(
+                                width: 200,
+                                height: 400,
+                                child: ListView.builder(
+                                    itemCount: appState.pastBuys.length,
+                                    itemBuilder: (context, index) {
+                                      return Card(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text("${appState.pastBuys.elementAtOrNull(index).num}x ${appState.pastBuys.elementAtOrNull(index).mediumName}, ${appState.pastBuys.elementAtOrNull(index).totalCost} coins"),
+                                        ),
+                                      );
+                                    }),
+                              ),
+                            ));
+                            print(appState.pastBuys);
+                  },
+                  icon: const Icon(Icons.history)),
+            )
+          ],
       ),
       body: Column(
         children: [
@@ -105,6 +134,12 @@ class _ShopPageState extends State<ShopPage> {
                                 Navigator.pop(context);
                                 setState(() {
                                   appState.buy(medium["cost"]);
+                                  appState.pastBuys.add(TransportBuy(
+                                    mediumId: medium["id"],
+                                    mediumName: medium["name"],
+                                    mediumPrice: medium["cost"],
+                                    num: 1
+                                  ));
                                  });
                               },
                               icon: const Icon(Icons.check),
@@ -165,5 +200,18 @@ class _BuyButtonState extends State<BuyButton> {
       ),
       icon: widget.mediumIcon,
     );
+  }
+}
+
+class TransportBuy {
+  int mediumId;
+  String mediumName;
+  int mediumPrice;
+  int num;
+  int totalCost;
+
+  TransportBuy({required this.mediumId, required this.mediumName, required this.mediumPrice, required this.num, this.totalCost = 0}) {
+    print("hello werctie");
+    totalCost = mediumPrice * num;
   }
 }
