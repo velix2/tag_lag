@@ -42,6 +42,7 @@ class TagLagState extends ChangeNotifier {
   List challenges = []; // a list of all challenges
   int currentChallengeIndex = 0; // what challenge is currently being done?
   bool hasActiveChallenge = false; // is there an active challenge?
+  List pastChallenges = [];
 
   // all app-wide variables having to do with COINS
   int coinBalance = 50; // how many coins are in the teams bank?
@@ -91,6 +92,7 @@ class TagLagState extends ChangeNotifier {
   // when a challenge is completed, add the coins it brings to the teams wallet
   void completedChallenge() {
     coinBalance += challenges[currentChallengeIndex]["coins"] as int;
+    pastChallenges.add(challenges.removeAt(currentChallengeIndex));
   }
 }
 

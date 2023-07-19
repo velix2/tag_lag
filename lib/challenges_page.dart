@@ -91,10 +91,13 @@ class _ChallengesPageState extends State<ChallengesPage>
                                 width: 200,
                                 height: 400,
                                 child: ListView.builder(
-                                    itemCount: 5,
+                                    itemCount: appState.pastChallenges.length,
                                     itemBuilder: (context, index) {
                                       return Card(
-                                        child: Text("Item $index"),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text("${index + 1}. ${appState.pastChallenges.elementAtOrNull(index)['header']}"),
+                                        ),
                                       );
                                     }),
                               ),
