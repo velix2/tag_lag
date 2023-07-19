@@ -592,11 +592,69 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                         label: const Text("Complete")),
                                                                   ],
                                                                 ));
+<<<<<<< HEAD
                                                       },
                                                       icon: const Icon(Icons
                                                           .check_circle_rounded),
                                                       label: const Text(
                                                           "Complete"),
+=======
+                                                  },
+                                                  icon: const Icon(
+                                                      Icons.lock_clock_rounded),
+                                                  label: const Text("Veto")),
+                                              const Expanded(
+                                                child: SizedBox(),
+                                              ),
+                                              ElevatedButton.icon(
+                                                onPressed: () {
+                                                  //ON TAP: COMPLETE
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        AlertDialog(
+                                                      title: const Text(
+                                                          "Confirm Challenge Completion"),
+                                                      content:
+                                                          Column(children: [
+                                                        const Text(
+                                                            "Are you sure you have completed your challenge?"),
+                                                        Text(appState
+                                                                    .challenges[
+                                                                appState
+                                                                    .currentChallengeIndex]
+                                                            ["header"]),
+                                                      ]),
+                                                      actions: [
+                                                        TextButton.icon(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          icon: const Icon(
+                                                              Icons.close),
+                                                          label:
+                                                              const Text("Cancel"),
+                                                        ),
+                                                        TextButton.icon(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            appState
+                                                                .completedChallenge();
+                                                            setState(() {
+                                                              appState.hasActiveChallenge =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          icon: const Icon(
+                                                              Icons.check),
+                                                          label:
+                                                              const Text("Confirm"),
+                                                        ),
+                                                      ],
+>>>>>>> 6e82f4b (changed some button text)
                                                     ),
                                                   ],
                                                 ),
