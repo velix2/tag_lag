@@ -1,5 +1,7 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tag_lag/experimental_page.dart';
@@ -54,11 +56,26 @@ class TagLagState extends ChangeNotifier {
   var vetoTimeLeft = const Duration(minutes: 0);
   bool hasActiveVeto = false;
 
-  void checkVetoTime() {
+  late Timer vetoTimer;
+
+  void startVeto() {
     vetoTimeLeft = vetoEndTime.difference(DateTime.now());
-    if (vetoTimeLeft.isNegative) {
-      hasActiveVeto = false;
-    }
+    notifyListeners();
+
+    vetoTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      vetoTimeLeft = vetoEndTime.difference(DateTime.now());
+      if (vetoTimeLeft.isNegative) {
+        hasActiveVeto = false;
+        timer.cancel();
+      }
+      notifyListeners();
+    });
+  }
+
+  @override
+  void dispose() {
+    vetoTimer.cancel();
+    super.dispose();
   }
 
   void buy(int cost) {
@@ -109,7 +126,7 @@ class _MainPageState extends State<MainPage> {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          type : BottomNavigationBarType.fixed,
+          type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.assistant_photo), label: "Challenges"),

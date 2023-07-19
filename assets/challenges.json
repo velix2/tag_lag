@@ -4,7 +4,7 @@
             "header":"Climb a tree.",
             "text":"Find a tree that can support one of your teammembers weights. One member must climb this tree so that every part of their body is over 1.5 meters above ground level. The selected member must be able to stay at this height for at least 2 minutes. The entire two minutes must be filmed.",
             "coins":15,
-            "veto_time":15
+            "veto_time":1
         },
         {
             "header":"Find twenty birds.",
