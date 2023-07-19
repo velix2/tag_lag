@@ -447,7 +447,15 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                           //ON TAP
                                                           //Navigator.pop(context);
                                                           (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
-                                                          null:
+                                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                            SnackBar(
+                                                              content: Text("You can't do this, you're cursed!"),
+                                                              action: SnackBarAction(
+                                                                label: "Ok",
+                                                                onPressed: () {},
+                                                              ),
+                                                            )
+                                                          ):
                                                           showDialog(
                                                               context: context,
                                                               builder: (BuildContext
@@ -527,7 +535,15 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                       onPressed: () {
                                                         //ON TAP: COMPLETE
                                                         (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
-                                                        null:
+                                                        ScaffoldMessenger.of(context).showSnackBar(
+                                                            SnackBar(
+                                                              content: Text("You can't do this, you're cursed!"),
+                                                              action: SnackBarAction(
+                                                                label: "Ok",
+                                                                onPressed: () {},
+                                                              ),
+                                                            )
+                                                          ):
                                                         showDialog(
                                                             context: context,
                                                             builder: (BuildContext
