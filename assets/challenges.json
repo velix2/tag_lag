@@ -4,7 +4,7 @@
             "header":"Climb a tree.",
             "text":"Find a tree that can support one of your teammembers weights. One member must climb this tree so that every part of their body is over 1.5 meters above ground level. The selected member must be able to stay at this height for at least 2 minutes. The entire two minutes must be filmed.",
             "coins":15,
-            "veto_time":1
+            "veto_time":15
         },
         {
             "header":"Find twenty birds.",
@@ -26,7 +26,7 @@
         },
         {
             "header":"Be faster than public transport.",
-            "text":"One of your teammembers has to get on any viable medium of public transport. As soon as they are on this, the other portner has to run to the next station of the first player by foot. If the second teammember manages to arrive at that station before the first one does, then the challenge is completed. Your team has two attempts, if both fail, the challenge is automatically vetoed. Viable mediums are: U-Bahn, Bus, ...",
+            "text":"One of your teammembers has to get on any viable medium of public transport. As soon as they are on this, the other portner has to run to the next station of the first player by foot. If the second teammember manages to arrive at that station before the first one does, then the challenge is completed. Your team has two attempts, if both fail, the challenge is automatically vetoed. Viable mediums are: regional train, s-bahn, u-bahn and bus.",
             "coins":150,
             "veto_time":25
         },
@@ -35,6 +35,12 @@
             "text":"One teammember closes their eyes and points in front of themselves. They then start spinning, slow enough not to feel dizzy. At any point during this, their partner sais 'Stop' and the first person stops spinning. Now open Maps, and measure distance in the direction they're pointing in (Long press on your location, swipe menu up => 'Measure distance'). Determine the point that lies exactly one kilometer in this direction, now take a screenshot where you can see your location and the point you just measured out. Now get to the closest publically accessible spot to this point (i.e. the nearest street). You are not allowed to use any form of public transport, so you must go there by foot. Once you arrived, take another screenshot of your location, and a selfie at your spot.",
             "coins":100,
             "veto_time":20
+        },
+        {
+            "header":"Go on five trains within fifteen minutes",
+            "text":"This challenge starts as soon as you",
+            "coins":150,
+            "veto_time":25
         }
     ]
 }
