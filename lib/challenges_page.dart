@@ -55,6 +55,12 @@ class _ChallengesPageState extends State<ChallengesPage>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var appState = context.watch<TagLagState>();
 
