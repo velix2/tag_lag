@@ -374,7 +374,11 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                fontSize: 24),
+                                                                fontSize: 24,
+                                                                color: (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
+                                                                  Color.fromARGB(255, 0, 0, 0):
+                                                                  Color.fromARGB(255, 255, 0, 0)
+                                                            ),
                                                             textAlign: TextAlign
                                                                 .left)),
                                                     Expanded(
@@ -635,6 +639,7 @@ class CardFront extends StatelessWidget {
       onTap: () {
         _controller.forward();
         appState.hasActiveChallenge = true;
+        appState.shuffleChallenges();
       },
       child: Card(
           margin: const EdgeInsets.all(20),

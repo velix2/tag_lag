@@ -44,7 +44,7 @@ class TagLagState extends ChangeNotifier {
   bool hasActiveChallenge = false; // is there an active challenge?
 
   // all app-wide variables having to do with COINS
-  int coinBalance = 500; // how many coins are in the teams bank?
+  int coinBalance = 50; // how many coins are in the teams bank?
 
   // all app-wide variables having to do with VETOING
   var vetoStartTime = DateTime
