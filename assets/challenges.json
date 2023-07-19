@@ -3,13 +3,13 @@
         {
             "header":"Climb a tree.",
             "text":"Find a tree that can support one of your teammembers weights. One member must climb this tree so that every part of their body is over 1.5 meters above ground level. The selected member must be able to stay at this height for at least 2 minutes. The entire two minutes must be filmed.",
-            "coins":15,
+            "coins":35,
             "veto_time":10
         },
         {
             "header":"Find twenty birds.",
             "text":"You must photograph at least 20 different birds. Each bird must be clearly recognizable as one. Only real and alive birds count.",
-            "coins":20,
+            "coins":40,
             "veto_time":15
         },
         {
@@ -31,13 +31,13 @@
             "veto_time":30
         },
         {
-            "header":"Go exactly one Kilometer",
+            "header":"Go exactly one Kilometer.",
             "text":"One teammember closes their eyes and points in front of themselves. They then start spinning, slow enough not to feel dizzy. At any point during this, their partner sais 'Stop' and the first person stops spinning. Now open Maps, and measure distance in the direction they're pointing in (Long press on your location, swipe menu up => 'Measure distance'). Determine the point that lies exactly one kilometer in this direction, now take a screenshot where you can see your location and the point you just measured out. Now get to the closest publically accessible spot to this point (i.e. the nearest street). You are not allowed to use any form of public transport, so you must go there by foot. Once you arrived, take another screenshot of your location, and a selfie at your spot.",
             "coins":90,
             "veto_time":20
         },
         {
-            "header":"Go on five trains within fifteen minutes",
+            "header":"Go on five trains within fifteen minutes.",
             "text":"Your team has to ride 5 trains within 15 minutes. When you start the challenge, set a timer for 15 minutes. Within these 15 minutes, you need to get on 5 trains (Regional or S-Bahn) for at least one stop. You can not go on the same line twice in a row, and you may not go back and fourth between stations. You can choose freely which station to start at, buy you may not visit any station twice during this challenge.",
             "coins":120,
             "veto_time":20
@@ -45,15 +45,27 @@
         {
             "header":"Find some graffiti",
             "text":"Take a photo of some graffity.",
-            "coins":10,
+            "coins":20,
             "veto_time":5
         },
         {
             "header":"Curse!",
-            "text":"for the next 25 minutes, you're not allowed to use any public transport",
+            "text":"for the next 25 minutes, you're not allowed to use any public transport.",
             "coins":80,
             "curse_time":25
             
+        },
+        {
+            "header":"Take a picture with a strangers dog.",
+            "text":"Ask someone with a dog whether you may take a picture with it. Only one of you has to be on the picture, the other one can be taking it with their phone. The dog must be on the picture as well. The dog must also be real and alive.",
+            "coins":30,
+            "veto_time":9
+        },
+        {
+            "header":"Play on a playground.",
+            "text":"Go to any public playground and play there for 10 minutes. The time starts once you start using the playground. Simply entering a playground is not enough, both of you have to actually use the playground.",
+            "coins":20,
+            "veto_time":12
         }
     ]
 }
