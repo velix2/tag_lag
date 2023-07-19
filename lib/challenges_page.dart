@@ -370,14 +370,14 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                         appState
                                                                             .currentChallengeIndex)[
                                                                 "header"],
-                                                            style: const TextStyle(
+                                                            style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                                 fontSize: 24,
                                                                 color: (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
-                                                                  Color.fromARGB(255, 0, 0, 0):
-                                                                  Color.fromARGB(255, 255, 0, 0)
+                                                                  const Color.fromARGB(255, 255, 0, 0):
+                                                                  const Color.fromARGB(255, 0, 0, 0)
                                                             ),
                                                             textAlign: TextAlign
                                                                 .left)),
@@ -432,6 +432,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                     )
                                                   ],
                                                 ),
+                                                if (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!") const Text("You have been cursed!"),
                                                 Expanded(
                                                     child: Text(appState
                                                             .challenges
@@ -445,6 +446,8 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                         onPressed: () {
                                                           //ON TAP
                                                           //Navigator.pop(context);
+                                                          (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
+                                                          null:
                                                           showDialog(
                                                               context: context,
                                                               builder: (BuildContext
@@ -523,6 +526,8 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                     ElevatedButton.icon(
                                                       onPressed: () {
                                                         //ON TAP: COMPLETE
+                                                        (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
+                                                        null:
                                                         showDialog(
                                                             context: context,
                                                             builder: (BuildContext

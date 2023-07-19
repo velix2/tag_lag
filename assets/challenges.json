@@ -52,7 +52,8 @@
             "header":"Curse!",
             "text":"for the next 25 minutes, you're not allowed to use any public transport",
             "coins":80,
-            "veto_time":0
+            "curse_time":25
+            
         }
     ]
 }

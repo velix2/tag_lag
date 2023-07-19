@@ -2,19 +2,23 @@
     [
         {
             "name":"Regional Train",
-            "cost":15
+            "cost":15,
+            "iconId":0
         },
         {
             "name":"S-Bahn",
-            "cost":10
+            "cost":10,
+            "iconId":1
         },
         {
             "name":"U-Bahn",
-            "cost":5
+            "cost":7,
+            "iconId":2
         },
         {
             "name":"Bus",
-            "cost":1
+            "cost":3,
+            "iconId":3
         }
     ]
 }

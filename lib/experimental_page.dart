@@ -87,7 +87,7 @@ class ChallengeCardBody extends StatelessWidget {
                     child: (_animation.value <= 0.5 ||
                             !appState.hasActiveChallenge)
                         ? CardFront(controller: _controller, appState: appState)
-                        : CardBack()),
+                        : const CardBack()),
               ),
             ),
           ),
@@ -104,7 +104,7 @@ class CardBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return const Card(
         margin: EdgeInsets.all(20),
         child: Column(children: [
           Text("Challenge Title"),

@@ -24,7 +24,6 @@ class _ShopPageState extends State<ShopPage> {
     final data = await json.decode(response);
     setState(() {
       mediumsList = data["mediums"];
-      print(mediumsList);
     });
   }
 
@@ -38,6 +37,13 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<TagLagState>();
+    const List mediumIcons = [
+      Icon(Icons.train),
+      Icon(Icons.directions_train),
+      Icon(Icons.directions_subway),
+      Icon(Icons.directions_bus),
+      Icon(Icons.directions_walk)
+    ];
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.train),
@@ -46,11 +52,25 @@ class _ShopPageState extends State<ShopPage> {
       ),
       body: Column(
         children: [
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text("You have ${appState.coinBalance.toString()} Coins"),
-            )
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    const Text("You have"),
+                    Text(
+                      "${appState.coinBalance.toString()} Coins",
+                      style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ),
           ),
           const Divider(),
           Column(
@@ -61,13 +81,13 @@ class _ShopPageState extends State<ShopPage> {
                   child: BuyButton(
                     cost: medium["cost"],
                     medium: medium["name"],
-                    mediumIcon: const Icon(Icons.train),
+                    mediumIcon: mediumIcons.elementAtOrNull(medium["iconId"]),
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                           title: const Text("Confirm"),
-                          content: Column(
+                          content: const Column(
                             children: [
                               Text("You're buying "),
                             ],
@@ -110,7 +130,7 @@ class _ShopPageState extends State<ShopPage> {
 class BuyButton extends StatefulWidget {
   String medium;
   int cost;
-  var mediumIcon;
+  Icon mediumIcon;
   void Function() onPressed;
   bool enabled;
 
@@ -130,7 +150,19 @@ class _BuyButtonState extends State<BuyButton> {
       onPressed: widget.enabled?
         widget.onPressed:
         null,
-      label: Text("One ${widget.medium} station, Price: ${widget.cost}"),
+      label: Column(
+        children: [
+          Text(
+            "Buy ${widget.medium} ticket",
+            style: const TextStyle(
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          Text(
+            "Price per Station: ${widget.cost}"
+          )
+        ],
+      ),
       icon: widget.mediumIcon,
     );
   }
