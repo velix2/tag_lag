@@ -1,7 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:async';
-
+import 'package:is_first_run/is_first_run.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tag_lag/experimental_page.dart';
@@ -107,9 +107,15 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  bool firstRun = false;
+  Future<void> testFirstRun() async {
+    firstRun = await IsFirstRun.isFirstRun();
+  }
+
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    testFirstRun();
     Widget page;
     switch (selectedIndex) {
       case 0:
@@ -149,7 +155,7 @@ class _MainPageState extends State<MainPage> {
             });
           },
         ),
-        body: page,
+        body: firstRun ? Text("thectni") : page,
       );
     });
   }
