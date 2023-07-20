@@ -1,13 +1,11 @@
-// ignore_for_file: unused_local_variable
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 import 'main.dart';
+import 'first_open_page.dart';
 
 class ChallengesPage extends StatefulWidget {
   const ChallengesPage({super.key});
@@ -72,7 +70,6 @@ class _ChallengesPageState extends State<ChallengesPage>
       appState.challenges = challengesList;
     }
     //appState.checkVetoTime();
-    var currentChallengeIndex = appState.currentChallengeIndex;
     return Scaffold(
         appBar: AppBar(
           leading: const Icon(Icons.flag),
@@ -104,7 +101,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                             ));
                   },
                   icon: const Icon(Icons.history)),
-            )
+            ),
           ],
         ),
         /*body: Padding(

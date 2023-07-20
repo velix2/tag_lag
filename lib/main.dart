@@ -1,14 +1,15 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:async';
-import 'package:is_first_run/is_first_run.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tag_lag/experimental_page.dart';
 import 'dart:math';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
+import 'first_open_page.dart';
 
 void main() {
   runApp(const TagLag());
@@ -49,6 +50,10 @@ class TagLagState extends ChangeNotifier {
 
   // all app-wide variables having to do with TRANSPORT
   List pastBuys = [];
+
+  // everything to do with the game as a whole
+  bool gameStarted = false;
+  int selectedIndex = 0;
 
   // all app-wide variables having to do with VETOING
   var vetoStartTime = DateTime
@@ -107,31 +112,26 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  bool firstRun = false;
-  Future<void> testFirstRun() async {
-    firstRun = await IsFirstRun.isFirstRun();
-  }
-
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    testFirstRun();
+    var appState = context.watch<TagLagState>();
     Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = const ChallengesPage();
-        break;
-      case 1:
-        page = const ShopPage();
-        break;
-      case 2:
-        page = const RulePage();
-        break;
-      case 3:
-        page = const ExperimentalPage();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
+    if (appState.gameStarted) {
+      switch (appState.selectedIndex) {
+        case 0:
+          page = const ChallengesPage();
+          break;
+        case 1:
+          page = const ShopPage();
+          break;
+        case 2:
+          page = const RulePage();
+          break;
+        default:
+          throw UnimplementedError('no widget for $appState.selectedIndex');
+      }
+    } else {
+      page = FirstOpenPage();s
     }
 
     return LayoutBuilder(builder: (context, constraints) {
@@ -145,17 +145,15 @@ class _MainPageState extends State<MainPage> {
                 icon: Icon(Icons.train), label: "Transport"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.handshake), label: "Rules"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.handyman), label: "Experimental"),
           ],
-          currentIndex: selectedIndex,
+          currentIndex: appState.selectedIndex,
           onTap: (value) {
             setState(() {
-              selectedIndex = value;
+              appState.selectedIndex = value;
             });
           },
         ),
-        body: firstRun ? Text("thectni") : page,
+        body: page,
       );
     });
   }
