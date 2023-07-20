@@ -66,6 +66,12 @@
             "text":"Go to any public playground and play there for 10 minutes. The time starts once you start using the playground. Simply entering a playground is not enough, both of you have to actually use the playground.",
             "coins":20,
             "veto_time":12
+        },
+        {
+            "header":"Find a street with exactly fifteen letters in its name.",
+            "text":"Take a photo of a street name sign with exactly 15 letters on it. Spaces and special characters like '-' do not count. You may not use your phones to do any reasearch to help you complete this challenge.",
+            "coins":25,
+            "veto_time":7
         }
     ]
 }

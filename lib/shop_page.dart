@@ -73,7 +73,6 @@ class _ShopPageState extends State<ShopPage> {
                                     }),
                               ),
                             ));
-                            print(appState.pastBuys);
                   },
                   icon: const Icon(Icons.history)),
             )
@@ -211,7 +210,6 @@ class TransportBuy {
   int totalCost;
 
   TransportBuy({required this.mediumId, required this.mediumName, required this.mediumPrice, required this.num, this.totalCost = 0}) {
-    print("hello werctie");
     totalCost = mediumPrice * num;
   }
 }
