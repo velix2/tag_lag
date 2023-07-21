@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tag_lag/experimental_page.dart';
 import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'challenges_page.dart';
@@ -40,7 +39,7 @@ class TagLag extends StatelessWidget {
 
 class TagLagState extends ChangeNotifier {
   // all app-wide variables having to do with CHALLENGES
-  List challenges = []; // a list of all challenges
+  List challenges = ["empty"]; // a list of all challenges
   int currentChallengeIndex = 0; // what challenge is currently being done?
   bool hasActiveChallenge = false; // is there an active challenge?
   List pastChallenges = [];
@@ -54,6 +53,8 @@ class TagLagState extends ChangeNotifier {
   // everything to do with the game as a whole
   bool gameStarted = false;
   int selectedIndex = 0;
+  int numOfTeams = 0;
+  int teamNum = 0;
 
   // all app-wide variables having to do with VETOING
   var vetoStartTime = DateTime
@@ -116,22 +117,21 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     var appState = context.watch<TagLagState>();
     Widget page;
-    if (appState.gameStarted) {
-      switch (appState.selectedIndex) {
-        case 0:
-          page = const ChallengesPage();
-          break;
-        case 1:
-          page = const ShopPage();
-          break;
-        case 2:
-          page = const RulePage();
-          break;
-        default:
-          throw UnimplementedError('no widget for $appState.selectedIndex');
-      }
-    } else {
-      page = FirstOpenPage();s
+    switch (appState.selectedIndex) {
+      case 0:
+        page = const FirstOpenPage();
+        break;
+      case 1:
+        page = const ChallengesPage();
+        break;
+      case 2:
+        page = const ShopPage();
+        break;
+      case 3:
+        page = const RulePage();
+        break;
+      default:
+        throw UnimplementedError('no widget for $appState.selectedIndex');
     }
 
     return LayoutBuilder(builder: (context, constraints) {
@@ -140,11 +140,21 @@ class _MainPageState extends State<MainPage> {
           type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.assistant_photo), label: "Challenges"),
+              icon: Icon(Icons.directions_walk),
+              label: "Game"
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.train), label: "Transport"),
+                icon: Icon(Icons.assistant_photo),
+                label: "Challenges"
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.handshake), label: "Rules"),
+                icon: Icon(Icons.train),
+                label: "Transport"
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.handshake),
+                label: "Rules"
+            ),
           ],
           currentIndex: appState.selectedIndex,
           onTap: (value) {

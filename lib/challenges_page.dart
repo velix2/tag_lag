@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 import 'main.dart';
-import 'first_open_page.dart';
 
 class ChallengesPage extends StatefulWidget {
   const ChallengesPage({super.key});
@@ -66,8 +65,23 @@ class _ChallengesPageState extends State<ChallengesPage>
       _controller.forward();
     }
 
-    if (appState.challenges.isEmpty) {
+    if (appState.challenges.elementAtOrNull(0) == "empty") {
       appState.challenges = challengesList;
+      int i = 1;
+      List temp_challenges = [];
+      for (var challenge in appState.challenges) {
+        if (i == appState.teamNum) {
+          setState(() {
+            temp_challenges.add(challenge);
+          });
+        }
+        if (i == appState.numOfTeams) {
+          i = 1;
+        } else {
+          i ++;
+        }
+      }
+      appState.challenges = temp_challenges;
     }
     //appState.checkVetoTime();
     return Scaffold(
@@ -294,7 +308,7 @@ class _ChallengesPageState extends State<ChallengesPage>
               ],
             ))
             */
-        body: Padding(
+        body: appState.gameStarted ? Padding(
           padding: const EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -633,7 +647,8 @@ class _ChallengesPageState extends State<ChallengesPage>
               ),
             ],
           ),
-        ));
+        ) : const Center(child: Text("Start a new Game first!"))
+      );
   }
 
   String _printDuration(Duration duration) {

@@ -78,7 +78,7 @@ class _ShopPageState extends State<ShopPage> {
             )
           ],
       ),
-      body: Column(
+      body: appState.gameStarted ? Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(20),
@@ -156,7 +156,7 @@ class _ShopPageState extends State<ShopPage> {
             ]
           )
         ],
-      ),
+      ) : const Center(child: Text("Start a new Game first!"))
     );
   }
 }
