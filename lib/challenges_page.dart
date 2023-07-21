@@ -68,11 +68,11 @@ class _ChallengesPageState extends State<ChallengesPage>
     if (appState.challenges.elementAtOrNull(0) == "empty") {
       appState.challenges = challengesList;
       int i = 1;
-      List temp_challenges = [];
+      List tempChallenges = [];
       for (var challenge in appState.challenges) {
         if (i == appState.teamNum) {
           setState(() {
-            temp_challenges.add(challenge);
+            tempChallenges.add(challenge);
           });
         }
         if (i == appState.numOfTeams) {
@@ -81,7 +81,7 @@ class _ChallengesPageState extends State<ChallengesPage>
           i ++;
         }
       }
-      appState.challenges = temp_challenges;
+      appState.challenges = tempChallenges;
     }
     //appState.checkVetoTime();
     return Scaffold(

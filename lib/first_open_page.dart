@@ -97,7 +97,7 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
           icon: const Icon(Icons.play_arrow),
           label: const Text("Start new Game!")
         ),
-      ) : Container(child: Text(appState.gameStarted.toString())),
+      ) : Text(appState.gameStarted.toString()),
     );
   }
 }
