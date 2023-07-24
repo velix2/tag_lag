@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
-import 'first_open_page.dart';
+import 'game_page.dart';
 
 void main() {
   runApp(const TagLag());
@@ -53,8 +53,8 @@ class TagLagState extends ChangeNotifier {
   // everything to do with the game as a whole
   bool gameStarted = false;
   int selectedIndex = 0;
-  int numOfTeams = 0;
-  int teamNum = 0;
+  int numOfTeams = 2;
+  int teamNum = 1;
 
   // all app-wide variables having to do with VETOING
   var vetoStartTime = DateTime
