@@ -108,7 +108,8 @@ class _ChallengesPageState extends State<ChallengesPage>
                                       content: SizedBox(
                                         width: 200,
                                         height: 400,
-                                        child: ListView.builder(
+                                        child: appState.pastChallenges.isEmpty ? const Text("You havent completed any challenges yet!")
+                                          : ListView.builder(
                                             itemCount: appState.pastChallenges.length,
                                             itemBuilder: (context, index) {
                                               return Card(
