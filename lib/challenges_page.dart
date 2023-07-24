@@ -35,7 +35,6 @@ class _ChallengesPageState extends State<ChallengesPage>
     setState(() {
       tempChallengesList = data["challenges"];
     });
-    print("readChallenges was called. data: ${tempChallengesList}");
     return tempChallengesList;
   }
 
@@ -75,9 +74,7 @@ class _ChallengesPageState extends State<ChallengesPage>
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         Widget child;
             if (snapshot.hasData) {
-              print("isDone");
               if (appState.challenges.elementAtOrNull(0) == "empty") {
-                print("data: ${snapshot.data}");
                 appState.challenges = snapshot.data!;
                 int i = 1;
                 List tempChallenges = [];
