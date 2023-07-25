@@ -1,5 +1,4 @@
-// ignore_for_file: must_be_immutable
-
+import 'package:flutter_spinbox/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -61,13 +60,14 @@ class _ShopPageState extends State<ShopPage> {
                               content: SizedBox(
                                 width: 200,
                                 height: 400,
-                                child: ListView.builder(
+                                child: appState.pastBuys.isEmpty ? const Text("You havent bought anything yet!")
+                                  : ListView.builder(
                                     itemCount: appState.pastBuys.length,
                                     itemBuilder: (context, index) {
                                       return Card(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text("${appState.pastBuys.elementAtOrNull(index).num}x ${appState.pastBuys.elementAtOrNull(index).mediumName}, ${appState.pastBuys.elementAtOrNull(index).totalCost} coins"),
+                                          child: Text("${appState.pastBuys.elementAtOrNull(index).num}x ${appState.pastBuys.elementAtOrNull(index).mediumName}, ${appState.pastBuys.elementAtOrNull(index).totalCost} coins total"),
                                         ),
                                       );
                                     }),
@@ -111,13 +111,23 @@ class _ShopPageState extends State<ShopPage> {
                     medium: medium["name"],
                     mediumIcon: mediumIcons.elementAtOrNull(medium["iconId"]),
                     onPressed: () {
+                      int numToBuy = 1;
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                           title: const Text("Confirm"),
-                          content: const Column(
+                          content: Column(
                             children: [
-                              Text("You're buying "),
+                              const Text("You're buying"),
+                              SpinBox(
+                                min: 1,
+                                max: (appState.coinBalance / medium["cost"]).floor().toDouble(), //makes the max the max you can afford, so you cannot go negative
+                                value: 1,
+                                onChanged: (value) => {
+                                  numToBuy = value.toInt()
+                                },
+                              ),
+                              Text("Stations of ${medium['name']}")
                             ],
                           ),
                           actions: [
@@ -132,12 +142,12 @@ class _ShopPageState extends State<ShopPage> {
                               onPressed: () {
                                 Navigator.pop(context);
                                 setState(() {
-                                  appState.buy(medium["cost"]);
+                                  appState.buy(medium["cost"] * numToBuy);
                                   appState.pastBuys.add(TransportBuy(
                                     mediumId: medium["id"],
                                     mediumName: medium["name"],
                                     mediumPrice: medium["cost"],
-                                    num: 1
+                                    num: numToBuy
                                   ));
                                  });
                               },
