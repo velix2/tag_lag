@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
@@ -135,6 +134,20 @@ class _MainPageState extends State<MainPage> {
     }
 
     return LayoutBuilder(builder: (context, constraints) {
+      if (!appState.gameStarted) {
+        return Scaffold(
+          floatingActionButton: FloatingActionButton.extended(onPressed: () {
+            
+          }, label: Row(
+            children: [
+              Icon(Icons.play_arrow_rounded),
+              SizedBox(width: 10),
+              Text("New Game!"),
+            ],
+          )),
+        );
+      }
+      else {
       return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -165,6 +178,7 @@ class _MainPageState extends State<MainPage> {
         ),
         body: page,
       );
+      }
     });
   }
 }
