@@ -604,6 +604,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                                         Text(
                                                                                       appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"],
                                                                                       style: TextStyle(fontSize: 24, color: Theme.of(context).colorScheme.error, fontWeight: FontWeight.w900),
+                                                                                      textAlign: TextAlign.center,
                                                                                     ),
                                                                                   ),
                                                                                 ),

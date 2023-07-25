@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 import 'challenges_page.dart';
@@ -137,6 +138,15 @@ class _MainPageState extends State<MainPage> {
     return LayoutBuilder(builder: (context, constraints) {
       if (!appState.gameStarted) {
         return Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Welcome to", style: TextStyle(fontSize: 24),),
+                Text("TAG LAG", style: GoogleFonts.righteous(fontSize: 120, fontWeight: FontWeight.w800, letterSpacing: -5, height: .8, color: const Color.fromARGB(255, 220, 40, 16)), textAlign: TextAlign.center,),
+              ],
+            ),
+          ),
           floatingActionButton: FloatingActionButton.extended(
               onPressed: () {
                 appState.numOfTeams = 2;

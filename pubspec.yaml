@@ -14,6 +14,7 @@ dependencies:
   path_provider: ^2.0.15
   shared_preferences: ^2.2.0
   flutter_spinbox: ^0.13.1
+  google_fonts: ^5.1.0
 
 
 dev_dependencies:
