@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinbox/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 import 'challenges_page.dart';
@@ -136,48 +137,141 @@ class _MainPageState extends State<MainPage> {
     return LayoutBuilder(builder: (context, constraints) {
       if (!appState.gameStarted) {
         return Scaffold(
-          floatingActionButton: FloatingActionButton.extended(onPressed: () {
-            
-          }, label: Row(
-            children: [
-              Icon(Icons.play_arrow_rounded),
-              SizedBox(width: 10),
-              Text("New Game!"),
-            ],
-          )),
+          floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {
+                appState.numOfTeams = 2;
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                          title: Row(
+                            children: [
+                              const Icon(Icons.play_arrow_rounded),
+                              SizedBox.fromSize(
+                                size: const Size(15, 15),
+                              ),
+                              const Text("Start new Game"),
+                            ],
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Center(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("How many teams are playing?", style: Theme.of(context).textTheme.bodyLarge,),
+                              )),
+                              SpinBox(
+                                min: 2,
+                                max: 5,
+                                value: 2,
+                                onChanged: (value) =>
+                                    appState.numOfTeams = value.toInt(),
+                              ),
+                            ],
+                          ),
+                          actions: [
+                            TextButton.icon(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(Icons.close),
+                                label: const Text("Cancel")),
+                            TextButton.icon(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(
+                                            title: Row(
+                                              children: [
+                                                const Icon(
+                                                    Icons.play_arrow_rounded),
+                                                SizedBox.fromSize(
+                                                  size: const Size(15, 15),
+                                                ),
+                                                const Text("Start new Game"),
+                                              ],
+                                            ),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                 Text(
+                                                    "What is your team's number?", style: Theme.of(context).textTheme.bodyLarge),
+                                                Center(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                        "Make sure to assign every team an individual number from 1 to ${appState.numOfTeams}."),
+                                                  ),
+                                                ),
+                                                SpinBox(
+                                                  min: 1,
+                                                  max: appState.numOfTeams
+                                                      .toDouble(),
+                                                  value: 1,
+                                                  onChanged: (value) => appState
+                                                      .teamNum = value.toInt(),
+                                                      
+                                                ),
+                                              ],
+                                            ),
+                                            actions: [
+                                              TextButton.icon(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  icon: const Icon(Icons.close),
+                                                  label: const Text("Cancel")),
+                                              TextButton.icon(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      appState.gameStarted =
+                                                          true;
+                                                    });
+                                                    Navigator.pop(context);
+                                                  },
+                                                  icon: const Icon(Icons.check),
+                                                  label:
+                                                      const Text("Start Game!"))
+                                            ],
+                                          ));
+                                },
+                                icon: const Icon(Icons.check),
+                                label: const Text("Continue"))
+                          ],
+                        ));
+              },
+              label: const Row(
+                children: [
+                  Icon(Icons.play_arrow_rounded),
+                  SizedBox(width: 10),
+                  Text("New Game!"),
+                ],
+              )),
         );
-      }
-      else {
-      return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.directions_walk),
-              label: "Game"
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.assistant_photo),
-                label: "Challenges"
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.train),
-                label: "Transport"
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.handshake),
-                label: "Rules"
-            ),
-          ],
-          currentIndex: appState.selectedIndex,
-          onTap: (value) {
-            setState(() {
-              appState.selectedIndex = value;
-            });
-          },
-        ),
-        body: page,
-      );
+      } else {
+        return Scaffold(
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.directions_walk), label: "Game"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.assistant_photo), label: "Challenges"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.train), label: "Transport"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.handshake), label: "Rules"),
+            ],
+            currentIndex: appState.selectedIndex,
+            onTap: (value) {
+              setState(() {
+                appState.selectedIndex = value;
+              });
+            },
+          ),
+          body: page,
+        );
       }
     });
   }

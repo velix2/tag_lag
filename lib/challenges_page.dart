@@ -394,7 +394,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                         fontSize: 24,
                                                                         color: (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
                                                                           const Color.fromARGB(255, 255, 0, 0):
-                                                                          const Color.fromARGB(255, 0, 0, 0)
+                                                                          Theme.of(context).textTheme.displayMedium!.color
                                                                     ),
                                                                     textAlign: TextAlign
                                                                         .left)),
@@ -460,11 +460,11 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                         Row(
                                                           children: [
                                                             TextButton.icon(
-                                                                onPressed: () {
+                                                                onPressed: (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!") ? null :
+ () {
                                                                   //ON TAP
                                                                   //Navigator.pop(context);
-                                                                  (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")?
-                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                  /*ScaffoldMessenger.of(context).showSnackBar(
                                                                     SnackBar(
                                                                       content: const Text("You can't do this, you're cursed!"),
                                                                       action: SnackBarAction(
@@ -472,7 +472,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                         onPressed: () {},
                                                                       ),
                                                                     )
-                                                                  ):
+                                                                  )*/
                                                                   showDialog(
                                                                       context: context,
                                                                       builder: (BuildContext
