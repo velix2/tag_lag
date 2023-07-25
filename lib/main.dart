@@ -69,6 +69,14 @@ class TagLagState extends ChangeNotifier {
 
   late Timer vetoTimer;
 
+  //CURSES
+  var curseStartTime = DateTime.now();
+  var curseEndTime = DateTime.now();
+  var curseTimeLeft = const Duration(minutes: 0);
+  bool hasActiveCurse = false;
+
+  late Timer curseTimer;
+
   void startVeto() {
     vetoTimeLeft = vetoEndTime.difference(DateTime.now());
     notifyListeners();
@@ -77,6 +85,20 @@ class TagLagState extends ChangeNotifier {
       vetoTimeLeft = vetoEndTime.difference(DateTime.now());
       if (vetoTimeLeft.isNegative) {
         hasActiveVeto = false;
+        timer.cancel();
+      }
+      notifyListeners();
+    });
+  }
+
+  void startCurse() {
+    curseTimeLeft = curseEndTime.difference(DateTime.now());
+    notifyListeners();
+
+    curseTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      curseTimeLeft = curseEndTime.difference(DateTime.now());
+      if (curseTimeLeft.isNegative) {
+        hasActiveCurse = false;
         timer.cancel();
       }
       notifyListeners();
