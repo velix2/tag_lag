@@ -60,7 +60,7 @@ class _ShopPageState extends State<ShopPage> {
                               content: SizedBox(
                                 width: 200,
                                 height: 400,
-                                child: appState.pastBuys.isEmpty ? const Text("You havent bought anything yet!")
+                                child: appState.pastBuys.isEmpty ? const Text("You haven't bought anything yet!")
                                   : ListView.builder(
                                     itemCount: appState.pastBuys.length,
                                     itemBuilder: (context, index) {

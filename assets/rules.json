@@ -9,6 +9,11 @@
             "id":"2",
             "rule":"Stay together as a team",
             "explanation":"You always need to stay within a sensible distance of your teammember(s). All team members are also required to always be on the same transport (if they are at all), so if one member of your team is on a U-Bahn, then your entire team needs to be on that train. This rule can be temporarily disabled by some challenges."
+        },
+        {
+            "id":"3",
+            "rule":"Be honest",
+            "explanation":"This game relies on honesty, so please be honest about completing challenges, buying transport tickets and everything else."
         }
     ]
 }
