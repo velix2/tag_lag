@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -32,9 +31,9 @@ class _ChallengesPageState extends State<ChallengesPage>
     final String response = 
       await rootBundle.loadString('assets/challenges.json');
     final data = await json.decode(response);
-    setState(() {
+    //setState(() {
       tempChallengesList = data["challenges"];
-    });
+  //  });
     return tempChallengesList;
   }
 
