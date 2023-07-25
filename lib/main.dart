@@ -164,7 +164,7 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Welcome to", style: TextStyle(fontSize: 24),),
+                const Text("Welcome to", style: TextStyle(fontSize: 24),),
                 Text("TAG LAG", style: GoogleFonts.righteous(fontSize: 120, fontWeight: FontWeight.w800, letterSpacing: -5, height: .8, color: const Color.fromARGB(255, 220, 40, 16)), textAlign: TextAlign.center,),
               ],
             ),
