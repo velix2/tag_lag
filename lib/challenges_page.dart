@@ -94,7 +94,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                 appBar: AppBar(
                   leading: const Icon(Icons.flag),
                   title: const Text("Challenges"),
-                  backgroundColor: Colors.red,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   actions: [
                     Padding(
                       padding: const EdgeInsets.all(5.0),

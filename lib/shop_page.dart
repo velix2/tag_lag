@@ -47,7 +47,7 @@ class _ShopPageState extends State<ShopPage> {
       appBar: AppBar(
         leading: const Icon(Icons.train),
         title: const Text("Shop"),
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
             Padding(
               padding: const EdgeInsets.all(5.0),

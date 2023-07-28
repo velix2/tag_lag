@@ -35,7 +35,7 @@ class _RulePageState extends State<RulePage> {
       appBar: AppBar(
         leading: const Icon(Icons.handshake),
         title: const Text("Rules"),
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
