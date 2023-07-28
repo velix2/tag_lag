@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48.0px"
+   height="48.0px"
+   viewBox="0 0 48.0 48.0"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="tag-lag-appicon-r001-v003.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview691"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="8"
+     inkscape:cx="51.3125"
+     inkscape:cy="26.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer2"
+     showguides="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1177"
+       spacingx="3"
+       spacingy="3"
+       empspacing="4" />
+    <sodipodi:guide
+       position="0,48"
+       orientation="0,48"
+       id="guide1234"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="48,48"
+       orientation="48,0"
+       id="guide1236"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="48,0"
+       orientation="0,-48"
+       id="guide1238"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,0"
+       orientation="-48,0"
+       id="guide1240"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs686">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2274">
+      <stop
+         style="stop-color:#e31e23;stop-opacity:0.05887162;"
+         offset="0"
+         id="stop2270" />
+      <stop
+         style="stop-color:#e31e23;stop-opacity:1;"
+         offset="1"
+         id="stop2272" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2274"
+       id="linearGradient2276"
+       x1="12"
+       y1="24"
+       x2="48"
+       y2="24.043802"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(3.000002)" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="background">
+    <rect
+       style="fill:#dfe6e7;fill-opacity:1;stroke-width:1.00157;stroke-linecap:round"
+       id="rect883"
+       width="48"
+       height="48"
+       x="0"
+       y="0"
+       inkscape:label="background"
+       sodipodi:insensitive="true" />
+  </g>
+  <g
+     inkscape:label="foreground"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#e31e23;fill-opacity:1;stroke:none;stroke-width:0.495;stroke-dasharray:none;stroke-opacity:1"
+       id="path1423"
+       cx="14.812502"
+       cy="23.8125"
+       r="5.9400001"
+       inkscape:label="inner-circle" />
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#e31e23;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       id="path1969"
+       cx="15.000002"
+       cy="24"
+       r="9"
+       inkscape:label="middle-circle" />
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#e31e23;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       id="path1993"
+       cx="15.000002"
+       cy="24"
+       r="12"
+       inkscape:label="outer-circle" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="blur">
+    <path
+       style="color:#000000;opacity:1;fill:url(#linearGradient2276);fill-opacity:1;stroke-linecap:round;-inkscape-stroke:none;paint-order:stroke fill markers"
+       d="M 15,18 A 6,6 0 0 0 9.0000004,24 6,6 0 0 0 15,30 h 24 a 6,6 0 0 0 6,-6 6,6 0 0 0 -6,-6 z"
+       id="path2181"
+       inkscape:label="trace" />
+  </g>
+</svg>
