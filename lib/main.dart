@@ -165,7 +165,7 @@ class _MainPageState extends State<MainPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text("Welcome to", style: TextStyle(fontSize: 24),),
-                Text("TAG LAG", style: GoogleFonts.righteous(fontSize: 120, fontWeight: FontWeight.w800, letterSpacing: -5, height: .8, color: const Color.fromARGB(255, 220, 40, 16)), textAlign: TextAlign.center,),
+                Text("TAG LAG", style: GoogleFonts.righteous(fontSize: 120, fontWeight: FontWeight.w800, letterSpacing: -5, height: .8, color: const Color(0xe31e23FF)), textAlign: TextAlign.center,),
               ],
             ),
           ),
