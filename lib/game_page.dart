@@ -17,7 +17,7 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
       appBar: AppBar(
         leading: const Icon(Icons.directions_walk),
         title: const Text("Game"),
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: const Text("Statistics"),
     );

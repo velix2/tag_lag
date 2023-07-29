@@ -28,7 +28,7 @@ class TagLag extends StatelessWidget {
           theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.red, brightness: Brightness.light),
+                seedColor: Color.fromARGB(255, 89, 12, 14), brightness: Brightness.light),
           ),
           // darkTheme: ThemeData.dark(useMaterial3: true),
           // themeMode: ThemeMode.dark,
@@ -164,8 +164,8 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Welcome to", style: TextStyle(fontSize: 24),),
-                Text("TAG LAG", style: GoogleFonts.righteous(fontSize: 120, fontWeight: FontWeight.w800, letterSpacing: -5, height: .8, color: const Color.fromARGB(255, 220, 40, 16)), textAlign: TextAlign.center,),
+                const Text("Welcome to", style: TextStyle(fontSize: 24),),
+                Text("TAG LAG", style: GoogleFonts.righteous(fontSize: 120, fontWeight: FontWeight.w800, letterSpacing: -5, height: .8, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.center,),
               ],
             ),
           ),

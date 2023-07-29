@@ -94,7 +94,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                 appBar: AppBar(
                   leading: const Icon(Icons.flag),
                   title: const Text("Challenges"),
-                  backgroundColor: Colors.red,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   actions: [
                     Padding(
                       padding: const EdgeInsets.all(5.0),
@@ -107,23 +107,17 @@ class _ChallengesPageState extends State<ChallengesPage>
                                       content: SizedBox(
                                         width: 200,
                                         height: 400,
-                                        child: appState.pastChallenges.isEmpty
-                                            ? const Text(
-                                                "You havent completed any challenges yet!")
-                                            : ListView.builder(
-                                                itemCount: appState
-                                                    .pastChallenges.length,
-                                                itemBuilder: (context, index) {
-                                                  return Card(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                          "${index + 1}. ${appState.pastChallenges.elementAtOrNull(index)['header']}"),
-                                                    ),
-                                                  );
-                                                }),
+                                        child: appState.pastChallenges.isEmpty ? const Text("You havent completed any challenges yet!")
+                                          : ListView.builder(
+                                            itemCount: appState.pastChallenges.length,
+                                            itemBuilder: (context, index) {
+                                              return Card(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text("${index + 1}. ${appState.pastChallenges.elementAtOrNull(index)['header']}"),
+                                                ),
+                                              );
+                                            }),
                                       ),
                                     ));
                           },
