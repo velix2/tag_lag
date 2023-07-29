@@ -1,9 +1,12 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 import 'challenges_page.dart';
@@ -47,7 +50,7 @@ class TagLagState extends ChangeNotifier {
   List pastChallenges = [];
 
   // all app-wide variables having to do with COINS
-  int coinBalance = 50; // how many coins are in the teams bank?
+  int coinBalance = 25; // how many coins are in the teams bank?
 
   // all app-wide variables having to do with TRANSPORT
   List pastBuys = [];
@@ -57,6 +60,129 @@ class TagLagState extends ChangeNotifier {
   int selectedIndex = 0;
   int numOfTeams = 2;
   int teamNum = 1;
+
+  Future<String> get gameDataPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get gameDataFile async {
+    final path = await gameDataPath;
+    return File("$path/gamedata.json");
+  }
+
+  Future<void> gameDataInit() async {
+    final file = await gameDataFile;
+
+    file.writeAsString(jsonEncode({
+    "challenges" : challenges,
+    "currentChallengeIndex" : currentChallengeIndex,
+    "hasActiveChallenge" : hasActiveChallenge,
+    "pastChallenges" : pastChallenges,
+    "coinBalance" : coinBalance,
+    "pastBuys" : pastBuys,
+    "gameStarted" : gameStarted,
+    "selectedIndex" : selectedIndex,
+    "numOfTeams" : numOfTeams,
+    "teamNum" : teamNum,
+    "vetoStartTime" : vetoStartTime.toIso8601String(),
+    "vetoTimeTotal" : vetoTimeTotal.toString(),
+    "vetoEndTime" : vetoEndTime.toIso8601String(),
+    "vetoTimeLeft" : vetoTimeLeft.toString(),
+    "hasActiveVeto" : hasActiveVeto.toString(),
+    "curseStartTime" : curseStartTime.toIso8601String(),
+    "curseEndTime" : curseEndTime.toIso8601String(),
+    "curseTimeLeft" : curseTimeLeft.toString(),
+    "curseTimeTotal" : curseTimeTotal.toString(),
+    "hasActiveCurse" : hasActiveCurse.toString(),
+    }));
+  }
+
+  Future<void> gameDataWrite({
+    var challengesToWrite,
+    var currentChallengeIndexToWrite,
+    var hasActiveChallengeToWrite,
+    var pastChallengesToWrite,
+    var coinBalanceToWrite,
+    var pastBuysToWrite,
+    var gameStartedToWrite,
+    var selectedIndexToWrite,
+    var numOfTeamsToWrite,
+    var teamNumToWrite,
+    var vetoStartTimeToWrite,
+    var vetoTimeTotalToWrite,
+    var vetoEndTimeToWrite,
+    var vetoTimeLeftToWrite,
+    var hasActiveVetoToWrite,
+    var curseStartTimeToWrite,
+    var curseEndTimeToWrite,
+    var curseTimeLeftToWrite,
+    var curseTimeTotalToWrite,
+    var hasActiveCurseToWrite,
+    }) async {
+    challengesToWrite = challengesToWrite ?? challenges;
+    currentChallengeIndexToWrite = currentChallengeIndexToWrite ?? currentChallengeIndex;
+    hasActiveChallengeToWrite = hasActiveChallengeToWrite ?? hasActiveChallenge;
+    pastChallengesToWrite = pastChallengesToWrite ?? pastChallenges;
+    coinBalanceToWrite = coinBalanceToWrite ?? coinBalance;
+    pastBuysToWrite = pastBuysToWrite ?? pastBuys;
+    gameStartedToWrite = gameStartedToWrite ?? gameStarted;
+    selectedIndexToWrite = selectedIndexToWrite ?? selectedIndex;
+    numOfTeamsToWrite = numOfTeamsToWrite ?? numOfTeams;
+    teamNumToWrite = teamNumToWrite ?? teamNum;
+    vetoStartTimeToWrite = vetoStartTimeToWrite ?? vetoStartTime.toIso8601String();
+    vetoTimeTotalToWrite = vetoTimeTotalToWrite ?? vetoTimeTotal.toString();
+    vetoEndTimeToWrite = vetoEndTimeToWrite ?? vetoEndTime.toIso8601String();
+    vetoTimeLeftToWrite = vetoTimeLeftToWrite ?? vetoTimeLeft.toString();
+    hasActiveVetoToWrite = hasActiveChallengeToWrite ?? hasActiveChallenge.toString();
+    curseStartTimeToWrite = curseStartTimeToWrite ?? curseStartTime.toIso8601String();
+    curseEndTimeToWrite = curseEndTimeToWrite ?? curseEndTime.toIso8601String();
+    curseTimeLeftToWrite = curseTimeLeftToWrite ?? curseTimeLeft.toString();
+    curseTimeTotalToWrite = curseTimeTotalToWrite ?? curseTimeTotal.toString();
+    hasActiveCurseToWrite = hasActiveCurseToWrite ?? hasActiveCurse;
+
+    final file = await gameDataFile;
+
+    file.writeAsString(jsonEncode({
+    "challenges" : challengesToWrite,
+    "currentChallengeIndex" : currentChallengeIndexToWrite,
+    "hasActiveChallenge" : hasActiveChallengeToWrite,
+    "pastChallenges" : pastChallengesToWrite,
+    "coinBalance" : coinBalanceToWrite,
+    "pastBuys" : pastBuysToWrite,
+    "gameStarted" : gameStartedToWrite,
+    "selectedIndex" : selectedIndexToWrite,
+    "numOfTeams" : numOfTeamsToWrite,
+    "teamNum" : teamNumToWrite,
+    "vetoStartTime" : vetoStartTimeToWrite,
+    "vetoTimeTotal" : vetoTimeTotalToWrite,
+    "vetoEndTime" : vetoEndTimeToWrite,
+    "vetoTimeLeft" : vetoTimeLeftToWrite,
+    "hasActiveVeto" : hasActiveVetoToWrite,
+    "curseStartTime" : curseStartTimeToWrite,
+    "curseEndTime" : curseEndTimeToWrite,
+    "curseTimeLeft" : curseTimeLeftToWrite,
+    "curseTimeTotal" : curseTimeTotalToWrite,
+    "hasActiveCurse" : hasActiveCurseToWrite,
+    }));
+  }
+
+  Future<String> gameDataRead() async {
+    try {
+      final file = await gameDataFile;
+      final content = await file.readAsString();
+      print(content);
+      return content;
+    } catch (e) {
+      print("Something failed");
+      return "Something failed";
+    }
+  }
+
+  Future<void> gameDataDelete() async {
+    final file = await gameDataFile;
+    file.delete();
+  }
 
   // all app-wide variables having to do with VETOING
   var vetoStartTime = DateTime
@@ -285,6 +411,7 @@ class _MainPageState extends State<MainPage> {
                                                       appState.gameStarted =
                                                           true;
                                                     });
+                                                    appState.gameDataInit();
                                                     Navigator.pop(context);
                                                   },
                                                   icon: const Icon(Icons.check),

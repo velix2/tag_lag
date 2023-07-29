@@ -42,7 +42,28 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
           ],
         ),
       ),
-      body: const Text("Statistics"),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              appState.gameDataRead();
+            },
+            child: const Text("Read")
+          ),
+          ElevatedButton(
+            onPressed: () {
+              appState.gameDataDelete();
+            },
+            child: const Text("Delete")
+          ),
+          ElevatedButton(
+            onPressed: () {
+              appState.gameDataInit();
+            },
+            child: const Text("Init")
+          ),
+        ],
+      ),
     );
   }
 }
