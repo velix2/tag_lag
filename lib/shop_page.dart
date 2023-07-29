@@ -121,149 +121,184 @@ class _ShopPageState extends State<ShopPage> {
         body: appState.gameStarted
             ? Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Card(
-                        child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Text(
+                    "Balance:",
+                    style: GoogleFonts.righteous(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.onBackground),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Card(
+                    color: Theme.of(context).indicatorColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text("You have"),
+                          Icon(
+                            Icons.attach_money_rounded,
+                            size: 50,
+                            color: Theme.of(context).primaryColor,
+                          ),
                           Text(
-                            "${appState.coinBalance.toString()} Coins",
-                            style: const TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
+                          appState.coinBalance.toString(),
+                            style: GoogleFonts.righteous(
+                                fontSize: 40,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground),
                           ),
                         ],
                       ),
-                    )),
+                    ),
                   ),
-                  const Divider(),
+                  const SizedBox(
+                    height: 25,
+                  ),
                   Expanded(
-                    child: GridView(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 1.5,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10),
-                        children: [
-                          for (var medium in mediumsList)
-                            BuyButton(
-                              cost: medium["cost"],
-                              medium: medium["name"],
-                              mediumIcon:
-                                  mediumIcons.elementAtOrNull(medium["iconId"]),
-                              onPressed: () {
-                                int numToBuy = 1;
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        AlertDialog(
-                                          title: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              mediumIcons.elementAtOrNull(
-                                                  medium["iconId"]),
-                                              SizedBox.fromSize(
-                                                size: const Size(15, 15),
-                                              ),
-                                              Expanded(
-                                                  child: Text(
-                                                "Purchase ${medium["name"]}",
-                                              )),
-                                            ],
-                                          ),
-                                          content: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              const Text(
-                                                "Purchase",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 20),
-                                              ),
-                                              SpinBox(
-                                                decoration:
-                                                    const InputDecoration(
-                                                  border: InputBorder.none,
-                                                  focusedBorder:
-                                                      InputBorder.none,
-                                                  enabledBorder:
-                                                      InputBorder.none,
-                                                  errorBorder:
-                                                      InputBorder.none,
-                                                  disabledBorder:
-                                                      InputBorder.none,                                                      
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: GridView(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 1.5,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10),
+                          children: [
+                            for (var medium in mediumsList)
+                              BuyButton(
+                                cost: medium["cost"],
+                                medium: medium["name"],
+                                mediumIcon: mediumIcons
+                                    .elementAtOrNull(medium["iconId"]),
+                                onPressed: () {
+                                  int numToBuy = 1;
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(
+                                            title: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                mediumIcons.elementAtOrNull(
+                                                    medium["iconId"]),
+                                                SizedBox.fromSize(
+                                                  size: const Size(15, 15),
                                                 ),
-                                                iconColor: MaterialStateProperty.resolveWith((states) {
-                                                  if (states.contains(MaterialState.disabled)) {
-                                                    return Theme.of(context).disabledColor;
-                                                  }
-                                                  else {
-                                                    return Theme.of(context).primaryColor;
-                                                  }
-                                                }),
-                                                min: 1,
-                                                max: (appState.coinBalance /
-                                                        medium["cost"])
-                                                    .floor()
-                                                    .toDouble(), //makes the max the max you can afford, so you cannot go negative
-                                                value: 1,
-                                                onChanged: (value) => {
-                                                  numToBuy = value.toInt()
-                                                },
-                                                textStyle:
-                                                    GoogleFonts.righteous(
-                                                        fontSize: 30,
-                                                        color: Theme.of(
-                                                                context)
-                                                            .primaryColor),
-                                              ),
-                                              const Text(
-                                                "Stations",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 20),
-                                              )
+                                                Expanded(
+                                                    child: Text(
+                                                  "Purchase ${medium["name"]}",
+                                                )),
+                                              ],
+                                            ),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Text(
+                                                  "Purchase",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 20),
+                                                ),
+                                                SpinBox(
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    border: InputBorder.none,
+                                                    focusedBorder:
+                                                        InputBorder.none,
+                                                    enabledBorder:
+                                                        InputBorder.none,
+                                                    errorBorder:
+                                                        InputBorder.none,
+                                                    disabledBorder:
+                                                        InputBorder.none,
+                                                  ),
+                                                  iconColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith(
+                                                              (states) {
+                                                    if (states.contains(
+                                                        MaterialState
+                                                            .disabled)) {
+                                                      return Theme.of(context)
+                                                          .disabledColor;
+                                                    } else {
+                                                      return Theme.of(context)
+                                                          .primaryColor;
+                                                    }
+                                                  }),
+                                                  min: 1,
+                                                  max: (appState.coinBalance /
+                                                          medium["cost"])
+                                                      .floor()
+                                                      .toDouble(), //makes the max the max you can afford, so you cannot go negative
+                                                  value: 1,
+                                                  onChanged: (value) => {
+                                                    numToBuy = value.toInt()
+                                                  },
+                                                  textStyle:
+                                                      GoogleFonts.righteous(
+                                                          fontSize: 30,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .primaryColor),
+                                                ),
+                                                const Text(
+                                                  "Stations",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 20),
+                                                )
+                                              ],
+                                            ),
+                                            actions: [
+                                              TextButton.icon(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  icon: const Icon(Icons.close),
+                                                  label: const Text("Cancel")),
+                                              TextButton.icon(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    setState(() {
+                                                      appState.buy(
+                                                          medium["cost"] *
+                                                              numToBuy);
+                                                      appState.pastBuys.add(
+                                                          TransportBuy(
+                                                              mediumId:
+                                                                  medium["id"],
+                                                              mediumName:
+                                                                  medium[
+                                                                      "name"],
+                                                              mediumPrice:
+                                                                  medium[
+                                                                      "cost"],
+                                                              num: numToBuy));
+                                                    });
+                                                  },
+                                                  icon: const Icon(Icons.check),
+                                                  label: const Text("Confirm"))
                                             ],
-                                          ),
-                                          actions: [
-                                            TextButton.icon(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                icon: const Icon(Icons.close),
-                                                label: const Text("Cancel")),
-                                            TextButton.icon(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                  setState(() {
-                                                    appState.buy(
-                                                        medium["cost"] *
-                                                            numToBuy);
-                                                    appState.pastBuys.add(
-                                                        TransportBuy(
-                                                            mediumId:
-                                                                medium["id"],
-                                                            mediumName:
-                                                                medium["name"],
-                                                            mediumPrice:
-                                                                medium["cost"],
-                                                            num: numToBuy));
-                                                  });
-                                                },
-                                                icon: const Icon(Icons.check),
-                                                label: const Text("Confirm"))
-                                          ],
-                                        ));
-                              },
-                              enabled: (appState.coinBalance - medium["cost"])
-                                      .isNegative
-                                  ? false
-                                  : true,
-                            )
-                        ]),
+                                          ));
+                                },
+                                enabled: (appState.coinBalance - medium["cost"])
+                                        .isNegative
+                                    ? false
+                                    : true,
+                              )
+                          ]),
+                    ),
                   )
                 ],
               )
