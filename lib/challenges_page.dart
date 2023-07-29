@@ -107,17 +107,23 @@ class _ChallengesPageState extends State<ChallengesPage>
                                       content: SizedBox(
                                         width: 200,
                                         height: 400,
-                                        child: appState.pastChallenges.isEmpty ? const Text("You havent completed any challenges yet!")
-                                          : ListView.builder(
-                                            itemCount: appState.pastChallenges.length,
-                                            itemBuilder: (context, index) {
-                                              return Card(
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text("${index + 1}. ${appState.pastChallenges.elementAtOrNull(index)['header']}"),
-                                                ),
-                                              );
-                                            }),
+                                        child: appState.pastChallenges.isEmpty
+                                            ? const Text(
+                                                "You havent completed any challenges yet!")
+                                            : ListView.builder(
+                                                itemCount: appState
+                                                    .pastChallenges.length,
+                                                itemBuilder: (context, index) {
+                                                  return Card(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Text(
+                                                          "${index + 1}. ${appState.pastChallenges.elementAtOrNull(index)['header']}"),
+                                                    ),
+                                                  );
+                                                }),
                                       ),
                                     ));
                           },
@@ -435,23 +441,67 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                   )
                                                                 ],
                                                               ),
-                                                              if (appState.challenges
-                                                                          .elementAtOrNull(
-                                                                              appState.currentChallengeIndex)[
-                                                                      "header"] ==
-                                                                  "Curse!")
-                                                                const Text(
-                                                                    "You have been cursed!"),
-                                                              Expanded(
-                                                                  child: Text(appState
+                                                              if (appState
                                                                       .challenges
                                                                       .elementAtOrNull(
                                                                           appState
-                                                                              .currentChallengeIndex)["text"])),
+                                                                              .currentChallengeIndex)["header"] ==
+                                                                  "Curse!")
+                                                                const Text(
+                                                                  "You have been cursed!",
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                ),
+                                                              Text(appState
+                                                                  .challenges
+                                                                  .elementAtOrNull(
+                                                                      appState
+                                                                          .currentChallengeIndex)["text"]),
+                                                              
+                                                                Expanded(
+                                                                  child: 
+                                                                  (appState
+                                                                      .challenges
+                                                                      .elementAtOrNull(
+                                                                          appState
+                                                                              .currentChallengeIndex)["header"] ==
+                                                                  "Curse!") ?
+                                                                  Center(
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        Text(
+                                                                            "Time remaining:",
+                                                                            style: TextStyle(
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontSize: 18,
+                                                                                color: Theme.of(context).primaryColor)),
+                                                                        Card(
+                                                                          color:
+                                                                              Theme.of(context).primaryColor,
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                                                                            child: Text(_printDuration(appState.curseTimeLeft),
+                                                                                style: TextStyle(fontSize: 42, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onPrimary),
+                                                                                textAlign: TextAlign.center),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ) : Container(),
+                                                                ),
                                                               Row(
                                                                 children: [
-                                                                  TextButton.icon( // Veto Button
-                                                                      onPressed: (appState.hasActiveCurse)
+                                                                  TextButton.icon(
+                                                                      // Veto Button
+                                                                      onPressed: (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] == "Curse!")
                                                                           ? null
                                                                           : () {
                                                                               //ON TAP
@@ -523,75 +573,84 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                     child:
                                                                         SizedBox(),
                                                                   ),
-                                                                  ElevatedButton
+                                                                  ElevatedButton //Complete Button
                                                                       .icon(
-                                                                    onPressed:
-                                                                        () {
-                                                                      //ON TAP: COMPLETE
-                                                                      (appState.hasActiveCurse)
-                                                                          ? ScaffoldMessenger.of(context)
-                                                                              .showSnackBar(SnackBar(
-                                                                              content: const Text("You can't do this, you're cursed!"),
-                                                                              action: SnackBarAction(
-                                                                                label: "Ok",
-                                                                                onPressed: () {},
-                                                                              ),
-                                                                            ))
-                                                                          : showDialog(
-                                                                              context: context,
-                                                                              builder: (BuildContext context) => AlertDialog(
-                                                                                    insetPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 200.0),
-                                                                                    title: Row(
-                                                                                      children: [
-                                                                                        const Icon(Icons.check_circle_outline_rounded),
-                                                                                        SizedBox.fromSize(
-                                                                                          size: const Size(15, 15),
-                                                                                        ),
-                                                                                        const Text("Confirm Challenge"),
-                                                                                      ],
+                                                                    onPressed: (!appState.hasActiveCurse &&
+                                                                            appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] ==
+                                                                                "Curse!")
+                                                                        ? () {
+                                                                            //completed curse
+                                                                            appState.completedChallenge();
+                                                                            setState(() {
+                                                                              appState.hasActiveChallenge = false;
+                                                                            });
+                                                                            _controller.reverse();
+                                                                          }
+                                                                        : () {
+                                                                            //ON TAP: COMPLETE
+                                                                            (appState.hasActiveCurse)
+                                                                                ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                                                    content: const Text("You can't do this, you're cursed!"),
+                                                                                    action: SnackBarAction(
+                                                                                      label: "Ok",
+                                                                                      onPressed: () {},
                                                                                     ),
-                                                                                    content: Column(children: [
-                                                                                      const Text(
-                                                                                        "Are you sure you completed this Challenge?",
-                                                                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                                                                                        textAlign: TextAlign.center,
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        child: Center(
-                                                                                          child: Text(
-                                                                                            appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"],
-                                                                                            style: TextStyle(fontSize: 24, color: Theme.of(context).colorScheme.error, fontWeight: FontWeight.w900),
-                                                                                            textAlign: TextAlign.center,
+                                                                                  ))
+                                                                                : showDialog(
+                                                                                    context: context,
+                                                                                    builder: (BuildContext context) => AlertDialog(
+                                                                                          insetPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 200.0),
+                                                                                          title: Row(
+                                                                                            children: [
+                                                                                              const Icon(Icons.check_circle_outline_rounded),
+                                                                                              SizedBox.fromSize(
+                                                                                                size: const Size(15, 15),
+                                                                                              ),
+                                                                                              const Text("Confirm Challenge"),
+                                                                                            ],
                                                                                           ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ]),
-                                                                                    actions: [
-                                                                                      TextButton.icon(
-                                                                                          onPressed: () {
-                                                                                            Navigator.pop(context);
-                                                                                          },
-                                                                                          icon: const Icon(Icons.close),
-                                                                                          label: const Text("No")),
-                                                                                      TextButton.icon(
-                                                                                          onPressed: () {
-                                                                                            Navigator.pop(context);
-                                                                                            appState.completedChallenge();
-                                                                                            setState(() {
-                                                                                              appState.hasActiveChallenge = false;
-                                                                                            });
-                                                                                            _controller.reverse();
-                                                                                          },
-                                                                                          icon: const Icon(Icons.check),
-                                                                                          label: const Text("Complete")),
-                                                                                    ],
-                                                                                  ));
-                                                                    },
+                                                                                          content: Column(children: [
+                                                                                            const Text(
+                                                                                              "Are you sure you completed this Challenge?",
+                                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                                                                                              textAlign: TextAlign.center,
+                                                                                            ),
+                                                                                            Expanded(
+                                                                                              child: Center(
+                                                                                                child: Text(
+                                                                                                  appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"],
+                                                                                                  style: TextStyle(fontSize: 24, color: Theme.of(context).colorScheme.error, fontWeight: FontWeight.w900),
+                                                                                                  textAlign: TextAlign.center,
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
+                                                                                          ]),
+                                                                                          actions: [
+                                                                                            TextButton.icon(
+                                                                                                onPressed: () {
+                                                                                                  Navigator.pop(context);
+                                                                                                },
+                                                                                                icon: const Icon(Icons.close),
+                                                                                                label: const Text("No")),
+                                                                                            TextButton.icon(
+                                                                                                onPressed: () {
+                                                                                                  Navigator.pop(context);
+                                                                                                  appState.completedChallenge();
+                                                                                                  setState(() {
+                                                                                                    appState.hasActiveChallenge = false;
+                                                                                                  });
+                                                                                                  _controller.reverse();
+                                                                                                },
+                                                                                                icon: const Icon(Icons.check),
+                                                                                                label: const Text("Complete")),
+                                                                                          ],
+                                                                                        ));
+                                                                          },
                                                                     icon: const Icon(
                                                                         Icons
                                                                             .check_circle_rounded),
-                                                                    label: const Text(
-                                                                        "Complete"),
+                                                                    label: (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] ==
+                                                                                "Curse!") ? const Text("Collect") : const Text("Complete"),
                                                                   ),
                                                                 ],
                                                               ),
@@ -639,9 +698,17 @@ class CardFront extends StatelessWidget {
                 .elementAtOrNull(appState.currentChallengeIndex)["header"] ==
             "Curse!") {
           appState.hasActiveCurse = true;
-        } else {
-          appState.hasActiveChallenge = true;
+          appState.curseTimeTotal = Duration(
+              minutes: appState.challenges[appState.currentChallengeIndex]
+                  ["curse_time"]);
+          appState.curseStartTime = DateTime.now();
+          appState.curseEndTime = DateTime.now().add(Duration(
+              minutes: appState.challenges[appState.currentChallengeIndex]
+                  ["curse_time"]));
+
+          appState.startCurse();
         }
+        appState.hasActiveChallenge = true;
         _controller.forward();
       },
       child: Card(

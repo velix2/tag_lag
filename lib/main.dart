@@ -28,7 +28,8 @@ class TagLag extends StatelessWidget {
           theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
-                seedColor: Color.fromARGB(255, 89, 12, 14), brightness: Brightness.light),
+                seedColor: const Color.fromARGB(255, 89, 12, 14),
+                brightness: Brightness.light),
           ),
           // darkTheme: ThemeData.dark(useMaterial3: true),
           // themeMode: ThemeMode.dark,
@@ -73,6 +74,9 @@ class TagLagState extends ChangeNotifier {
   var curseStartTime = DateTime.now();
   var curseEndTime = DateTime.now();
   var curseTimeLeft = const Duration(minutes: 0);
+  var curseTimeTotal = const Duration(
+      minutes: 0); // The amount of time the last/current veto period lasts
+
   bool hasActiveCurse = false;
 
   late Timer curseTimer;
@@ -108,6 +112,7 @@ class TagLagState extends ChangeNotifier {
   @override
   void dispose() {
     vetoTimer.cancel();
+    curseTimer.cancel();
     super.dispose();
   }
 
@@ -164,8 +169,20 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text("Welcome to", style: TextStyle(fontSize: 24),),
-                Text("TAG LAG", style: GoogleFonts.righteous(fontSize: 120, fontWeight: FontWeight.w800, letterSpacing: -5, height: .8, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.center,),
+                const Text(
+                  "Welcome to",
+                  style: TextStyle(fontSize: 24),
+                ),
+                Text(
+                  "TAG LAG",
+                  style: GoogleFonts.righteous(
+                      fontSize: 120,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -5,
+                      height: .8,
+                      color: Theme.of(context).colorScheme.primary),
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
           ),
@@ -187,9 +204,13 @@ class _MainPageState extends State<MainPage> {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Center(child: Padding(
+                              Center(
+                                  child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("How many teams are playing?", style: Theme.of(context).textTheme.bodyLarge,),
+                                child: Text(
+                                  "How many teams are playing?",
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
                               )),
                               SpinBox(
                                 min: 2,
@@ -227,11 +248,16 @@ class _MainPageState extends State<MainPage> {
                                             content: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                 Text(
-                                                    "What is your team's number?", style: Theme.of(context).textTheme.bodyLarge),
+                                                Text(
+                                                    "What is your team's number?",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge),
                                                 Center(
                                                   child: Padding(
-                                                    padding: const EdgeInsets.all(8.0),
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
                                                     child: Text(
                                                         "Make sure to assign every team an individual number from 1 to ${appState.numOfTeams}."),
                                                   ),
@@ -243,7 +269,6 @@ class _MainPageState extends State<MainPage> {
                                                   value: 1,
                                                   onChanged: (value) => appState
                                                       .teamNum = value.toInt(),
-                                                      
                                                 ),
                                               ],
                                             ),
