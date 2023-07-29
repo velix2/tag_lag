@@ -456,7 +456,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                               .currentChallengeIndex)["text"])),
                                                               Row(
                                                                 children: [
-                                                                  TextButton.icon(
+                                                                  TextButton.icon( // Veto Button
                                                                       onPressed: (appState.hasActiveCurse)
                                                                           ? null
                                                                           : () {
