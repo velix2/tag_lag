@@ -1,6 +1,7 @@
 import 'package:flutter_spinbox/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 import 'dart:convert';
@@ -44,10 +45,33 @@ class _ShopPageState extends State<ShopPage> {
       Icon(Icons.directions_walk)
     ];
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.train),
-        title: const Text("Shop"),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+appBar: AppBar(
+        title: Row(
+          children: [
+            Icon(
+              Icons.train,
+              color: Theme.of(context).primaryColor,
+              size: 40,
+            ),
+            const SizedBox(width: 15),
+            Text(
+              "Shop",
+              style: GoogleFonts.righteous(
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              ".",
+              style: GoogleFonts.righteous(
+                fontWeight: FontWeight.w800,
+                color: Theme.of(context).primaryColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      
         actions: [
             Padding(
               padding: const EdgeInsets.all(5.0),

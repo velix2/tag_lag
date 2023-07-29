@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'dart:async';
 
+import 'package:google_fonts/google_fonts.dart';
+
 class RulePage extends StatefulWidget {
   const RulePage({Key? key}) : super(key: key);
 
@@ -32,12 +34,33 @@ class _RulePageState extends State<RulePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.handshake),
-        title: const Text("Rules"),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
-      body: Padding(
+appBar: AppBar(
+        title: Row(
+          children: [
+            Icon(
+              Icons.handshake,
+              color: Theme.of(context).primaryColor,
+              size: 40,
+            ),
+            const SizedBox(width: 15),
+            Text(
+              "Rules",
+              style: GoogleFonts.righteous(
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              ".",
+              style: GoogleFonts.righteous(
+                fontWeight: FontWeight.w800,
+                color: Theme.of(context).primaryColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),      body: Padding(
         padding: const EdgeInsets.all(15),
         child: ListView.builder(
           itemCount: ruleList.length,

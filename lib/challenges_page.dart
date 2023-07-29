@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 import 'main.dart';
@@ -92,9 +93,31 @@ class _ChallengesPageState extends State<ChallengesPage>
             }
             child = Scaffold(
                 appBar: AppBar(
-                  leading: const Icon(Icons.flag),
-                  title: const Text("Challenges"),
-                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.flag,
+                        color: Theme.of(context).primaryColor,
+                        size: 40,
+                      ),
+                      const SizedBox(width: 15),
+                      Text(
+                        "Challenges",
+                        style: GoogleFonts.righteous(
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        ".",
+                        style: GoogleFonts.righteous(
+                          fontWeight: FontWeight.w800,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                   actions: [
                     Padding(
                       padding: const EdgeInsets.all(5.0),
@@ -459,44 +482,31 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                   .elementAtOrNull(
                                                                       appState
                                                                           .currentChallengeIndex)["text"]),
-                                                              
-                                                                Expanded(
-                                                                  child: 
-                                                                  (appState
-                                                                      .challenges
-                                                                      .elementAtOrNull(
-                                                                          appState
-                                                                              .currentChallengeIndex)["header"] ==
-                                                                  "Curse!") ?
-                                                                  Center(
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      children: [
-                                                                        Text(
-                                                                            "Time remaining:",
-                                                                            style: TextStyle(
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontSize: 18,
-                                                                                color: Theme.of(context).primaryColor)),
-                                                                        Card(
-                                                                          color:
-                                                                              Theme.of(context).primaryColor,
-                                                                          child:
-                                                                              Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                                                                            child: Text(_printDuration(appState.curseTimeLeft),
-                                                                                style: TextStyle(fontSize: 42, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onPrimary),
-                                                                                textAlign: TextAlign.center),
-                                                                          ),
+                                                              Expanded(
+                                                                child: (appState
+                                                                            .challenges
+                                                                            .elementAtOrNull(appState.currentChallengeIndex)["header"] ==
+                                                                        "Curse!")
+                                                                    ? Center(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          children: [
+                                                                            Text("Time remaining:",
+                                                                                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: Theme.of(context).primaryColor)),
+                                                                            Card(
+                                                                              color: Theme.of(context).primaryColor,
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                                                                                child: Text(_printDuration(appState.curseTimeLeft), style: TextStyle(fontSize: 42, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onPrimary), textAlign: TextAlign.center),
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
-                                                                      ],
-                                                                    ),
-                                                                  ) : Container(),
-                                                                ),
+                                                                      )
+                                                                    : Container(),
+                                                              ),
                                                               Row(
                                                                 children: [
                                                                   TextButton.icon(
@@ -650,7 +660,11 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                         Icons
                                                                             .check_circle_rounded),
                                                                     label: (appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["header"] ==
-                                                                                "Curse!") ? const Text("Collect") : const Text("Complete"),
+                                                                            "Curse!")
+                                                                        ? const Text(
+                                                                            "Collect")
+                                                                        : const Text(
+                                                                            "Complete"),
                                                                   ),
                                                                 ],
                                                               ),

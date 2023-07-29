@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 
@@ -15,9 +16,31 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
     var appState = context.watch<TagLagState>();
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.directions_walk),
-        title: const Text("Game"),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Row(
+          children: [
+            Icon(
+              Icons.directions_walk,
+              color: Theme.of(context).primaryColor,
+              size: 40,
+            ),
+            const SizedBox(width: 15),
+            Text(
+              "Game",
+              style: GoogleFonts.righteous(
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              ".",
+              style: GoogleFonts.righteous(
+                fontWeight: FontWeight.w800,
+                color: Theme.of(context).primaryColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
       body: const Text("Statistics"),
     );
