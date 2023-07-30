@@ -107,7 +107,7 @@ class _ShopPageState extends State<ShopPage> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: Text(
-                                                  "${appState.pastBuys.elementAtOrNull(index).num}x ${appState.pastBuys.elementAtOrNull(index).mediumName}, ${appState.pastBuys.elementAtOrNull(index).totalCost} coins total"),
+                                                  "${appState.pastBuys.elementAtOrNull(index)["num"]}x ${appState.pastBuys.elementAtOrNull(index)["mediumName"]}, ${appState.pastBuys.elementAtOrNull(index)["totalCost"]} coins total"),
                                             ),
                                           );
                                         }),
@@ -274,17 +274,12 @@ class _ShopPageState extends State<ShopPage> {
                                                       appState.buy(
                                                           medium["cost"] *
                                                               numToBuy);
-                                                      appState.pastBuys.add(
-                                                          TransportBuy(
-                                                              mediumId:
-                                                                  medium["id"],
-                                                              mediumName:
-                                                                  medium[
-                                                                      "name"],
-                                                              mediumPrice:
-                                                                  medium[
-                                                                      "cost"],
-                                                              num: numToBuy));
+                                                      appState.pastBuys.add({
+                                                              "mediumId" : medium["id"],
+                                                              "mediumName" : medium["name"],
+                                                              "mediumPrice" : medium["cost"],
+                                                              "num" : numToBuy,
+                                                              "totalCost" : numToBuy * medium["cost"]});
                                                     });
                                                   },
                                                   icon: const Icon(Icons.check),
@@ -397,22 +392,5 @@ class _BuyButtonState extends State<BuyButton> {
         ],
       ),
     );
-  }
-}
-
-class TransportBuy {
-  int mediumId;
-  String mediumName;
-  int mediumPrice;
-  int num;
-  int totalCost;
-
-  TransportBuy(
-      {required this.mediumId,
-      required this.mediumName,
-      required this.mediumPrice,
-      required this.num,
-      this.totalCost = 0}) {
-    totalCost = mediumPrice * num;
   }
 }

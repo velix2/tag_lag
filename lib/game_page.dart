@@ -46,7 +46,7 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
         children: [
           ElevatedButton(
             onPressed: () {
-              appState.gameDataRead();
+              appState.gameData;
             },
             child: const Text("Read")
           ),
