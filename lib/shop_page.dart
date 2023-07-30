@@ -107,7 +107,13 @@ class _ShopPageState extends State<ShopPage> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: Text(
-                                                  "${appState.pastBuys.elementAtOrNull(index)["num"]}x ${appState.pastBuys.elementAtOrNull(index)["mediumName"]}, ${appState.pastBuys.elementAtOrNull(index)["totalCost"]} coins total"),
+                                                  "${
+                                                    appState.pastBuys.elementAtOrNull(index)["num"]
+                                                  }x ${
+                                                    appState.pastBuys.elementAtOrNull(index)["mediumName"]
+                                                  }, ${
+                                                    appState.pastBuys.elementAtOrNull(index)["totalCost"]
+                                                  } coins total"),
                                             ),
                                           );
                                         }),
