@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
+import 'package:duration/duration.dart';
 import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
@@ -81,7 +82,7 @@ class TagLagState extends ChangeNotifier {
   Future<void> gameDataInit() async {
     final file = await gameDataFile;
 
-    file.writeAsString(jsonEncode({
+    file.writeAsStringSync(jsonEncode({
     "challenges" : challenges,
     "currentChallengeIndex" : currentChallengeIndex,
     "hasActiveChallenge" : hasActiveChallenge,
@@ -96,12 +97,12 @@ class TagLagState extends ChangeNotifier {
     "vetoTimeTotal" : vetoTimeTotal.toString(),
     "vetoEndTime" : vetoEndTime.toIso8601String(),
     "vetoTimeLeft" : vetoTimeLeft.toString(),
-    "hasActiveVeto" : hasActiveVeto.toString(),
+    "hasActiveVeto" : hasActiveVeto,
     "curseStartTime" : curseStartTime.toIso8601String(),
     "curseEndTime" : curseEndTime.toIso8601String(),
     "curseTimeLeft" : curseTimeLeft.toString(),
     "curseTimeTotal" : curseTimeTotal.toString(),
-    "hasActiveCurse" : hasActiveCurse.toString(),
+    "hasActiveCurse" : hasActiveCurse,
     }));
   }
 
@@ -153,7 +154,7 @@ class TagLagState extends ChangeNotifier {
     curseTimeTotalToWrite != null ? currentGameData["curseTimeTotal"] = curseTimeTotalToWrite : ();
     hasActiveCurseToWrite != null ? currentGameData["hasActiveCurse"] = hasActiveCurseToWrite : ();
 
-    file.writeAsString(jsonEncode(currentGameData));
+    file.writeAsStringSync(jsonEncode(currentGameData));
   }
 
   Future<String> get gameData async {
@@ -168,6 +169,39 @@ class TagLagState extends ChangeNotifier {
     }
   }
 
+  Future<void> gameDataSync() async {
+    final file = await gameDataFile;
+    var rawContent = await file.readAsString();
+    var content = await jsonDecode(rawContent);
+    challenges = content["challenges"];
+    currentChallengeIndex = content["currentChallengeIndex"];
+    hasActiveChallenge = content["hasActiveChallenge"];
+    pastChallenges = content["pastChallenges"];
+    coinBalance = content["coinBalance"];
+    pastBuys = content["pastBuys"];
+    gameRunning = content["gameRunning"];
+    selectedIndex = content["selectedIndex"];
+    numOfTeams = content["numOfTeams"];
+    teamNum = content["teamNum"];
+    vetoStartTime = DateTime.parse(content["vetoStartTime"]);
+    vetoTimeTotal = parseTime(content["vetoTimeTotal"]);
+    vetoEndTime = DateTime.parse(content["vetoEndTime"]);
+    vetoTimeLeft = parseTime(content["vetoTimeLeft"]);
+    hasActiveVeto = content["hasActiveVeto"];
+    if (hasActiveVeto) {
+      startVeto();
+    }
+    curseStartTime = DateTime.parse(content["curseStartTime"]);
+    curseEndTime = DateTime.parse(content["curseEndTime"]);
+    curseTimeLeft = parseTime(content["curseTimeLeft"]);
+    curseTimeTotal = parseTime(content["curseTimeTotal"]);
+    hasActiveCurse = content["hasActiveCurse"];
+    if (hasActiveCurse) {
+      startCurse();
+    }
+    print("Synced");
+  }
+
   Future<void> gameDataDelete() async {
     final file = await gameDataFile;
     file.delete();
@@ -176,7 +210,6 @@ class TagLagState extends ChangeNotifier {
   Future<void> checkForGameData() async {
     final file = await gameDataFile;
     gameDataExists = await file.exists();
-    print(gameDataExists);
   }
 
   // all app-wide variables having to do with VETOING
@@ -210,6 +243,7 @@ class TagLagState extends ChangeNotifier {
       vetoTimeLeft = vetoEndTime.difference(DateTime.now());
       if (vetoTimeLeft.isNegative) {
         hasActiveVeto = false;
+        gameDataWrite(hasActiveVetoToWrite: false);
         timer.cancel();
       }
       notifyListeners();
@@ -224,6 +258,7 @@ class TagLagState extends ChangeNotifier {
       curseTimeLeft = curseEndTime.difference(DateTime.now());
       if (curseTimeLeft.isNegative) {
         hasActiveCurse = false;
+        gameDataWrite(hasActiveCurseToWrite: false);
         timer.cancel();
       }
       notifyListeners();
@@ -246,12 +281,17 @@ class TagLagState extends ChangeNotifier {
   void shuffleChallenges() {
     final random = Random();
     currentChallengeIndex = random.nextInt(challenges.length);
+    gameDataWrite(currentChallengeIndexToWrite: currentChallengeIndex);
   }
 
   // when a challenge is completed, add the coins it brings to the teams wallet and moves it from challenges to pastChallenges
   void completedChallenge() {
     coinBalance += challenges[currentChallengeIndex]["coins"] as int;
     pastChallenges.add(challenges.removeAt(currentChallengeIndex));
+    gameDataWrite(
+      coinBalanceToWrite: coinBalance,
+      pastChallengesToWrite: pastChallenges
+    );
   }
 }
 
@@ -316,6 +356,11 @@ class _MainPageState extends State<MainPage> {
             if (snapshot.connectionState == ConnectionState.done) {
               if (!appState.gameDataExists) {
                 showStartScreen = true;
+              } else {
+                if (!appState.gameRunning) {
+                  appState.gameRunning = true;
+                }
+                appState.gameDataSync();
               }
             } else {
               child = const Scaffold(body: CircularProgressIndicator());

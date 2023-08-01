@@ -62,6 +62,12 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
             },
             child: const Text("Init")
           ),
+          ElevatedButton(
+            onPressed: () {
+              appState.gameDataSync();
+            },
+            child: const Text("Sync")
+          )
         ],
       ),
     );

@@ -458,6 +458,9 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                                                   setState(() {
                                                                                                     appState.hasActiveChallenge = false;
                                                                                                   });
+                                                                                                  appState.gameDataWrite(
+                                                                                                    hasActiveChallengeToWrite: false,
+                                                                                                  );
                                                                                                   _controller.reverse();
                                                                                                 },
                                                                                                 icon: const Icon(Icons.check),
@@ -528,10 +531,17 @@ class CardFront extends StatelessWidget {
           appState.curseEndTime = DateTime.now().add(Duration(
               minutes: appState.challenges[appState.currentChallengeIndex]
                   ["curse_time"]));
+          appState.gameDataWrite(
+            hasActiveCurseToWrite: true,
+            curseTimeTotalToWrite: appState.curseTimeTotal,
+            curseStartTimeToWrite: appState.curseStartTime,
+            curseEndTimeToWrite: appState.curseEndTime,
+          );
 
           appState.startCurse();
         }
         appState.hasActiveChallenge = true;
+        appState.gameDataWrite(hasActiveChallengeToWrite: true);
         _controller.forward();
       },
       child: Card(

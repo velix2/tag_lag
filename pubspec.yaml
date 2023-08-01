@@ -15,6 +15,7 @@ dependencies:
   shared_preferences: ^2.2.0
   flutter_spinbox: ^0.13.1
   google_fonts: ^5.1.0
+  duration: ^3.0.13
 
 
 dev_dependencies:

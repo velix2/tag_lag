@@ -95,34 +95,75 @@ class _ShopPageState extends State<ShopPage> {
                   onPressed: () {
                     showDialog(
                         context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                              title: const Text("History"),
-                              content: SizedBox(
-                                width: 200,
-                                height: 400,
-                                child: appState.pastBuys.isEmpty
-                                    ? const Text(
-                                        "You haven't bought anything yet!")
-                                    : ListView.builder(
-                                        itemCount: appState.pastBuys.length,
-                                        itemBuilder: (context, index) {
-                                          return Card(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  "${
-                                                    appState.pastBuys.elementAtOrNull(index)["num"]
-                                                  }x ${
-                                                    appState.pastBuys.elementAtOrNull(index)["mediumName"]
-                                                  }, ${
-                                                    appState.pastBuys.elementAtOrNull(index)["totalCost"]
-                                                  } coins total"),
+                        builder: (BuildContext context) {
+                          return StatefulBuilder(
+                            builder: (context, setState) {
+                              return AlertDialog(
+                                title: const Text("History"),
+                                content: SizedBox(
+                                  width: 200,
+                                  height: 400,
+                                  child: appState.pastBuys.isEmpty ? const Text("You haven't bought anything yet!") : ListView.builder(
+                                    itemCount: appState.pastBuys.length,
+                                    itemBuilder: (context, index) {
+                                      return Card(
+                                        child: Padding(
+                                          padding:
+                                            const EdgeInsets.all(8.0),
+                                            child: Stack(
+                                              children: [
+                                                Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Text(
+                                                    "${
+                                                      appState.pastBuys.elementAtOrNull(index)["num"]
+                                                    }x ${
+                                                      appState.pastBuys.elementAtOrNull(index)["mediumName"]
+                                                    }\n${
+                                                      appState.pastBuys.elementAtOrNull(index)["totalCost"]
+                                                    } coins total"
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment: Alignment.centerRight,
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        appState.coinBalance = appState.coinBalance + appState.pastBuys.elementAtOrNull(index)["totalCost"] as int;
+                                                        appState.pastBuys.removeAt(index);
+                                                        appState.gameDataWrite(
+                                                          coinBalanceToWrite: appState.coinBalance,
+                                                          pastBuysToWrite: appState.pastBuys,
+                                                        );
+                                                      });
+                                                    },
+                                                    icon: const Icon(
+                                                      Icons.delete,
+                                                      size: 20,
+                                                    )
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                          );
-                                        }),
-                              ),
-                            ));
+                                        ),
+                                      );
+                                    }
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton.icon(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: const Icon(Icons.check),
+                                    label: const Text("Done")
+                                  )
+                                ],
+                              );
+                            }
+                          );
+                      }
+                    );
                   },
                   icon: const Icon(Icons.history)),
             )
@@ -291,6 +332,7 @@ class _ShopPageState extends State<ShopPage> {
                                                               "num" : numToBuy,
                                                               "totalCost" : numToBuy * medium["cost"]});
                                                     });
+                                                    appState.gameDataWrite(pastBuysToWrite: appState.pastBuys);
                                                   },
                                                   icon: const Icon(Icons.check),
                                                   label: const Text("Confirm"))
