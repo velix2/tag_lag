@@ -121,51 +121,32 @@ class _ShopPageState extends State<ShopPage> {
                                                     child: Text(
                                                         "${appState.pastBuys.elementAtOrNull(index)["num"]}x ${appState.pastBuys.elementAtOrNull(index)["mediumName"]}\n${appState.pastBuys.elementAtOrNull(index)["totalCost"]} coins total"),
                                                   ),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
-                                                    child: IconButton(
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            appState
-                                                                .coinBalance = appState
-                                                                    .coinBalance +
-                                                                appState.pastBuys
-                                                                        .elementAtOrNull(
-                                                                            index)[
-                                                                    "totalCost"] as int;
-
-                                                            appState.gameDataWrite(
-                                                                coinBalanceToWrite:
-                                                                    appState
-                                                                        .coinBalance);
-                                                          });
-
-                                                          setStateAlert(() {
-                                                            appState.pastBuys
-                                                                .removeAt(
-                                                                    index);
-                                                            appState
-                                                                .gameDataWrite(
-                                                              pastBuysToWrite:
-                                                                  appState
-                                                                      .pastBuys,
-                                                            );
-                                                          });
-                                                        },
-                                                        icon: const Icon(
-                                                          Icons.delete,
-                                                          size: 20,
-                                                        )),
-                                                  )
-                                                ],
-                                              ),
+                                                ),
+                                                Align(
+                                                  alignment: Alignment.centerRight,
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        appState.coinBalance = appState.coinBalance + appState.pastBuys.elementAtOrNull(index)["totalCost"] as int;
+                                                        appState.pastBuys.removeAt(index);
+                                                        appState.gameDataInit();
+                                                      });
+                                                    },
+                                                    icon: const Icon(
+                                                      Icons.delete,
+                                                      size: 20,
+                                                    )
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                          );
-                                        }),
-                              ),
-                              actions: [
-                                TextButton.icon(
+                                        ),
+                                      );
+                                    }
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton.icon(
                                     onPressed: () {
                                       Navigator.pop(context);
                                       setState(() {
@@ -248,127 +229,111 @@ class _ShopPageState extends State<ShopPage> {
                                   int numToBuy = 1;
                                   showDialog(
                                       context: context,
-                                      builder: (BuildContext context) {
-                                        return StatefulBuilder(
-                                          builder: (context, setStateAlert) {
-                                            return AlertDialog(
-                                                title: Row(
-                                                  mainAxisSize: MainAxisSize.min,
-                                                  children: [
-                                                    mediumIcons.elementAtOrNull(
-                                                        medium["iconId"]),
-                                                    SizedBox.fromSize(
-                                                      size: const Size(15, 15),
-                                                    ),
-                                                    Expanded(
-                                                        child: Text(
-                                                      "Purchase ${medium["name"]}",
-                                                    )),
-                                                  ],
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(
+                                            title: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                mediumIcons.elementAtOrNull(
+                                                    medium["iconId"]),
+                                                SizedBox.fromSize(
+                                                  size: const Size(15, 15),
                                                 ),
-                                                content: Column(
-                                                  mainAxisSize: MainAxisSize.min,
-                                                  children: [
-                                                    const Text(
-                                                      "Purchase",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 20),
-                                                    ),
-                                                    SpinBox(
-                                                      decoration:
-                                                          const InputDecoration(
-                                                        border: InputBorder.none,
-                                                        focusedBorder:
-                                                            InputBorder.none,
-                                                        enabledBorder:
-                                                            InputBorder.none,
-                                                        errorBorder:
-                                                            InputBorder.none,
-                                                        disabledBorder:
-                                                            InputBorder.none,
-                                                      ),
-                                                      iconColor:
-                                                          MaterialStateProperty
-                                                              .resolveWith(
-                                                                  (states) {
-                                                        if (states.contains(
-                                                            MaterialState
-                                                                .disabled)) {
-                                                          return Theme.of(context)
-                                                              .disabledColor;
-                                                        } else {
-                                                          return Theme.of(context)
-                                                              .primaryColor;
-                                                        }
-                                                      }),
-                                                      min: 1,
-                                                      max: (appState.coinBalance /
-                                                              medium["cost"])
-                                                          .floor()
-                                                          .toDouble(), //makes the max the max you can afford, so you cannot go negative
-                                                      value: 1,
-                                                      onChanged: (value) => {
-                                                        setStateAlert(() {
-                                                          numToBuy = value.toInt();
-                                                        })
-                                                      },
-                                                      textStyle:
-                                                          GoogleFonts.righteous(
-                                                              fontSize: 30,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .primaryColor),
-                                                    ),
-                                                    const Text(
-                                                      "Stations",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 20),
-                                                    ),
-                                                    Text(
-                                                        "\$${medium["cost"] * numToBuy} Total")
-                                                  ],
+                                                Expanded(
+                                                    child: Text(
+                                                  "Purchase ${medium["name"]}",
+                                                )),
+                                              ],
+                                            ),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Text(
+                                                  "Purchase",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 20),
                                                 ),
-                                                actions: [
-                                                  TextButton.icon(
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      icon: const Icon(Icons.close),
-                                                      label: const Text("Cancel")),
-                                                  TextButton.icon(
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                        setState(() {
-                                                          appState.buy(
-                                                              medium["cost"] *
-                                                                  numToBuy);
-                                                          appState.pastBuys.add({
-                                                            "mediumId":
-                                                                medium["id"],
-                                                            "mediumName":
-                                                                medium["name"],
-                                                            "mediumPrice":
-                                                                medium["cost"],
-                                                            "num": numToBuy,
-                                                            "totalCost": numToBuy *
-                                                                medium["cost"]
-                                                          });
-                                                        });
-                                                        appState.gameDataWrite(
-                                                            pastBuysToWrite:
-                                                                appState.pastBuys);
-                                                      },
-                                                      icon: const Icon(Icons.check),
-                                                      label: const Text("Confirm"))
-                                                ],
-                                              );
-                                          }
-                                        );
-                                      });
+                                                SpinBox(
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    border: InputBorder.none,
+                                                    focusedBorder:
+                                                        InputBorder.none,
+                                                    enabledBorder:
+                                                        InputBorder.none,
+                                                    errorBorder:
+                                                        InputBorder.none,
+                                                    disabledBorder:
+                                                        InputBorder.none,
+                                                  ),
+                                                  iconColor:
+                                                      MaterialStateProperty
+                                                          .resolveWith(
+                                                              (states) {
+                                                    if (states.contains(
+                                                        MaterialState
+                                                            .disabled)) {
+                                                      return Theme.of(context)
+                                                          .disabledColor;
+                                                    } else {
+                                                      return Theme.of(context)
+                                                          .primaryColor;
+                                                    }
+                                                  }),
+                                                  min: 1,
+                                                  max: (appState.coinBalance /
+                                                          medium["cost"])
+                                                      .floor()
+                                                      .toDouble(), //makes the max the max you can afford, so you cannot go negative
+                                                  value: 1,
+                                                  onChanged: (value) => {
+                                                    numToBuy = value.toInt()
+                                                  },
+                                                  textStyle:
+                                                      GoogleFonts.righteous(
+                                                          fontSize: 30,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .primaryColor),
+                                                ),
+                                                const Text(
+                                                  "Stations",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 20),
+                                                )
+                                              ],
+                                            ),
+                                            actions: [
+                                              TextButton.icon(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  icon: const Icon(Icons.close),
+                                                  label: const Text("Cancel")),
+                                              TextButton.icon(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    setState(() {
+                                                      appState.buy(
+                                                          medium["cost"] *
+                                                              numToBuy);
+                                                      appState.pastBuys.add({
+                                                              "mediumId" : medium["id"],
+                                                              "mediumName" : medium["name"],
+                                                              "mediumPrice" : medium["cost"],
+                                                              "num" : numToBuy,
+                                                              "totalCost" : numToBuy * medium["cost"]});
+                                                    });
+                                                    appState.gameDataInit();
+                                                  },
+                                                  icon: const Icon(Icons.check),
+                                                  label: const Text("Confirm"))
+                                            ],
+                                          ));
                                 },
                                 enabled: (appState.coinBalance - medium["cost"])
                                         .isNegative

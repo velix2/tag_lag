@@ -89,6 +89,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                 }
               }
               appState.challenges = tempChallenges;
+              appState.gameDataInit();
             }
             child = Scaffold(
                 appBar: AppBar(
@@ -153,8 +154,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                     ),
                   ],
                 ),
-                body: appState.gameRunning
-                    ? Padding(
+                body: Padding(
                         padding: const EdgeInsets.all(25),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -378,6 +378,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                                                   appState.vetoTimeTotal = Duration(minutes: appState.challenges[appState.currentChallengeIndex]["veto_time"]);
                                                                                                   appState.vetoStartTime = DateTime.now();
                                                                                                   appState.vetoEndTime = DateTime.now().add(Duration(minutes: appState.challenges[appState.currentChallengeIndex]["veto_time"]));
+                                                                                                  appState.gameDataInit();
                                                                                                   appState.startVeto();
                                                                                                 });
                                                                                               },
@@ -459,9 +460,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                                                   setState(() {
                                                                                                     appState.hasActiveChallenge = false;
                                                                                                   });
-                                                                                                  appState.gameDataWrite(
-                                                                                                    hasActiveChallengeToWrite: false,
-                                                                                                  );
+                                                                                                  appState.gameDataInit();
                                                                                                   _controller.reverse();
                                                                                                 },
                                                                                                 icon: const Icon(Icons.check),
@@ -490,7 +489,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                           ],
                         ),
                       )
-                    : const Text("The Game isn't running at the moment! Make sure to either Start a game or resume it."));
+                    );
           } else {
             return const Center(child: CircularProgressIndicator());
           }
@@ -521,6 +520,8 @@ class CardFront extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         appState.shuffleChallenges();
+        //appState.gameDataWrite(currentChallengeIndexToWrite: appState.currentChallengeIndex);
+        //appState.gameDataWrite(currentChallengeIndexToWrite: 20);
         if (appState.challenges
                 .elementAtOrNull(appState.currentChallengeIndex)["header"] ==
             "Curse!") {
@@ -532,17 +533,10 @@ class CardFront extends StatelessWidget {
           appState.curseEndTime = DateTime.now().add(Duration(
               minutes: appState.challenges[appState.currentChallengeIndex]
                   ["curse_time"]));
-          appState.gameDataWrite(
-            hasActiveCurseToWrite: true,
-            curseTimeTotalToWrite: appState.curseTimeTotal,
-            curseStartTimeToWrite: appState.curseStartTime,
-            curseEndTimeToWrite: appState.curseEndTime,
-          );
-
           appState.startCurse();
         }
         appState.hasActiveChallenge = true;
-        appState.gameDataWrite(hasActiveChallengeToWrite: true);
+        appState.gameDataInit();
         _controller.forward();
       },
       child: Card(
