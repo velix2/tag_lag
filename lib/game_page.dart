@@ -41,6 +41,35 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text("Are you sure you want to end the game?"),
+                  content: const Text("This is permanent. You will delete all gamedata."),
+                  actions: [
+                    TextButton.icon(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.close),
+                      label: const Text("Cancel")),
+                    TextButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          appState.gameDataDelete();
+                          Navigator.pop(context);
+                        });
+                      },
+                      icon: const Icon(Icons.check),
+                      label: const Text("Confirm"))
+                  ],
+                ));
+            },
+            icon: const Icon(Icons.settings))
+        ],
       ),
       body: Center(
         child: Column(
@@ -99,6 +128,7 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
                                         setState(() {
                                           appState.coinBalance += 300;
                                         });
+                                        appState.gameDataInit();
                                       },
                                       icon: const Icon(Icons.check),
                                       label: const Text("Confirm Tag!")),

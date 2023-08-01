@@ -307,7 +307,7 @@ class _ShopPageState extends State<ShopPage> {
                                                 fontSize: 20),
                                           ),
                                           Text(
-                                              "${medium['cost'] * numToBuy} Total")
+                                              "\$${medium['cost'] * numToBuy} Total")
                                         ],
                                       ),
                                       actions: [
