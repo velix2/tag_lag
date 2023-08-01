@@ -11,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 import 'package:duration/duration.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
@@ -26,8 +25,10 @@ class TagLag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]);
     return ChangeNotifierProvider(
         create: (context) => TagLagState(),
         child: MaterialApp(
@@ -81,7 +82,8 @@ class TagLagState extends ChangeNotifier {
   Future<void> gameDataInit() async {
     final file = await gameDataFile;
 
-    file.writeAsStringSync(jsonEncode({
+    await file.writeAsString("");
+    await file.writeAsString(jsonEncode({
     "challenges" : challenges,
     "currentChallengeIndex" : currentChallengeIndex,
     "hasActiveChallenge" : hasActiveChallenge,
@@ -93,14 +95,14 @@ class TagLagState extends ChangeNotifier {
     "numOfTeams" : numOfTeams,
     "teamNum" : teamNum,
     "vetoStartTime" : vetoStartTime.toIso8601String(),
-    "vetoTimeTotal" : vetoTimeTotal.toString(),
     "vetoEndTime" : vetoEndTime.toIso8601String(),
+    "vetoTimeTotal" : vetoTimeTotal.toString(),
     "vetoTimeLeft" : vetoTimeLeft.toString(),
     "hasActiveVeto" : hasActiveVeto,
     "curseStartTime" : curseStartTime.toIso8601String(),
     "curseEndTime" : curseEndTime.toIso8601String(),
-    "curseTimeLeft" : curseTimeLeft.toString(),
     "curseTimeTotal" : curseTimeTotal.toString(),
+    "curseTimeLeft" : curseTimeLeft.toString(),
     "hasActiveCurse" : hasActiveCurse,
     }));
   }
@@ -126,31 +128,89 @@ class TagLagState extends ChangeNotifier {
     var curseTimeTotalToWrite,
     var curseTimeLeftToWrite,
     var hasActiveCurseToWrite,
-  }) async {
+    }) async {
+
     final file = await gameDataFile;
     final currentGameDataRaw = await gameData;
     Map<String, dynamic> currentGameData = jsonDecode(currentGameDataRaw);
 
     challengesToWrite != null ? currentGameData["challenges"] = challengesToWrite : ();
-    currentChallengeIndexToWrite != null ? currentGameData["currentChallengeIndex"] = currentChallengeIndexToWrite : ();
-    hasActiveChallengeToWrite != null ? currentGameData["hasActiveChallenge"] = hasActiveChallengeToWrite : ();
-    pastChallengesToWrite != null ? currentGameData["pastChallenges"] = pastChallengesToWrite : ();
-    coinBalanceToWrite != null ? currentGameData["coinBalance"] = coinBalanceToWrite : ();
-    pastBuysToWrite != null ? currentGameData["pastBuys"] = pastBuysToWrite : ();
-    gameRunningToWrite != null ? currentGameData["gameRunning"] = gameRunningToWrite : ();
-    selectedIndexToWrite != null ? currentGameData["selectedIndex"] = selectedIndexToWrite : ();
-    numOfTeamsToWrite != null ? currentGameData["numOfTeams"] = numOfTeamsToWrite : ();
-    teamNumToWrite != null ? currentGameData["teamNum"] = teamNumToWrite : ();
-    vetoStartTimeToWrite != null ? currentGameData["vetoStartTime"] = vetoStartTimeToWrite : ();
-    vetoTimeTotalToWrite != null ? currentGameData["vetoTimeTotal"] = vetoTimeTotalToWrite : ();
-    vetoEndTimeToWrite != null ? currentGameData["vetoEndTime"] = vetoEndTimeToWrite : ();
-    vetoTimeLeftToWrite != null ? currentGameData["vetoTimeLeft"] = vetoTimeLeftToWrite : ();
-    hasActiveVetoToWrite != null ? currentGameData["hasActiveVeto"] = hasActiveVetoToWrite : ();
-    curseStartTimeToWrite != null ? currentGameData["curseStartTime"] = curseStartTimeToWrite : ();
-    curseEndTimeToWrite != null ? currentGameData["curseEndTime"] = curseEndTimeToWrite : ();
-    curseTimeLeftToWrite != null ? currentGameData["curseTimeLeft"] = curseTimeLeftToWrite : ();
-    curseTimeTotalToWrite != null ? currentGameData["curseTimeTotal"] = curseTimeTotalToWrite : ();
-    hasActiveCurseToWrite != null ? currentGameData["hasActiveCurse"] = hasActiveCurseToWrite : ();
+    currentChallengeIndexToWrite != null ? () {
+      currentGameData["currentChallengeIndex"] = currentChallengeIndexToWrite;
+      print("edited: $currentChallengeIndexToWrite");
+    } : ();
+    hasActiveChallengeToWrite != null ? () {
+      currentGameData["hasActiveChallenge"] = hasActiveChallengeToWrite;
+      print("edited: $hasActiveChallengeToWrite");
+    } : ();
+    pastChallengesToWrite != null ? () {
+      currentGameData["pastChallenges"] = pastChallengesToWrite;
+      print("edited: $pastChallengesToWrite");
+    } : ();
+    coinBalanceToWrite != null ? () {
+      currentGameData["coinBalance"] = coinBalanceToWrite;
+      print("edited: $coinBalanceToWrite");
+    } : ();
+    pastBuysToWrite != null ? () {
+      currentGameData["pastBuys"] = pastBuysToWrite;
+      print("edited: $pastBuysToWrite");
+    } : ();
+    gameRunningToWrite != null ? () {
+      currentGameData["gameRunning"] = gameRunningToWrite;
+      print("edited: $gameRunningToWrite");
+    } : ();
+    selectedIndexToWrite != null ? () {
+      currentGameData["selectedIndex"] = selectedIndexToWrite;
+      print("edited: $selectedIndexToWrite");
+    } : ();
+    numOfTeamsToWrite != null ? () {
+      currentGameData["numOfTeams"] = numOfTeamsToWrite;
+      print("edited: $numOfTeamsToWrite");
+    } : ();
+    teamNumToWrite != null ? () {
+      currentGameData["teamNum"] = teamNumToWrite;
+      print("edited: $teamNumToWrite");
+    } : ();
+    vetoStartTimeToWrite != null ? () {
+      currentGameData["vetoStartTime"] = vetoStartTimeToWrite.toIso8601String();
+      print("edited: $vetoStartTimeToWrite");
+    } : ();
+    vetoEndTimeToWrite != null ? () {
+      currentGameData["vetoEndTime"] = vetoEndTimeToWrite.toIso8601String();
+      print("edited: $vetoEndTimeToWrite");
+    } : ();
+    vetoTimeTotalToWrite != null ? () {
+      currentGameData["vetoTimeTotal"] = vetoTimeTotalToWrite.toString();
+      print("edited: $vetoTimeTotalToWrite");
+    } : ();
+    vetoTimeLeftToWrite != null ? () {
+      currentGameData["vetoTimeLeft"] = vetoTimeLeftToWrite.toString();
+      print("edited: $vetoTimeLeftToWrite");
+    } : ();
+    hasActiveVetoToWrite != null ? () {
+      currentGameData["hasActiveVeto"] = hasActiveVetoToWrite;
+      print("edited: $hasActiveVetoToWrite");
+    } : ();
+    curseStartTimeToWrite != null ? () {
+      currentGameData["curseStartTime"] = curseStartTimeToWrite.toIso8601String();
+      print("edited: $curseStartTimeToWrite");
+    } : ();
+    curseEndTimeToWrite != null ? () {
+      currentGameData["curseEndTime"] = curseEndTimeToWrite.toIso8601String();
+      print("edited: $curseEndTimeToWrite");
+    } : ();
+    curseTimeTotalToWrite != null ? () {
+      currentGameData["curseTimeTotal"] = curseTimeTotalToWrite.toString();
+      print("edited: $curseTimeTotalToWrite");
+    } : ();
+    curseTimeLeftToWrite != null ? () {
+      currentGameData["curseTimeLeft"] = curseTimeLeftToWrite.toString();
+      print("edited: $curseTimeLeftToWrite");
+    } : ();
+    hasActiveCurseToWrite != null ? () {
+      currentGameData["hasActiveCurse"] = hasActiveCurseToWrite;
+      print("edited: $hasActiveCurseToWrite");
+    } : ();
 
     await file.writeAsString("");
     await file.writeAsString(jsonEncode(currentGameData));
@@ -301,8 +361,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final iconAssetPath = 'assets/logo.svg';
-
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<TagLagState>();
@@ -325,82 +383,65 @@ class _MainPageState extends State<MainPage> {
     }
 
     return LayoutBuilder(builder: (context, constraints) {
-      Widget standartChild = Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.directions_walk), label: "Game"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.assistant_photo), label: "Challenges"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.train), label: "Transport"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.handshake), label: "Rules"),
-          ],
-          currentIndex: appState.selectedIndex,
-          onTap: (value) {
-            setState(() {
-              appState.selectedIndex = value;
-            });
-          },
-        ),
-        body: page,
-      );
+              Widget standartChild = Scaffold(
+                bottomNavigationBar: BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  items: const <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.directions_walk), label: "Game"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.assistant_photo), label: "Challenges"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.train), label: "Transport"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.handshake), label: "Rules"),
+                  ],
+                  currentIndex: appState.selectedIndex,
+                  onTap: (value) {
+                    setState(() {
+                      appState.selectedIndex = value;
+                    });
+                  },
+                ),
+                body: page,
+              );
       if (!appState.gameRunning) {
         return FutureBuilder<void>(
-            future: appState.checkForGameData(),
-            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-              Widget child;
-              bool showStartScreen = false;
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (!appState.gameDataExists) {
-                  showStartScreen = true;
-                } else {
-                  if (!appState.gameRunning) {
-                    appState.gameRunning = true;
-                  }
-                  appState.gameDataSync();
-                }
+          future: appState.checkForGameData(),
+          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+            Widget child;
+            bool showStartScreen = false;
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (!appState.gameDataExists) {
+                showStartScreen = true;
               } else {
-                child = const Scaffold(body: CircularProgressIndicator());
+                if (!appState.gameRunning) {
+                  appState.gameRunning = true;
+                }
+                appState.gameDataSync();
               }
-              if (showStartScreen) {
+            } else {
+              child = const Scaffold(body: CircularProgressIndicator());
+            }
+            if (showStartScreen) {
                 child = Scaffold(
                   body: Center(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        const SizedBox(
-                          height: 100,
+                        const Text(
+                          "Welcome to",
+                          style: TextStyle(fontSize: 24),
                         ),
-                        SvgPicture.asset(iconAssetPath,
-                            height: 200,
-                            width: 200,
-                            colorFilter: ColorFilter.mode(
-                              Theme.of(context).primaryColor,
-                              BlendMode.srcIn,
-                            )),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text(
-                              "Welcome to",
-                              style: TextStyle(fontSize: 24),
-                            ),
-                            Text(
-                              "TAG LAG",
-                              style: GoogleFonts.righteous(
-                                  fontSize: 120,
-                                  fontWeight: FontWeight.w800,
-                                  letterSpacing: -5,
-                                  height: .8,
-                                  color: Theme.of(context).colorScheme.primary),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
+                        Text(
+                          "TAG LAG",
+                          style: GoogleFonts.righteous(
+                              fontSize: 120,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -5,
+                              height: .8,
+                              color: Theme.of(context).colorScheme.primary),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -428,9 +469,7 @@ class _MainPageState extends State<MainPage> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
                                           "How many teams are playing?",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge,
+                                          style: Theme.of(context).textTheme.bodyLarge,
                                         ),
                                       )),
                                       SpinBox(
@@ -458,72 +497,60 @@ class _MainPageState extends State<MainPage> {
                                                   AlertDialog(
                                                     title: Row(
                                                       children: [
-                                                        const Icon(Icons
-                                                            .play_arrow_rounded),
+                                                        const Icon(
+                                                            Icons.play_arrow_rounded),
                                                         SizedBox.fromSize(
-                                                          size: const Size(
-                                                              15, 15),
+                                                          size: const Size(15, 15),
                                                         ),
-                                                        const Text(
-                                                            "Start new Game"),
+                                                        const Text("Start new Game"),
                                                       ],
                                                     ),
                                                     content: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
+                                                      mainAxisSize: MainAxisSize.min,
                                                       children: [
                                                         Text(
                                                             "What is your team's number?",
-                                                            style: Theme.of(
-                                                                    context)
+                                                            style: Theme.of(context)
                                                                 .textTheme
                                                                 .bodyLarge),
                                                         Center(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsets
-                                                                    .all(8.0),
+                                                                const EdgeInsets.all(
+                                                                    8.0),
                                                             child: Text(
                                                                 "Make sure to assign every team an individual number from 1 to ${appState.numOfTeams}."),
                                                           ),
                                                         ),
                                                         SpinBox(
                                                           min: 1,
-                                                          max: appState
-                                                              .numOfTeams
+                                                          max: appState.numOfTeams
                                                               .toDouble(),
                                                           value: 1,
-                                                          onChanged: (value) =>
-                                                              appState.teamNum =
-                                                                  value.toInt(),
+                                                          onChanged: (value) => appState
+                                                              .teamNum = value.toInt(),
                                                         ),
                                                       ],
                                                     ),
                                                     actions: [
                                                       TextButton.icon(
                                                           onPressed: () {
-                                                            Navigator.pop(
-                                                                context);
+                                                            Navigator.pop(context);
                                                           },
-                                                          icon: const Icon(
-                                                              Icons.close),
-                                                          label: const Text(
-                                                              "Cancel")),
+                                                          icon: const Icon(Icons.close),
+                                                          label: const Text("Cancel")),
                                                       TextButton.icon(
                                                           onPressed: () {
                                                             setState(() {
                                                               appState.gameRunning =
                                                                   true;
                                                             });
-                                                            appState
-                                                                .gameDataInit();
-                                                            Navigator.pop(
-                                                                context);
+                                                            appState.gameDataInit();
+                                                            Navigator.pop(context);
                                                           },
-                                                          icon: const Icon(
-                                                              Icons.check),
-                                                          label: const Text(
-                                                              "Start Game!"))
+                                                          icon: const Icon(Icons.check),
+                                                          label:
+                                                              const Text("Start Game!"))
                                                     ],
                                                   ));
                                         },
@@ -540,11 +567,11 @@ class _MainPageState extends State<MainPage> {
                         ],
                       )),
                 );
-              } else {
-                child = standartChild;
-              }
-              return child;
-            });
+            } else {
+              child = standartChild;
+            }
+            return child;
+          });
       } else {
         return standartChild;
       }
