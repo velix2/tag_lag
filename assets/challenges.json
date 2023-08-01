@@ -341,6 +341,12 @@
             "text":"Give different strangers compliments until one compliments you or your team member back. You have 5 chances to complete this, if all fail, the challenge is vetoed automatically.",
             "coins":86,
             "veto_time":5
+        },
+        {
+            "header":"Locate and share cats.",
+            "text":"Find and take pictures of two cats. The cats need to be clearly visible, although they may be blurred. Multiple pictures may be taken, they do not have to be on the same picture.",
+            "coins":30,
+            "veto_time":6
         }
     ]
 }
