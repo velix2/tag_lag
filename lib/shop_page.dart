@@ -97,73 +97,88 @@ class _ShopPageState extends State<ShopPage> {
                         context: context,
                         builder: (BuildContext context) {
                           return StatefulBuilder(
-                            builder: (context, setState) {
-                              return AlertDialog(
-                                title: const Text("History"),
-                                content: SizedBox(
-                                  width: 200,
-                                  height: 400,
-                                  child: appState.pastBuys.isEmpty ? const Text("You haven't bought anything yet!") : ListView.builder(
-                                    itemCount: appState.pastBuys.length,
-                                    itemBuilder: (context, index) {
-                                      return Card(
-                                        child: Padding(
-                                          padding:
-                                            const EdgeInsets.all(8.0),
-                                            child: Stack(
-                                              children: [
-                                                Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text(
-                                                    "${
-                                                      appState.pastBuys.elementAtOrNull(index)["num"]
-                                                    }x ${
-                                                      appState.pastBuys.elementAtOrNull(index)["mediumName"]
-                                                    }\n${
-                                                      appState.pastBuys.elementAtOrNull(index)["totalCost"]
-                                                    } coins total"
+                              builder: (context, setStateAlert) {
+                            return AlertDialog(
+                              title: const Text("History"),
+                              content: SizedBox(
+                                width: 200,
+                                height: 400,
+                                child: appState.pastBuys.isEmpty
+                                    ? const Text(
+                                        "You haven't bought anything yet!")
+                                    : ListView.builder(
+                                        itemCount: appState.pastBuys.length,
+                                        itemBuilder: (context, index) {
+                                          return Card(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Stack(
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Text(
+                                                        "${appState.pastBuys.elementAtOrNull(index)["num"]}x ${appState.pastBuys.elementAtOrNull(index)["mediumName"]}\n${appState.pastBuys.elementAtOrNull(index)["totalCost"]} coins total"),
                                                   ),
-                                                ),
-                                                Align(
-                                                  alignment: Alignment.centerRight,
-                                                  child: IconButton(
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        appState.coinBalance = appState.coinBalance + appState.pastBuys.elementAtOrNull(index)["totalCost"] as int;
-                                                        appState.pastBuys.removeAt(index);
-                                                        appState.gameDataWrite(
-                                                          coinBalanceToWrite: appState.coinBalance,
-                                                          pastBuysToWrite: appState.pastBuys,
-                                                        );
-                                                      });
-                                                    },
-                                                    icon: const Icon(
-                                                      Icons.delete,
-                                                      size: 20,
-                                                    )
-                                                  ),
-                                                )
-                                              ],
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    child: IconButton(
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            appState
+                                                                .coinBalance = appState
+                                                                    .coinBalance +
+                                                                appState.pastBuys
+                                                                        .elementAtOrNull(
+                                                                            index)[
+                                                                    "totalCost"] as int;
+
+                                                            appState.gameDataWrite(
+                                                                coinBalanceToWrite:
+                                                                    appState
+                                                                        .coinBalance);
+                                                          });
+
+                                                          setStateAlert(() {
+                                                            appState.pastBuys
+                                                                .removeAt(
+                                                                    index);
+                                                            appState
+                                                                .gameDataWrite(
+                                                              pastBuysToWrite:
+                                                                  appState
+                                                                      .pastBuys,
+                                                            );
+                                                          });
+                                                        },
+                                                        icon: const Icon(
+                                                          Icons.delete,
+                                                          size: 20,
+                                                        )),
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                        ),
-                                      );
-                                    }
-                                  ),
-                                ),
-                                actions: [
-                                  TextButton.icon(
+                                          );
+                                        }),
+                              ),
+                              actions: [
+                                TextButton.icon(
                                     onPressed: () {
                                       Navigator.pop(context);
+                                      setState(() {
+                                        appState.coinBalance =
+                                            appState.coinBalance;
+                                      });
                                     },
                                     icon: const Icon(Icons.check),
-                                    label: const Text("Done")
-                                  )
-                                ],
-                              );
-                            }
-                          );
-                      }
-                    );
+                                    label: const Text("Done"))
+                              ],
+                            );
+                          });
+                        });
                   },
                   icon: const Icon(Icons.history)),
             )
@@ -199,7 +214,7 @@ class _ShopPageState extends State<ShopPage> {
                             color: Theme.of(context).primaryColor,
                           ),
                           Text(
-                          appState.coinBalance.toString(),
+                            appState.coinBalance.toString(),
                             style: GoogleFonts.righteous(
                                 fontSize: 40,
                                 color:
@@ -326,13 +341,20 @@ class _ShopPageState extends State<ShopPage> {
                                                           medium["cost"] *
                                                               numToBuy);
                                                       appState.pastBuys.add({
-                                                              "mediumId" : medium["id"],
-                                                              "mediumName" : medium["name"],
-                                                              "mediumPrice" : medium["cost"],
-                                                              "num" : numToBuy,
-                                                              "totalCost" : numToBuy * medium["cost"]});
+                                                        "mediumId":
+                                                            medium["id"],
+                                                        "mediumName":
+                                                            medium["name"],
+                                                        "mediumPrice":
+                                                            medium["cost"],
+                                                        "num": numToBuy,
+                                                        "totalCost": numToBuy *
+                                                            medium["cost"]
+                                                      });
                                                     });
-                                                    appState.gameDataWrite(pastBuysToWrite: appState.pastBuys);
+                                                    appState.gameDataWrite(
+                                                        pastBuysToWrite:
+                                                            appState.pastBuys);
                                                   },
                                                   icon: const Icon(Icons.check),
                                                   label: const Text("Confirm"))
@@ -349,7 +371,8 @@ class _ShopPageState extends State<ShopPage> {
                   )
                 ],
               )
-            : const Text("The Game isn't running at the moment! Make sure to either Start a game or resume it."));
+            : const Text(
+                "The Game isn't running at the moment! Make sure to either Start a game or resume it."));
   }
 }
 
