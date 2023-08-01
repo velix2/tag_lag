@@ -56,7 +56,7 @@ class TagLagState extends ChangeNotifier {
   List pastBuys = [];
 
   // everything to do with the game as a whole
-  bool gameStarted = false;
+  bool gameRunning = false;
   int selectedIndex = 0;
   int numOfTeams = 2;
   int teamNum = 1;
@@ -83,7 +83,7 @@ class TagLagState extends ChangeNotifier {
     "pastChallenges" : pastChallenges,
     "coinBalance" : coinBalance,
     "pastBuys" : pastBuys,
-    "gameStarted" : gameStarted,
+    "gameRunning" : gameRunning,
     "selectedIndex" : selectedIndex,
     "numOfTeams" : numOfTeams,
     "teamNum" : teamNum,
@@ -107,7 +107,7 @@ class TagLagState extends ChangeNotifier {
     var pastChallengesToWrite,
     var coinBalanceToWrite,
     var pastBuysToWrite,
-    var gameStartedToWrite,
+    var gameRunningToWrite,
     var selectedIndexToWrite,
     var numOfTeamsToWrite,
     var teamNumToWrite,
@@ -133,7 +133,7 @@ class TagLagState extends ChangeNotifier {
     pastChallengesToWrite != null ? currentGameData["pastChallenges"] = pastChallengesToWrite : ();
     coinBalanceToWrite != null ? currentGameData["coinBalance"] = coinBalanceToWrite : ();
     pastBuysToWrite != null ? currentGameData["pastBuys"] = pastBuysToWrite : ();
-    gameStartedToWrite != null ? currentGameData["gameStarted"] = gameStartedToWrite : ();
+    gameRunningToWrite != null ? currentGameData["gameRunning"] = gameRunningToWrite : ();
     selectedIndexToWrite != null ? currentGameData["selectedIndex"] = selectedIndexToWrite : ();
     numOfTeamsToWrite != null ? currentGameData["numOfTeams"] = numOfTeamsToWrite : ();
     teamNumToWrite != null ? currentGameData["teamNum"] = teamNumToWrite : ();
@@ -280,12 +280,13 @@ class _MainPageState extends State<MainPage> {
     }
 
     return LayoutBuilder(builder: (context, constraints) {
-      return FutureBuilder(
+      return FutureBuilder<void>(
         future: appState.checkForGameData(),
-        builder: (BuildContext context, snapshot) => {
+        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+          Widget child;
           if (snapshot.connectionState == ConnectionState.done) {
-            if (!appState.gameStarted && !appState.gameDataExists) {
-              return Scaffold(
+            if (!appState.gameRunning && !appState.gameDataExists) {
+              child = Scaffold(
                 body: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -403,7 +404,7 @@ class _MainPageState extends State<MainPage> {
                                                     TextButton.icon(
                                                         onPressed: () {
                                                           setState(() {
-                                                            appState.gameStarted =
+                                                            appState.gameRunning =
                                                                 true;
                                                           });
                                                           appState.gameDataInit();
@@ -429,7 +430,7 @@ class _MainPageState extends State<MainPage> {
                     )),
               );
             } else {
-              return Scaffold(
+              child = Scaffold(
                 bottomNavigationBar: BottomNavigationBar(
                   type: BottomNavigationBarType.fixed,
                   items: const <BottomNavigationBarItem>[
@@ -451,12 +452,13 @@ class _MainPageState extends State<MainPage> {
                 ),
                 body: page,
               );
-            } else {
-              return Text("Ill work on this later")
             }
+          } else {
+            child = const CircularProgressIndicator();
           }
+          return child;
         }
-      }
-    );
+      );
+    });
   }
 }

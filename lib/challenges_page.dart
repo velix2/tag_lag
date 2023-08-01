@@ -153,7 +153,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                     ),
                   ],
                 ),
-                body: appState.gameStarted
+                body: appState.gameRunning
                     ? Padding(
                         padding: const EdgeInsets.all(25),
                         child: Column(
@@ -486,7 +486,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                           ],
                         ),
                       )
-                    : const Center(child: Text("Start a new Game first!")));
+                    : const Text("The Game isn't running at the moment! Make sure to either Start a game or resume it."));
           } else {
             return const Center(child: CircularProgressIndicator());
           }

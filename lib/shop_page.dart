@@ -124,7 +124,7 @@ class _ShopPageState extends State<ShopPage> {
             )
           ],
         ),
-        body: appState.gameStarted
+        body: appState.gameRunning
             ? Column(
                 children: [
                   const SizedBox(
@@ -303,7 +303,7 @@ class _ShopPageState extends State<ShopPage> {
                   )
                 ],
               )
-            : const Center(child: Text("Start a new Game first!")));
+            : const Text("The Game isn't running at the moment! Make sure to either Start a game or resume it."));
   }
 }
 
