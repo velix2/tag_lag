@@ -16,6 +16,7 @@ dependencies:
   flutter_spinbox: ^0.13.1
   google_fonts: ^5.1.0
   duration: ^3.0.13
+  flutter_svg: ^2.0.7
 
 
 dev_dependencies:
@@ -29,3 +30,4 @@ flutter:
     - assets/rules.json
     - assets/challenges.json
     - assets/mediums.json
+    - assets/logo.svg
