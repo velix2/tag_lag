@@ -164,8 +164,7 @@ class _ShopPageState extends State<ShopPage> {
             )
           ],
         ),
-        body: appState.gameRunning
-            ? Column(
+        body: Column(
                 children: [
                   const SizedBox(
                     height: 25,
@@ -228,13 +227,15 @@ class _ShopPageState extends State<ShopPage> {
                                   int numToBuy = 1;
                                   showDialog(
                                       context: context,
-                                      builder: (BuildContext context) =>
-                                          AlertDialog(
+                                      builder: (BuildContext context) {
+                                        return StatefulBuilder(
+                                          builder: (context, setStateAlert) {
+                                          return AlertDialog(
                                             title: Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 mediumIcons.elementAtOrNull(
-                                                    medium["iconId"]),
+                                                  medium["iconId"]),
                                                 SizedBox.fromSize(
                                                   size: const Size(15, 15),
                                                 ),
@@ -250,9 +251,10 @@ class _ShopPageState extends State<ShopPage> {
                                                 const Text(
                                                   "Purchase",
                                                   style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 20),
+                                                    fontWeight:
+                                                      FontWeight.w600,
+                                                    fontSize: 20
+                                                  ),
                                                 ),
                                                 SpinBox(
                                                   decoration:
@@ -288,7 +290,9 @@ class _ShopPageState extends State<ShopPage> {
                                                       .toDouble(), //makes the max the max you can afford, so you cannot go negative
                                                   value: 1,
                                                   onChanged: (value) => {
-                                                    numToBuy = value.toInt()
+                                                    setStateAlert(() {
+                                                      numToBuy = value.toInt();
+                                                    })
                                                   },
                                                   textStyle:
                                                       GoogleFonts.righteous(
@@ -303,7 +307,8 @@ class _ShopPageState extends State<ShopPage> {
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 20),
-                                                )
+                                                ),
+                                                Text("${medium['cost'] * numToBuy} Total")
                                               ],
                                             ),
                                             actions: [
@@ -332,7 +337,10 @@ class _ShopPageState extends State<ShopPage> {
                                                   icon: const Icon(Icons.check),
                                                   label: const Text("Confirm"))
                                             ],
-                                          ));
+                                          );
+                                      }
+                                      );
+                                  });
                                 },
                                 enabled: (appState.coinBalance - medium["cost"])
                                         .isNegative
@@ -344,9 +352,7 @@ class _ShopPageState extends State<ShopPage> {
                   )
                 ],
               )
-            : const Text(
-                "The Game isn't running at the moment! Make sure to either Start a game or resume it."));
-  }
+  );}
 }
 
 class BuyButton extends StatefulWidget {
