@@ -4,43 +4,43 @@
             "header":"Climb a tree.",
             "text":"Find a tree that can support one of your teammembers weights. One member must climb this tree so that every part of their body is over 1.5 meters above ground level. The selected member must be able to stay at this height for at least 2 minutes. The entire two minutes must be filmed.",
             "coins":35,
-            "veto_time":10
+            "veto_time":5
         },
         {
             "header":"Find twenty birds.",
             "text":"You must photograph at least 20 different birds. Each bird must be clearly recognizable as one. Only real and alive birds count.",
             "coins":40,
-            "veto_time":15
+            "veto_time":10
         },
         {
             "header":"Visit the airport",
             "text":"You and your partner have to take a selfie inside the official MUC airport. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in the airport. You may start this challenge at any spot of your liking.If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations. You may stay at the airport for however long you want.",
             "coins":230,
-            "veto_time":45
+            "veto_time":20
         },
         {
             "header":"Visit an IKEA",
             "text":"You and your partner have to take a selfie inside any IKEA within the game borders. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in an IKEA. You may start this challenge at any spot of your liking. As soon as you start, you may take any public transport and don't have to pay for it under the following conditions: 1. You go there and back in the most direct and fastest way possible, and 2. On your way back, you will have to (again) take the fastest/most direct way to the exact spot where you started the challenge. You may stay at the IKEA for however long you want.",
             "coins":180,
-            "veto_time":40
+            "veto_time":18
         },
         {
             "header":"Be faster than public transport.",
             "text":"One of your teammembers has to get on any viable medium of public transport. As soon as they are on this, the other portner has to run to the next station of the first player by foot. If the second teammember manages to arrive at that station before the first one does, then the challenge is completed. Your team has two attempts, if both fail, the challenge is automatically vetoed. Viable mediums are: regional train, s-bahn, u-bahn and bus.",
             "coins":130,
-            "veto_time":30
+            "veto_time":17
         },
         {
             "header":"Go exactly one Kilometer.",
             "text":"One teammember closes their eyes and points in front of themselves. They then start spinning, slow enough not to feel dizzy. At any point during this, their partner sais 'Stop' and the first person stops spinning. Now open Maps, and measure distance in the direction they're pointing in (Long press on your location, swipe menu up => 'Measure distance'). Determine the point that lies exactly one kilometer in this direction, now take a screenshot where you can see your location and the point you just measured out. Now get to the closest publically accessible spot to this point (i.e. the nearest street). You are not allowed to use any form of public transport, so you must go there by foot. Once you arrived, take another screenshot of your location, and a selfie at your spot.",
             "coins":90,
-            "veto_time":20
+            "veto_time":15
         },
         {
             "header":"Go on five trains within fifteen minutes.",
             "text":"Your team has to ride 5 trains within 15 minutes. When you start the challenge, set a timer for 15 minutes. Within these 15 minutes, you need to get on 5 trains (Regional or S-Bahn) for at least one stop. You can not go on the same line twice in a row, and you may not go back and fourth between stations. You can choose freely which station to start at, buy you may not visit any station twice during this challenge.",
             "coins":120,
-            "veto_time":20
+            "veto_time":18
         },
         {
             "header":"Find some graffiti",
@@ -82,7 +82,7 @@
             "header":"Find a building for every colour of the rainbow.",
             "text":"Find six different buildings and take a photo of each. At the end of this you must have photographed one building in every colour of the rainbow (red, orange, yellow, green, blue and purple). You may not use your phones to do any research for this challenge.",
             "coins":50,
-            "veto_time":20
+            "veto_time":18
         },
         {
             "header":"Find a street with all vowels in its name.",
@@ -94,25 +94,25 @@
             "header":"Write a poem about your team.",
             "text":"Write a poem about your team. The poem can have funny, random or interesting information about your team, and must be at least five verses long and must rhyme. When you are done, take a video of one of you reciting the poem from memory.",
             "coins":70,
-            "veto_time":23
+            "veto_time":14
         },
         {
             "header":"Make an informational video about your team",
             "text":"Film a short documentary about your team. The video must be longer than 60 seconds. It can have funny, random or interesting information about your team. The video can be filmed in one take, but both teammembers do have to appear in it.",
             "coins":70,
-            "veto_time":23
+            "veto_time":14
         },
         {
             "header":"Learn any song made before the year 2000",
             "text":"Pick any song made before the year 2000. Songs from the year 2000 itself do not count. The song must have english lyrics. Once you decided on a song, you must memorise its lyrics. You are allowed to split the task between the two of you (Partner 1 learns the first half, Partner 2 learns the second half), But in the end you must record yourself singing this song (you may sing along to the original).",
             "coins":75,
-            "veto_time":27
+            "veto_time":20
         },
         {
             "header":"Learn any song made after the year 2000",
             "text":"Pick any song made after the year 2000. Songs from the year 2000 itself do count. The song must have english lyrics. Once you decided on a song, you must memorise its lyrics. You are allowed to split the task between the two of you (Partner 1 learns the first half, Partner 2 learns the second half), But in the end you must record yourself singing this song (you may sing along to the original).",
             "coins":80,
-            "veto_time":27
+            "veto_time":20
         },
         {
             "header":"Perform a bottleflip.",
@@ -166,7 +166,7 @@
             "header":"Meet the other hunter team.",
             "text":"Take a selfie of you and the other hunter team holding hands. Only you get coins for this challenge, not the other team.",
             "coins":50,
-            "veto_time":21
+            "veto_time":20
         },
         {
             "header":"Pick up trash.",
@@ -184,7 +184,7 @@
             "header":"Pick up trash.",
             "text":"You should have a bag with you. Fill this bag completely up with trash you find on the street. You may NOT get this trash from any existing trash bins and you also may not Put any of your own trash in the bag (at least not for the challenge). In the end, take a picture of your full bag and properly dispose it.",
             "coins":35,
-            "veto_time":35
+            "veto_time":30
         },
         {
             "header":"Mow a lawn.",
@@ -251,6 +251,96 @@
             "text":"For the next 30 minutes, you may only travel by foot or by Regional Train.",
             "coins":100,
             "curse_time":30
+        },
+        {
+            "header":"Take four S-Bahns in order.",
+            "text":"Go at least one station with e.g., S1, S2, S3, S4 in that specific order. You don't have to start at S1, you may take S3, S4, S5, S6. Taking declining numbers is also allowed, you may take S7, S6, S5, S4. There are eight S-bahn lines in Munich. You may walk between stations and you may choose which station to start at.",
+            "coins":80,
+            "veto_time":18
+        },
+        {
+            "header":"Visit 5 schools.",
+            "text":"Use the game's allowed transport to visit and take pictures of 5 schools. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "coins":30,
+            "veto_time":13
+        },
+        {
+            "header":"Find 5 chains with more than 500 locations.",
+            "text":"Use the game's allowed transport to visit and take pictures of 5 chains (e.g., Edeka, McDonald's) which have more than 500 locations in total anywhere in the world. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "coins":45,
+            "veto_time":13
+        },
+        {
+            "header":"Find 20 red traffic lights.",
+            "text":"You must find and take pictures of 20 individual red traffic lights. You may only walk to complete this challenge.",
+            "coins":50,
+            "veto_time":12
+        },
+        {
+            "header":"Gift a stranger a flower.",
+            "text":"Make a strangers day by gifting them a flower. You can aquire the flower in any legal way (e.g. buying one at a flower shop, picking one in a grassy area, etc.) You may only walk to complete this challenge.",
+            "coins":70,
+            "veto_time":7
+        },
+        {
+            "header":"Find a pink car.",
+            "text":"Find and take a picture of an unarguably pink car. You may only walk to complete this challenge.",
+            "coins":40,
+            "veto_time":10
+        },
+        {
+            "header":"Find:",
+            "text":"1. A red circle 2. A yellow triangle and 3. A green square. Find and take pictures of these objects. They may have text or images on them. Get creative!",
+            "coins":65,
+            "veto_time":16
+        },
+        {
+            "header":"Go to three different districts of Munich within 15 minutes.",
+            "text":"Use the game's allowed transport to go to three different districts in Munich within 15 minutes. If you are on public transport, you must get off at a station in that district, you may not just pass through the district. Take screenshots of your location (maps) at every of your 3 locations. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations. You are responsible for setting a 15 minute timer yourself.",
+            "coins":75,
+            "veto_time":19
+        },
+        {
+            "header":"Find five different types of tree leaves.",
+            "text":"You must find and take pictures of five different tree leaf types. You must find out the exact tree species of all collected leaves. You may only walk to complete this challenge.",
+            "coins":54,
+            "veto_time":14
+        },
+        {
+            "header":"Find three medical clinics.",
+            "text":"Use the game's allowed transport to find three medical clinics and take pictures of their signs. You may not do research on your phone to find them. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "coins":100,
+            "veto_time":13
+        },
+        {
+            "header":"Cross 5 bridges.",
+            "text":"Use the game's allowed transport to go to 5 bridges and walk across them. You must walk across the entire bridge from one end to the other. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "coins":72,
+            "veto_time":13
+        },
+        {
+            "header":"Find an LGBTQ+ flag.",
+            "text":"Find and take a picture of any LGBTQ+ pride flag. You may only walk to complete this challenge.",
+            "coins":100,
+            "veto_time":20
+        },
+        {
+            "header":"Find a Beatle car.",
+            "text":"Use the game's allowed transport to find and take a picture of a Volkswagen Beatle car. If you do not know what is being referred to as a 'Beatle' car, use Google to do research. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "coins":90,
+            "veto_time":15
+        },
+        {
+            "header":"Compliment 10 strangers.",
+            "text":"Give genuine compliments to 10 different strangers.",
+            "coins":86,
+            "veto_time":5
+        },
+        {
+            "header":"Compliment strangers until they compliment you back.",
+            "text":"Give different strangers compliments until one compliments you or your team member back. You have 5 chances to complete this, if all fail, you have to veto the challenge immediately.",
+            "coins":86,
+            "veto_time":5
         }
     ]
 }
