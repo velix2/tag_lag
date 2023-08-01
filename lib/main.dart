@@ -290,7 +290,8 @@ class TagLagState extends ChangeNotifier {
     pastChallenges.add(challenges.removeAt(currentChallengeIndex));
     gameDataWrite(
       coinBalanceToWrite: coinBalance,
-      pastChallengesToWrite: pastChallenges
+      pastChallengesToWrite: pastChallenges,
+      challengesToWrite: challenges,
     );
   }
 }
