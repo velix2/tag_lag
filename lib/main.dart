@@ -82,30 +82,30 @@ class TagLagState extends ChangeNotifier {
     final file = await gameDataFile;
 
     file.writeAsStringSync(jsonEncode({
-      "challenges": challenges,
-      "currentChallengeIndex": currentChallengeIndex,
-      "hasActiveChallenge": hasActiveChallenge,
-      "pastChallenges": pastChallenges,
-      "coinBalance": coinBalance,
-      "pastBuys": pastBuys,
-      "gameRunning": gameRunning,
-      "selectedIndex": selectedIndex,
-      "numOfTeams": numOfTeams,
-      "teamNum": teamNum,
-      "vetoStartTime": vetoStartTime.toIso8601String(),
-      "vetoTimeTotal": vetoTimeTotal.toString(),
-      "vetoEndTime": vetoEndTime.toIso8601String(),
-      "vetoTimeLeft": vetoTimeLeft.toString(),
-      "hasActiveVeto": hasActiveVeto,
-      "curseStartTime": curseStartTime.toIso8601String(),
-      "curseEndTime": curseEndTime.toIso8601String(),
-      "curseTimeLeft": curseTimeLeft.toString(),
-      "curseTimeTotal": curseTimeTotal.toString(),
-      "hasActiveCurse": hasActiveCurse,
+    "challenges" : challenges,
+    "currentChallengeIndex" : currentChallengeIndex,
+    "hasActiveChallenge" : hasActiveChallenge,
+    "pastChallenges" : pastChallenges,
+    "coinBalance" : coinBalance,
+    "pastBuys" : pastBuys,
+    "gameRunning" : gameRunning,
+    "selectedIndex" : selectedIndex,
+    "numOfTeams" : numOfTeams,
+    "teamNum" : teamNum,
+    "vetoStartTime" : vetoStartTime.toIso8601String(),
+    "vetoTimeTotal" : vetoTimeTotal.toString(),
+    "vetoEndTime" : vetoEndTime.toIso8601String(),
+    "vetoTimeLeft" : vetoTimeLeft.toString(),
+    "hasActiveVeto" : hasActiveVeto,
+    "curseStartTime" : curseStartTime.toIso8601String(),
+    "curseEndTime" : curseEndTime.toIso8601String(),
+    "curseTimeLeft" : curseTimeLeft.toString(),
+    "curseTimeTotal" : curseTimeTotal.toString(),
+    "hasActiveCurse" : hasActiveCurse,
     }));
   }
 
-  Future<void> gameDataWrite({
+  /*Future<void> gameDataWrite({
     var challengesToWrite,
     var currentChallengeIndexToWrite,
     var hasActiveChallengeToWrite,
@@ -117,91 +117,52 @@ class TagLagState extends ChangeNotifier {
     var numOfTeamsToWrite,
     var teamNumToWrite,
     var vetoStartTimeToWrite,
-    var vetoTimeTotalToWrite,
     var vetoEndTimeToWrite,
+    var vetoTimeTotalToWrite,
     var vetoTimeLeftToWrite,
     var hasActiveVetoToWrite,
     var curseStartTimeToWrite,
     var curseEndTimeToWrite,
-    var curseTimeLeftToWrite,
     var curseTimeTotalToWrite,
+    var curseTimeLeftToWrite,
     var hasActiveCurseToWrite,
   }) async {
     final file = await gameDataFile;
     final currentGameDataRaw = await gameData;
     Map<String, dynamic> currentGameData = jsonDecode(currentGameDataRaw);
 
-    challengesToWrite != null
-        ? currentGameData["challenges"] = challengesToWrite
-        : ();
-    currentChallengeIndexToWrite != null
-        ? currentGameData["currentChallengeIndex"] =
-            currentChallengeIndexToWrite
-        : ();
-    hasActiveChallengeToWrite != null
-        ? currentGameData["hasActiveChallenge"] = hasActiveChallengeToWrite
-        : ();
-    pastChallengesToWrite != null
-        ? currentGameData["pastChallenges"] = pastChallengesToWrite
-        : ();
-    coinBalanceToWrite != null
-        ? currentGameData["coinBalance"] = coinBalanceToWrite
-        : ();
-    pastBuysToWrite != null
-        ? currentGameData["pastBuys"] = pastBuysToWrite
-        : ();
-    gameRunningToWrite != null
-        ? currentGameData["gameRunning"] = gameRunningToWrite
-        : ();
-    selectedIndexToWrite != null
-        ? currentGameData["selectedIndex"] = selectedIndexToWrite
-        : ();
-    numOfTeamsToWrite != null
-        ? currentGameData["numOfTeams"] = numOfTeamsToWrite
-        : ();
+    challengesToWrite != null ? currentGameData["challenges"] = challengesToWrite : ();
+    currentChallengeIndexToWrite != null ? currentGameData["currentChallengeIndex"] = currentChallengeIndexToWrite : ();
+    hasActiveChallengeToWrite != null ? currentGameData["hasActiveChallenge"] = hasActiveChallengeToWrite : ();
+    pastChallengesToWrite != null ? currentGameData["pastChallenges"] = pastChallengesToWrite : ();
+    coinBalanceToWrite != null ? currentGameData["coinBalance"] = coinBalanceToWrite : ();
+    pastBuysToWrite != null ? currentGameData["pastBuys"] = pastBuysToWrite : ();
+    gameRunningToWrite != null ? currentGameData["gameRunning"] = gameRunningToWrite : ();
+    selectedIndexToWrite != null ? currentGameData["selectedIndex"] = selectedIndexToWrite : ();
+    numOfTeamsToWrite != null ? currentGameData["numOfTeams"] = numOfTeamsToWrite : ();
     teamNumToWrite != null ? currentGameData["teamNum"] = teamNumToWrite : ();
-    vetoStartTimeToWrite != null
-        ? currentGameData["vetoStartTime"] = vetoStartTimeToWrite
-        : ();
-    vetoTimeTotalToWrite != null
-        ? currentGameData["vetoTimeTotal"] = vetoTimeTotalToWrite
-        : ();
-    vetoEndTimeToWrite != null
-        ? currentGameData["vetoEndTime"] = vetoEndTimeToWrite
-        : ();
-    vetoTimeLeftToWrite != null
-        ? currentGameData["vetoTimeLeft"] = vetoTimeLeftToWrite
-        : ();
-    hasActiveVetoToWrite != null
-        ? currentGameData["hasActiveVeto"] = hasActiveVetoToWrite
-        : ();
-    curseStartTimeToWrite != null
-        ? currentGameData["curseStartTime"] = curseStartTimeToWrite
-        : ();
-    curseEndTimeToWrite != null
-        ? currentGameData["curseEndTime"] = curseEndTimeToWrite
-        : ();
-    curseTimeLeftToWrite != null
-        ? currentGameData["curseTimeLeft"] = curseTimeLeftToWrite
-        : ();
-    curseTimeTotalToWrite != null
-        ? currentGameData["curseTimeTotal"] = curseTimeTotalToWrite
-        : ();
-    hasActiveCurseToWrite != null
-        ? currentGameData["hasActiveCurse"] = hasActiveCurseToWrite
-        : ();
+    vetoStartTimeToWrite != null ? currentGameData["vetoStartTime"] = vetoStartTimeToWrite : ();
+    vetoTimeTotalToWrite != null ? currentGameData["vetoTimeTotal"] = vetoTimeTotalToWrite : ();
+    vetoEndTimeToWrite != null ? currentGameData["vetoEndTime"] = vetoEndTimeToWrite : ();
+    vetoTimeLeftToWrite != null ? currentGameData["vetoTimeLeft"] = vetoTimeLeftToWrite : ();
+    hasActiveVetoToWrite != null ? currentGameData["hasActiveVeto"] = hasActiveVetoToWrite : ();
+    curseStartTimeToWrite != null ? currentGameData["curseStartTime"] = curseStartTimeToWrite : ();
+    curseEndTimeToWrite != null ? currentGameData["curseEndTime"] = curseEndTimeToWrite : ();
+    curseTimeLeftToWrite != null ? currentGameData["curseTimeLeft"] = curseTimeLeftToWrite : ();
+    curseTimeTotalToWrite != null ? currentGameData["curseTimeTotal"] = curseTimeTotalToWrite : ();
+    hasActiveCurseToWrite != null ? currentGameData["hasActiveCurse"] = hasActiveCurseToWrite : ();
 
-    file.writeAsStringSync(jsonEncode(currentGameData));
-  }
+    await file.writeAsString("");
+    await file.writeAsString(jsonEncode(currentGameData));
+  }*/
 
   Future<String> get gameData async {
     try {
       final file = await gameDataFile;
-      final content = await file.readAsString();
-      print(content);
-      return content;
+      final rawContent = await file.readAsString();
+      return rawContent;
     } catch (e) {
-      print("Something went wrong");
+      print("Something went wrong: $e");
       return "Something failed";
     }
   }
@@ -236,7 +197,7 @@ class TagLagState extends ChangeNotifier {
     if (hasActiveCurse) {
       startCurse();
     }
-    print("Synced");
+    print("Synced, currentChallengeIndex: ${currentChallengeIndex}");
   }
 
   Future<void> gameDataDelete() async {
@@ -280,7 +241,7 @@ class TagLagState extends ChangeNotifier {
       vetoTimeLeft = vetoEndTime.difference(DateTime.now());
       if (vetoTimeLeft.isNegative) {
         hasActiveVeto = false;
-        gameDataWrite(hasActiveVetoToWrite: false);
+        gameDataInit();
         timer.cancel();
       }
       notifyListeners();
@@ -295,7 +256,7 @@ class TagLagState extends ChangeNotifier {
       curseTimeLeft = curseEndTime.difference(DateTime.now());
       if (curseTimeLeft.isNegative) {
         hasActiveCurse = false;
-        gameDataWrite(hasActiveCurseToWrite: false);
+        gameDataInit();
         timer.cancel();
       }
       notifyListeners();
@@ -311,25 +272,24 @@ class TagLagState extends ChangeNotifier {
 
   void buy(int cost) {
     coinBalance = coinBalance - cost;
-    gameDataWrite(coinBalanceToWrite: coinBalance);
+    gameDataInit();
   }
 
   //shuffle the list of challenges, for extra randomnes
   void shuffleChallenges() {
     final random = Random();
-    currentChallengeIndex = random.nextInt(challenges.length);
-    gameDataWrite(currentChallengeIndexToWrite: currentChallengeIndex);
+    int nextChallengeIndex = random.nextInt(challenges.length);
+    //gameDataWrite(currentChallengeIndexToWrite: currentChallengeIndex);
+    gameDataInit();
+    currentChallengeIndex = nextChallengeIndex;
+    print(currentChallengeIndex);
   }
 
   // when a challenge is completed, add the coins it brings to the teams wallet and moves it from challenges to pastChallenges
   void completedChallenge() {
     coinBalance += challenges[currentChallengeIndex]["coins"] as int;
     pastChallenges.add(challenges.removeAt(currentChallengeIndex));
-    gameDataWrite(
-      coinBalanceToWrite: coinBalance,
-      pastChallengesToWrite: pastChallenges,
-      challengesToWrite: challenges,
-    );
+    gameDataInit();
   }
 }
 
