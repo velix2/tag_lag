@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinbox/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
@@ -23,6 +24,10 @@ class TagLag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]);
     return ChangeNotifierProvider(
         create: (context) => TagLagState(),
         child: MaterialApp(
@@ -280,157 +285,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     return LayoutBuilder(builder: (context, constraints) {
-      return FutureBuilder<void>(
-        future: appState.checkForGameData(),
-        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-          Widget child;
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (!appState.gameRunning && !appState.gameDataExists) {
-              child = Scaffold(
-                body: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text(
-                        "Welcome to",
-                        style: TextStyle(fontSize: 24),
-                      ),
-                      Text(
-                        "TAG LAG",
-                        style: GoogleFonts.righteous(
-                            fontSize: 120,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -5,
-                            height: .8,
-                            color: Theme.of(context).colorScheme.primary),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                floatingActionButton: FloatingActionButton.extended(
-                    onPressed: () {
-                      appState.numOfTeams = 2;
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                                title: Row(
-                                  children: [
-                                    const Icon(Icons.play_arrow_rounded),
-                                    SizedBox.fromSize(
-                                      size: const Size(15, 15),
-                                    ),
-                                    const Text("Start new Game"),
-                                  ],
-                                ),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Center(
-                                        child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "How many teams are playing?",
-                                        style: Theme.of(context).textTheme.bodyLarge,
-                                      ),
-                                    )),
-                                    SpinBox(
-                                      min: 2,
-                                      max: 5,
-                                      value: 2,
-                                      onChanged: (value) =>
-                                          appState.numOfTeams = value.toInt(),
-                                    ),
-                                  ],
-                                ),
-                                actions: [
-                                  TextButton.icon(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      icon: const Icon(Icons.close),
-                                      label: const Text("Cancel")),
-                                  TextButton.icon(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                AlertDialog(
-                                                  title: Row(
-                                                    children: [
-                                                      const Icon(
-                                                          Icons.play_arrow_rounded),
-                                                      SizedBox.fromSize(
-                                                        size: const Size(15, 15),
-                                                      ),
-                                                      const Text("Start new Game"),
-                                                    ],
-                                                  ),
-                                                  content: Column(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: [
-                                                      Text(
-                                                          "What is your team's number?",
-                                                          style: Theme.of(context)
-                                                              .textTheme
-                                                              .bodyLarge),
-                                                      Center(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                  8.0),
-                                                          child: Text(
-                                                              "Make sure to assign every team an individual number from 1 to ${appState.numOfTeams}."),
-                                                        ),
-                                                      ),
-                                                      SpinBox(
-                                                        min: 1,
-                                                        max: appState.numOfTeams
-                                                            .toDouble(),
-                                                        value: 1,
-                                                        onChanged: (value) => appState
-                                                            .teamNum = value.toInt(),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  actions: [
-                                                    TextButton.icon(
-                                                        onPressed: () {
-                                                          Navigator.pop(context);
-                                                        },
-                                                        icon: const Icon(Icons.close),
-                                                        label: const Text("Cancel")),
-                                                    TextButton.icon(
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            appState.gameRunning =
-                                                                true;
-                                                          });
-                                                          appState.gameDataInit();
-                                                          Navigator.pop(context);
-                                                        },
-                                                        icon: const Icon(Icons.check),
-                                                        label:
-                                                            const Text("Start Game!"))
-                                                  ],
-                                                ));
-                                      },
-                                      icon: const Icon(Icons.check),
-                                      label: const Text("Continue"))
-                                ],
-                              ));
-                    },
-                    label: const Row(
-                      children: [
-                        Icon(Icons.play_arrow_rounded),
-                        SizedBox(width: 10),
-                        Text("New Game!"),
-                      ],
-                    )),
-              );
-            } else {
-              child = Scaffold(
+              Widget standartChild = Scaffold(
                 bottomNavigationBar: BottomNavigationBar(
                   type: BottomNavigationBarType.fixed,
                   items: const <BottomNavigationBarItem>[
@@ -452,13 +307,171 @@ class _MainPageState extends State<MainPage> {
                 ),
                 body: page,
               );
+      if (!appState.gameRunning) {
+        return FutureBuilder<void>(
+          future: appState.checkForGameData(),
+          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+            Widget child;
+            bool showStartScreen = false;
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (!appState.gameDataExists) {
+                showStartScreen = true;
+              }
+            } else {
+              child = const Scaffold(body: CircularProgressIndicator());
             }
-          } else {
-            child = const CircularProgressIndicator();
-          }
-          return child;
-        }
-      );
+            if (showStartScreen) {
+                child = Scaffold(
+                  body: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          "Welcome to",
+                          style: TextStyle(fontSize: 24),
+                        ),
+                        Text(
+                          "TAG LAG",
+                          style: GoogleFonts.righteous(
+                              fontSize: 120,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -5,
+                              height: .8,
+                              color: Theme.of(context).colorScheme.primary),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                  floatingActionButton: FloatingActionButton.extended(
+                      onPressed: () {
+                        appState.numOfTeams = 2;
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Row(
+                                    children: [
+                                      const Icon(Icons.play_arrow_rounded),
+                                      SizedBox.fromSize(
+                                        size: const Size(15, 15),
+                                      ),
+                                      const Text("Start new Game"),
+                                    ],
+                                  ),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Center(
+                                          child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "How many teams are playing?",
+                                          style: Theme.of(context).textTheme.bodyLarge,
+                                        ),
+                                      )),
+                                      SpinBox(
+                                        min: 2,
+                                        max: 5,
+                                        value: 2,
+                                        onChanged: (value) =>
+                                            appState.numOfTeams = value.toInt(),
+                                      ),
+                                    ],
+                                  ),
+                                  actions: [
+                                    TextButton.icon(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        icon: const Icon(Icons.close),
+                                        label: const Text("Cancel")),
+                                    TextButton.icon(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) =>
+                                                  AlertDialog(
+                                                    title: Row(
+                                                      children: [
+                                                        const Icon(
+                                                            Icons.play_arrow_rounded),
+                                                        SizedBox.fromSize(
+                                                          size: const Size(15, 15),
+                                                        ),
+                                                        const Text("Start new Game"),
+                                                      ],
+                                                    ),
+                                                    content: Column(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      children: [
+                                                        Text(
+                                                            "What is your team's number?",
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyLarge),
+                                                        Center(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            child: Text(
+                                                                "Make sure to assign every team an individual number from 1 to ${appState.numOfTeams}."),
+                                                          ),
+                                                        ),
+                                                        SpinBox(
+                                                          min: 1,
+                                                          max: appState.numOfTeams
+                                                              .toDouble(),
+                                                          value: 1,
+                                                          onChanged: (value) => appState
+                                                              .teamNum = value.toInt(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    actions: [
+                                                      TextButton.icon(
+                                                          onPressed: () {
+                                                            Navigator.pop(context);
+                                                          },
+                                                          icon: const Icon(Icons.close),
+                                                          label: const Text("Cancel")),
+                                                      TextButton.icon(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              appState.gameRunning =
+                                                                  true;
+                                                            });
+                                                            appState.gameDataInit();
+                                                            Navigator.pop(context);
+                                                          },
+                                                          icon: const Icon(Icons.check),
+                                                          label:
+                                                              const Text("Start Game!"))
+                                                    ],
+                                                  ));
+                                        },
+                                        icon: const Icon(Icons.check),
+                                        label: const Text("Continue"))
+                                  ],
+                                ));
+                      },
+                      label: const Row(
+                        children: [
+                          Icon(Icons.play_arrow_rounded),
+                          SizedBox(width: 10),
+                          Text("New Game!"),
+                        ],
+                      )),
+                );
+            } else {
+              child = standartChild;
+            }
+            return child;
+          });
+      } else {
+        return standartChild;
+      }
     });
   }
 }

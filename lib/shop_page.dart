@@ -55,6 +55,10 @@ class _ShopPageState extends State<ShopPage> {
       Icon(
         Icons.directions_walk,
         size: 50,
+      ),
+      Icon(
+        Icons.tram,
+        size: 50,
       )
     ];
     return Scaffold(

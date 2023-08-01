@@ -3,7 +3,7 @@
         {
             "id":0,
             "name":"Regional Train",
-            "cost":15,
+            "cost":25,
             "iconId":0
         },
         {
@@ -20,8 +20,14 @@
         },
         {
             "id":3,
+            "name":"Tram",
+            "cost":5,
+            "iconId":5
+        },
+        {
+            "id":4,
             "name":"Bus",
-            "cost":3,
+            "cost":5,
             "iconId":3
         }
     ]
