@@ -121,29 +121,28 @@ class _ShopPageState extends State<ShopPage> {
                                                     child: Text(
                                                         "${appState.pastBuys.elementAtOrNull(index)["num"]}x ${appState.pastBuys.elementAtOrNull(index)["mediumName"]}\n${appState.pastBuys.elementAtOrNull(index)["totalCost"]} coins total"),
                                                   ),
-                                                ),
-                                                Align(
-                                                  alignment: Alignment.centerRight,
-                                                  child: IconButton(
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        appState.coinBalance = appState.coinBalance + appState.pastBuys.elementAtOrNull(index)["totalCost"] as int;
-                                                        appState.pastBuys.removeAt(index);
-                                                        appState.gameDataInit();
-                                                      });
-                                                    },
-                                                    icon: const Icon(
-                                                      Icons.delete,
-                                                      size: 20,
-                                                    )
-                                                  ),
-                                                )
-                                              ],
+                                                  Align(
+                                                    alignment: Alignment.centerRight,
+                                                    child: IconButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          appState.coinBalance = appState.coinBalance + appState.pastBuys.elementAtOrNull(index)["totalCost"] as int;
+                                                          appState.pastBuys.removeAt(index);
+                                                          appState.gameDataInit();
+                                                        });
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.delete,
+                                                        size: 20,
+                                                      )
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                        ),
-                                      );
-                                    }
-                                  ),
+                                          );
+                                        }
+                                    ),
                                 ),
                                 actions: [
                                   TextButton.icon(
