@@ -81,7 +81,7 @@ appBar: AppBar(
                     leading: Text(
                       ruleList[index]["id"] + ".",
                       textScaleFactor: 2,
-                      style: TextStyle(
+                      style:  GoogleFonts.righteous(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context)
                           .colorScheme

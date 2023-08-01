@@ -171,7 +171,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                           textAlign: TextAlign.center,
                                         ),
                                         Text("🚨VETO PERIOD!🚨",
-                                            style: TextStyle(
+                                            style:  GoogleFonts.righteous(
                                                 fontSize: 35,
                                                 fontWeight: FontWeight.w800,
                                                 color: Theme.of(context)
@@ -263,7 +263,7 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                             Expanded(
                                                                                 child: Text(
                                                                               appState.challenges.elementAtOrNull(appState.currentChallengeIndex)["coins"].toString(),
-                                                                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromARGB(255, 35, 35, 35)),
+                                                                              style:  GoogleFonts.righteous(fontWeight: FontWeight.bold, fontSize: 20, color: const Color.fromARGB(255, 35, 35, 35)),
                                                                               textAlign: TextAlign.center,
                                                                             )),
                                                                           ],
@@ -428,7 +428,8 @@ class _ChallengesPageState extends State<ChallengesPage>
                                                                                               const Text("Confirm Challenge"),
                                                                                             ],
                                                                                           ),
-                                                                                          content: Column(children: [
+                                                                                          content: Column(
+                                                                                            children: [
                                                                                             const Text(
                                                                                               "Are you sure you completed this Challenge?",
                                                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
