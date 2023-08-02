@@ -14,7 +14,7 @@
         },
         {
             "header":"Visit the airport",
-            "text":"You and your partner have to take a selfie inside the official MUC airport. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in the airport. You may start this challenge at any spot of your liking.If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations. You may stay at the airport for however long you want.",
+            "text":"You and your partner have to take a selfie inside the official MUC airport. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in the airport. You may start this challenge at any spot of your liking. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations. You may stay at the airport for however long you want.",
             "coins":230,
             "veto_time":20
         },
@@ -26,25 +26,25 @@
         },
         {
             "header":"Be faster than public transport.",
-            "text":"One of your teammembers has to get on any viable medium of public transport. As soon as they are on this, the other portner has to run to the next station of the first player by foot. If the second teammember manages to arrive at that station before the first one does, then the challenge is completed. Your team has two attempts, if both fail, the challenge is automatically vetoed. Viable mediums are: regional train, s-bahn, u-bahn and bus.",
+            "text":"One of your teammembers has to get on any viable medium of public transport. As soon as they are on this, the other partner has to run to the next station of the first player by foot. If the second teammember manages to arrive at that station before the first one does, then the challenge is completed. Your team has two attempts, if both fail, the challenge is automatically vetoed. Viable mediums are: regional train, S-bahn, U-bahn and bus.",
             "coins":130,
             "veto_time":17
         },
         {
-            "header":"Go exactly one Kilometer.",
-            "text":"One teammember closes their eyes and points in front of themselves. They then start spinning, slow enough not to feel dizzy. At any point during this, their partner sais 'Stop' and the first person stops spinning. Now open Maps, and measure distance in the direction they're pointing in (Long press on your location, swipe menu up => 'Measure distance'). Determine the point that lies exactly one kilometer in this direction, now take a screenshot where you can see your location and the point you just measured out. Now get to the closest publically accessible spot to this point (i.e. the nearest street). You are not allowed to use any form of public transport, so you must go there by foot. Once you arrived, take another screenshot of your location, and a selfie at your spot.",
+            "header":"Go exactly one kilometer.",
+            "text":"One teammember closes their eyes and points in front of themselves. They then start spinning, slow enough not to feel dizzy. At any point during this, their partner says 'Stop' and the first person stops spinning. Now open Maps, and measure distance in the direction they're pointing in (Long press on your location, swipe menu up => 'Measure distance'). Determine the point that lies exactly one kilometer in this direction, now take a screenshot where you can see your location and the point you just measured out. Now get to the closest publically accessible spot to this point (i.e. the nearest street). You are not allowed to use any form of public transport, so you must go there by foot. Once you arrived, take another screenshot of your location, and a selfie at your spot.",
             "coins":90,
             "veto_time":15
         },
         {
             "header":"Go on five trains within fifteen minutes.",
-            "text":"Your team has to ride 5 trains within 15 minutes. When you start the challenge, set a timer for 15 minutes. Within these 15 minutes, you need to get on 5 trains (Regional or S-Bahn) for at least one stop. You can not go on the same line twice in a row, and you may not go back and fourth between stations. You can choose freely which station to start at, buy you may not visit any station twice during this challenge.",
+            "text":"Your team has to ride 5 trains within 15 minutes. When you start the challenge, set a timer for 15 minutes. Within these 15 minutes, you need to get on 5 trains (Regional or S-Bahn) for at least one stop. You can not go on the same line twice in a row, and you may not go back and fourth between stations. You can choose freely which station to start at, but you may not visit any station twice during this challenge.",
             "coins":120,
             "veto_time":18
         },
         {
-            "header":"Find some graffiti",
-            "text":"Take a photo of some graffity.",
+            "header":"Find some graffiti.",
+            "text":"Take a photo of some graffiti.",
             "coins":20,
             "veto_time":5
         },
@@ -56,7 +56,7 @@
         },
         {
             "header":"Take a picture with a stranger.",
-            "text":"Ask someone whether you may take a picture with them. Only one of you has to be on the picture, the other one can be taking it with their phone. The stranger must be on the picture as well. Selfies also work. Anyone within this game doesnt count",
+            "text":"Ask someone whether you may take a picture with them. Only one of you has to be on the picture, the other one can be taking it with their phone. The stranger must be on the picture as well. Selfies also work. Anyone within this game doesn't count",
             "coins":30,
             "veto_time":9
         },
@@ -68,13 +68,13 @@
         },
         {
             "header":"Find a street with exactly fifteen letters in its name.",
-            "text":"Take a photo of a street name sign with exactly 15 letters on it. Spaces and special characters like '-' do not count. You may not use your phones to do any reasearch to help you complete this challenge.",
+            "text":"Take a photo of a street name sign with exactly 15 letters on it. Spaces and special characters like '-' do not count. You may not use your phones to do any research to help you complete this challenge.",
             "coins":25,
             "veto_time":7
         },
         {
             "header":"Hug a tree.",
-            "text":"Hug any tree. It's pretty simple",
+            "text":"Hug any tree. It's pretty simple.",
             "coins":10,
             "veto_time":5
         },
@@ -86,7 +86,7 @@
         },
         {
             "header":"Find a street with all vowels in its name.",
-            "text":"Take a photo of a street name sign containing every vowel (a, e, i, o, u). You may not use your phones to do any reasearch to help you complete this challenge.",
+            "text":"Take a photo of a street name sign containing every vowel (a, e, i, o, u). You may not use your phones to do any research to help you complete this challenge.",
             "coins":25,
             "veto_time":7
         },
@@ -104,7 +104,7 @@
         },
         {
             "header":"Learn any song made before the year 2000",
-            "text":"Pick any song made before the year 2000. Songs from the year 2000 itself do not count. The song must have english lyrics. Once you decided on a song, you must memorise its lyrics. You are allowed to split the task between the two of you (Partner 1 learns the first half, Partner 2 learns the second half), But in the end you must record yourself singing this song (you may sing along to the original).",
+            "text":"Pick any song made before the year 2000. Songs from the year 2000 itself do not count. The song must have English lyrics. Once you decided on a song, you must memorise its lyrics. You are allowed to split the task between the two of you (Partner 1 learns the first half, Partner 2 learns the second half), But in the end you must record yourself singing this song (you may sing along to the original).",
             "coins":75,
             "veto_time":20
         },
@@ -121,7 +121,7 @@
             "veto_time":8
         },
         {
-            "header":"Make art from natural materials.",
+            "header":"Make art exclusively from natural materials.",
             "text":"Go to a park or something like it. Gather some natural materials like rocks and sticks and build a piece of art from it. Take a video showing your creation and explain its meaning in the video.",
             "coins":60,
             "veto_time":18
@@ -146,19 +146,19 @@
         },
         {
             "header":"Find 4 regional restaurant.",
-            "text":"Find 4 different restaurants (takeout places do not count) which are cleary assignable to a different country/nationality each.",
+            "text":"Find 4 different restaurants (takeout places do not count) which are clearly assignable to a different country/nationality each.",
             "coins":30,
             "veto_time":13
         },
         {
             "header":"Shake hands with different age groups.",
-            "text":"Find a person in each of these age groups: 10-19, 20-29, 30-39, 40-49, 50-59 and shake hands with them. Only one of you has to shake hands. Anyone within this game doesnt count.",
+            "text":"Find a person in each of these age groups: 10-19, 20-29, 30-39, 40-49, 50-59 and shake hands with them. Only one of you has to shake hands. Anyone within this game doesn't count.",
             "coins":80,
             "veto_time":17
         },
         {
             "header":"Touch water in the Isar.",
-            "text":"Not much to explain here. The water you touch must be water currently flowing in the Isar, the big river going through munich.",
+            "text":"Not much to explain here. The water you touch must be water currently flowing in the Isar, the big river going through Munich.",
             "coins":25,
             "veto_time":5
         },
@@ -170,12 +170,12 @@
         },
         {
             "header":"Pick up trash.",
-            "text":"You should have a bag with you. Fill this bag completely up with trash you find on the street. You may NOT get this trash from any existing trash bins and you also may not Put any of your own trash in the bag (at least not for the challenge). In the end, take a picture of your full bag and properly dispose it.",
+            "text":"You should have a bag with you. Fill this bag completely up with trash you find on the street. You may NOT get this trash from any existing trash bins and you also may not put any of your own trash in the bag (at least not for the challenge). In the end, take a picture of your full bag and properly dispose it.",
             "coins":35,
             "veto_time":30
         },
         {
-            "header":"A bit of Math!",
+            "header":"A bit of math!",
             "text":"Go to the nearest gas station and determine the cross-sum of the current diesel price per 2.6 liters.",
             "coins":45,
             "veto_time":14
@@ -188,19 +188,19 @@
         },
         {
             "header":"Mow a lawn.",
-            "text":"You should have a pair of shears with you. Using these, trim a bit of publicly accessible grass. The trimmed area should be at least 10cmx10cm.",
+            "text":"You should have a pair of scissors with you. Using these, trim a bit of publicly accessible grass. The trimmed area should be at least 10cmx10cm.",
             "coins":40,
             "veto_time":17
         },
         {
             "header":"Carry your teammate.",
-            "text":"One of you has to carry the other for a distance of at least 100 meters. You can stop and take breaks within this distance. No body part of the carried person may touch the ground.",
+            "text":"One of you has to carry the other for a distance of at least 100 meters. You can stop and take breaks within this distance. No body part of the carried person may touch the ground, except during breaks.",
             "coins":70,
             "veto_time":20
         },
         {
             "header":"Find an expensive car.",
-            "text":"Locate a car worth more than 100000€. You may use your phones to determine the price of any car you see. If you found one, take a photo of it. The car must be on the streets or in a public parking lot. Automotive museums or anything like that doesnt count.",
+            "text":"Locate a car worth more than 100000€. You may use your phones to determine the price of any car you see. If you found one, take a photo of it. The car must be on the streets or in a public parking lot. Automotive museums or anything like that don't count.",
             "coins":55,
             "veto_time":18
         },
@@ -218,13 +218,13 @@
         },
         {
             "header":"Draw a landmark.",
-            "text":"Go to and use your drawing supplies to draw any of the following top attractions in munich: Marienenplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz.",
+            "text":"Go to and use your drawing supplies to draw any of the following top attractions in munich: Marienplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz.",
             "coins":55,
             "veto_time":20
         },
         {
             "header":"Visit the top attractions.",
-            "text":"Visit 4 out of the following: Marienenplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz. For each one you visit, take a selfie there. You may choose freely on which ones exactly to visit.",
+            "text":"Visit 4 out of the following: Marienenplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz. For each one you visit, take a selfie there. You may choose freely on which ones exactly to visit. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
             "coins":100,
             "veto_time":25
         },
@@ -253,8 +253,8 @@
             "curse_time":30
         },
         {
-            "header":"Take four S-Bahns in order.",
-            "text":"Go at least one station with e.g., S1, S2, S3, S4 in that specific order. You don't have to start at S1, you may take S3, S4, S5, S6. Taking declining numbers is also allowed, you may take S7, S6, S5, S4. There are eight S-bahn lines in Munich. You may walk between stations and you may choose which station to start at.",
+            "header":"Take four S-bahns in order.",
+            "text":"Go at least one station with e.g., S1, S2, S3, S4 in that specific order. You don't have to start at S1, you may take S3, S4, S5, S6. Taking descending numbers is also allowed, you may take S7, S6, S5, S4. There are eight S-bahn lines in Munich. You may walk between stations and you may choose which station to start at.",
             "coins":80,
             "veto_time":18
         },
@@ -266,7 +266,7 @@
         },
         {
             "header":"Find 5 chains with more than 500 locations.",
-            "text":"Use the game's allowed transport to visit and take pictures of 5 chains (e.g., Edeka, McDonald's) which have more than 500 locations in total anywhere in the world. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "text":"Use the game's allowed transport to visit and take pictures of 5 chains (e.g. Edeka, McDonald's) which have more than 500 locations in total anywhere in the world. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
             "coins":45,
             "veto_time":13
         },
@@ -278,7 +278,7 @@
         },
         {
             "header":"Gift a stranger a flower.",
-            "text":"Make a strangers day by gifting them a flower. You can aquire the flower in any legal way (e.g. buying one at a flower shop, picking one in a grassy area, etc.) You may only walk to complete this challenge.",
+            "text":"Make a strangers day by gifting them a flower. You must acquire the flower in any legal way (e.g. buying one at a flower shop, picking one in a grassy area, etc.) You may only walk to complete this challenge.",
             "coins":70,
             "veto_time":7
         },
@@ -289,7 +289,7 @@
             "veto_time":10
         },
         {
-            "header":"Find:",
+            "header":"Find shapes.",
             "text":"1. A red circle 2. A yellow triangle and 3. A green square. Find and take pictures of these objects. They may have text or images on them. Get creative!",
             "coins":65,
             "veto_time":16
@@ -308,13 +308,13 @@
         },
         {
             "header":"Find three medical clinics.",
-            "text":"Use the game's allowed transport to find three medical clinics and take pictures of their signs. You may not do research on your phone to find them. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "text":"Use the game's allowed transport to find three medical clinics and take pictures of their signs. You may not do research on your phone to find them. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge completed at the final site, you must walk or use coins to buy stations.",
             "coins":100,
             "veto_time":13
         },
         {
             "header":"Cross 5 bridges.",
-            "text":"Use the game's allowed transport to go to 5 bridges and walk across them. You must walk across the entire bridge from one end to the other. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "text":"Use the game's allowed transport to go to 5 bridges and walk across them. You must walk across the entire bridge from one end to the other. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the final site, you must walk or use coins to buy stations.",
             "coins":72,
             "veto_time":13
         },
@@ -325,8 +325,8 @@
             "veto_time":20
         },
         {
-            "header":"Find a Beatle car.",
-            "text":"Use the game's allowed transport to find and take a picture of a Volkswagen Beatle car. If you do not know what is being referred to as a 'Beatle' car, use Google to do research. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "header":"Find a Beetle car.",
+            "text":"Use the game's allowed transport to find and take a picture of a Volkswagen Beetle car. If you do not know what is being referred to as a 'Beetle' car, use Google to do research. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
             "coins":90,
             "veto_time":15
         },
@@ -338,9 +338,15 @@
         },
         {
             "header":"Compliment strangers until they compliment you back.",
-            "text":"Give different strangers compliments until one compliments you or your team member back. You have 5 chances to complete this, if all fail, you have to veto the challenge immediately.",
+            "text":"Give different strangers compliments until one compliments you or your team member back. You have 5 chances to complete this, if all fail, the challenge is vetoed automatically.",
             "coins":86,
             "veto_time":5
+        },
+        {
+            "header":"Locate and share cats.",
+            "text":"Find and take pictures of two cats. The cats need to be clearly visible, although they may be blurred. Multiple pictures may be taken, they do not have to be on the same picture.",
+            "coins":30,
+            "veto_time":6
         }
     ]
 }
