@@ -222,7 +222,6 @@ class TagLagState extends ChangeNotifier {
       final rawContent = await file.readAsString();
       return rawContent;
     } catch (e) {
-      print("Something went wrong: $e");
       return "Something failed";
     }
   }
@@ -257,7 +256,6 @@ class TagLagState extends ChangeNotifier {
     if (hasActiveCurse) {
       startCurse();
     }
-    print("Synced, currentChallengeIndex: ${currentChallengeIndex}");
   }
 
   Future<void> gameDataDelete() async {
@@ -342,7 +340,6 @@ class TagLagState extends ChangeNotifier {
     //gameDataWrite(currentChallengeIndexToWrite: currentChallengeIndex);
     gameDataInit();
     currentChallengeIndex = nextChallengeIndex;
-    print(currentChallengeIndex);
   }
 
   // when a challenge is completed, add the coins it brings to the teams wallet and moves it from challenges to pastChallenges
