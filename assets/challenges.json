@@ -188,7 +188,7 @@
         },
         {
             "header":"Mow a lawn.",
-            "text":"You should have a pair of scissors with you. Using these, trim a bit of publicly accessible grass. The trimmed area should be at least 10cmx10cm.",
+            "text":"You should have a pair of scissors with you (Recource Nr.2). Using these, trim a bit of publicly accessible grass. The trimmed area should be at least 10cmx10cm.",
             "coins":40,
             "veto_time":17
         },
@@ -218,7 +218,7 @@
         },
         {
             "header":"Draw a landmark.",
-            "text":"Go to and use your drawing supplies to draw any of the following top attractions in munich: Marienplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz.",
+            "text":"Go to and use your drawing supplies (Recourses nr. 1 and 6) to draw any of the following top attractions in munich: Marienplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz. You may only use the pencil provided. You may NOT use a pencil sharpener, so don't waste time!",
             "coins":55,
             "veto_time":20
         },

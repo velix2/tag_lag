@@ -18,7 +18,7 @@
         {
             "id":"4",
             "rule":"Stay within game borders",
-            "explanation":"You must stay within the borders of the city seen on Google Maps (search for Munich and then click on the city). This rule may temporarily be disabled by challenges."
+            "explanation":"You must stay within the borders of the city seen on Google Maps (search for Munich and then click on the city). Your recources 3 and 4 in your teams folder show what U-Bahn and S-Bahn stations are within this border. This rule may temporarily be disabled by challenges."
         },
         {
             "id":"5",
