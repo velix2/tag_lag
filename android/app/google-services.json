@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "43767063006",
+    "firebase_url": "https://tag-lag-f6931-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tag-lag-f6931",
+    "storage_bucket": "tag-lag-f6931.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43767063006:android:af16a162063ca20d357d4f",
+        "android_client_info": {
+          "package_name": "com.example.tag_lag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9dIvrsUYgJY1lsilyt56FNzwgyQOwtng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
