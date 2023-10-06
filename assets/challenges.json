@@ -13,18 +13,6 @@
             "veto_time":10
         },
         {
-            "header":"Visit the airport",
-            "text":"You and your partner have to take a selfie inside the official MUC airport. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in the airport. You may start this challenge at any spot of your liking. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations. You may stay at the airport for however long you want.",
-            "coins":230,
-            "veto_time":20
-        },
-        {
-            "header":"Visit an IKEA",
-            "text":"You and your partner have to take a selfie inside any IKEA within the game borders. Both of you have to be clearly visible and recognizable in this picture. It also should be visible that the picture was actually taken in an IKEA. You may start this challenge at any spot of your liking. As soon as you start, you may take any public transport and don't have to pay for it under the following conditions: 1. You go there and back in the most direct and fastest way possible, and 2. On your way back, you will have to (again) take the fastest/most direct way to the exact spot where you started the challenge. You may stay at the IKEA for however long you want.",
-            "coins":180,
-            "veto_time":18
-        },
-        {
             "header":"Be faster than public transport.",
             "text":"One of your teammembers has to get on any viable medium of public transport. As soon as they are on this, the other partner has to run to the next station of the first player by foot. If the second teammember manages to arrive at that station before the first one does, then the challenge is completed. Your team has two attempts, if both fail, the challenge is automatically vetoed. Viable mediums are: regional train, S-bahn, U-bahn and bus.",
             "coins":130,
@@ -121,12 +109,6 @@
             "veto_time":8
         },
         {
-            "header":"Make art exclusively from natural materials.",
-            "text":"Go to a park or something like it. Gather some natural materials like rocks and sticks and build a piece of art from it. Take a video showing your creation and explain its meaning in the video.",
-            "coins":60,
-            "veto_time":18
-        },
-        {
             "header":"Jackpot!!",
             "text":"You get 100 free coins! Just click on complete.",
             "coins":100,
@@ -137,24 +119,6 @@
             "text":"You get 100 free coins! Just click on complete.",
             "coins":100,
             "veto_time":0
-        },
-        {
-            "header":"Find the alphabet on numberplates.",
-            "text":"Take 26 photos of numberplates. The first numberplate must have an 'A' on it. The second one a 'B' and so on. you may NOT photograph the same numberplate twice. The photos must be taken in alphabetical order.",
-            "coins":75,
-            "veto_time":17
-        },
-        {
-            "header":"Find 4 regional restaurant.",
-            "text":"Find 4 different restaurants (takeout places do not count) which are clearly assignable to a different country/nationality each.",
-            "coins":30,
-            "veto_time":13
-        },
-        {
-            "header":"Shake hands with different age groups.",
-            "text":"Find a person in each of these age groups: 10-19, 20-29, 30-39, 40-49, 50-59 and shake hands with them. Only one of you has to shake hands. Anyone within this game doesn't count.",
-            "coins":80,
-            "veto_time":17
         },
         {
             "header":"Touch water in the Isar.",
@@ -187,22 +151,10 @@
             "veto_time":30
         },
         {
-            "header":"Mow a lawn.",
-            "text":"You should have a pair of scissors with you (Recource Nr.2). Using these, trim a bit of publicly accessible grass. The trimmed area should be at least 10cmx10cm.",
-            "coins":40,
-            "veto_time":17
-        },
-        {
             "header":"Carry your teammate.",
             "text":"One of you has to carry the other for a distance of at least 100 meters. You can stop and take breaks within this distance. No body part of the carried person may touch the ground, except during breaks.",
             "coins":70,
             "veto_time":20
-        },
-        {
-            "header":"Find an expensive car.",
-            "text":"Locate a car worth more than 100000€. You may use your phones to determine the price of any car you see. If you found one, take a photo of it. The car must be on the streets or in a public parking lot. Automotive museums or anything like that don't count.",
-            "coins":55,
-            "veto_time":18
         },
         {
             "header":"Ask a stranger what year it is.",
@@ -224,7 +176,7 @@
         },
         {
             "header":"Visit the top attractions.",
-            "text":"Visit 4 out of the following: Marienenplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz. For each one you visit, take a selfie there. You may choose freely on which ones exactly to visit. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
+            "text":"Visit 2 out of the following: Marienenplatz, Nymphenburg Palace, Asamchurch, Allianz-Arena, New Town Hall, Olympiapark, St. Peters Church, Eisbach Wave, BMW Headquaters, Königsplatz. For each one you visit, take a selfie there. You may choose freely on which ones exactly to visit. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
             "coins":100,
             "veto_time":25
         },
