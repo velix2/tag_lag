@@ -14,6 +14,7 @@ import 'dart:math';
 import 'package:duration/duration.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_lag/db_test.dart';
+import 'package:tag_lag/testfile.dart';
 import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
@@ -22,11 +23,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
+
   runApp(const TagLag());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  
 }
 
 class TagLag extends StatelessWidget {
@@ -34,7 +35,6 @@ class TagLag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -303,11 +303,19 @@ class TagLagState extends ChangeNotifier {
   }
 
   void setupNotifications() async {
+   
+
     final fcmToken = await FirebaseMessaging.instance.getToken(
         vapidKey:
             "BG1CU6BD32t7duxBRmpEQu9gJrYHldzBBy2SV3Tb6Id7sW-dS6bA2P0G3G7zHs6Njn8pg3Pk278KiLITc6srw5A");
-            print("Token is ${fcmToken}");
+    print("Token is ${fcmToken}");
     await FirebaseMessaging.instance.setAutoInitEnabled(true);
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Got a message whilst in the foreground!');
@@ -428,7 +436,9 @@ class _MainPageState extends State<MainPage> {
                                   color: Theme.of(context).colorScheme.primary),
                               textAlign: TextAlign.center,
                             ),
-                            FloatingActionButton(onPressed: () {appState.setupNotifications();}),
+                            FloatingActionButton(onPressed: () {
+                              appState.setupNotifications();
+                            }),
                           ],
                         ),
                       ],

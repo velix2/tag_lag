@@ -15,6 +15,7 @@ class ChallengesPage extends StatefulWidget {
 }
 
 class _ChallengesPageState extends State<ChallengesPage>
+
     with TickerProviderStateMixin {
   // ignore: unused_field
   //Future<List<dynamic>> challengesList = [] as Future<List>;

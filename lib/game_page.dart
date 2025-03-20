@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:tag_lag/experimental_buy_page.dart';
+import 'package:tag_lag/experimental_page.dart';
 import 'main.dart';
 
 class FirstOpenPage extends StatefulWidget {
@@ -125,6 +127,7 @@ class _FirstOpenPageState extends State<FirstOpenPage> {
               "A TEAM!",
               style: GoogleFonts.righteous(),
             ),
+            ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ExperimentalBuyPage())), child: Text("test"))
           ],
         ),
       ),

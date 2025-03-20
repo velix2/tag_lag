@@ -342,9 +342,7 @@ class _ShopPageState extends State<ShopPage> {
                                 });
                           },
                           enabled:
-                              (appState.coinBalance - medium["cost"]).isNegative
-                                  ? false
-                                  : true,
+                              !(appState.coinBalance - medium["cost"]).isNegative,
                         )
                     ]),
               ),
