@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinbox/material.dart';
@@ -13,20 +12,13 @@ import 'package:provider/provider.dart';
 import 'dart:math';
 import 'package:duration/duration.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tag_lag/db_test.dart';
 import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
 import 'game_page.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
-void main() async {
+void main() {
   runApp(const TagLag());
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  
 }
 
 class TagLag extends StatelessWidget {
@@ -34,10 +26,8 @@ class TagLag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
     return ChangeNotifierProvider(
         create: (context) => TagLagState(),
         child: MaterialApp(
@@ -92,26 +82,26 @@ class TagLagState extends ChangeNotifier {
     final file = await gameDataFile;
 
     file.writeAsStringSync(jsonEncode({
-      "challenges": challenges,
-      "currentChallengeIndex": currentChallengeIndex,
-      "hasActiveChallenge": hasActiveChallenge,
-      "pastChallenges": pastChallenges,
-      "coinBalance": coinBalance,
-      "pastBuys": pastBuys,
-      "gameRunning": gameRunning,
-      "selectedIndex": selectedIndex,
-      "numOfTeams": numOfTeams,
-      "teamNum": teamNum,
-      "vetoStartTime": vetoStartTime.toIso8601String(),
-      "vetoTimeTotal": vetoTimeTotal.toString(),
-      "vetoEndTime": vetoEndTime.toIso8601String(),
-      "vetoTimeLeft": vetoTimeLeft.toString(),
-      "hasActiveVeto": hasActiveVeto,
-      "curseStartTime": curseStartTime.toIso8601String(),
-      "curseEndTime": curseEndTime.toIso8601String(),
-      "curseTimeLeft": curseTimeLeft.toString(),
-      "curseTimeTotal": curseTimeTotal.toString(),
-      "hasActiveCurse": hasActiveCurse,
+    "challenges" : challenges,
+    "currentChallengeIndex" : currentChallengeIndex,
+    "hasActiveChallenge" : hasActiveChallenge,
+    "pastChallenges" : pastChallenges,
+    "coinBalance" : coinBalance,
+    "pastBuys" : pastBuys,
+    "gameRunning" : gameRunning,
+    "selectedIndex" : selectedIndex,
+    "numOfTeams" : numOfTeams,
+    "teamNum" : teamNum,
+    "vetoStartTime" : vetoStartTime.toIso8601String(),
+    "vetoTimeTotal" : vetoTimeTotal.toString(),
+    "vetoEndTime" : vetoEndTime.toIso8601String(),
+    "vetoTimeLeft" : vetoTimeLeft.toString(),
+    "hasActiveVeto" : hasActiveVeto,
+    "curseStartTime" : curseStartTime.toIso8601String(),
+    "curseEndTime" : curseEndTime.toIso8601String(),
+    "curseTimeLeft" : curseTimeLeft.toString(),
+    "curseTimeTotal" : curseTimeTotal.toString(),
+    "hasActiveCurse" : hasActiveCurse,
     }));
   }
 
@@ -301,24 +291,6 @@ class TagLagState extends ChangeNotifier {
     pastChallenges.add(challenges.removeAt(currentChallengeIndex));
     gameDataInit();
   }
-
-  void setupNotifications() async {
-    final fcmToken = await FirebaseMessaging.instance.getToken(
-        vapidKey:
-            "BG1CU6BD32t7duxBRmpEQu9gJrYHldzBBy2SV3Tb6Id7sW-dS6bA2P0G3G7zHs6Njn8pg3Pk278KiLITc6srw5A");
-            print("Token is ${fcmToken}");
-    await FirebaseMessaging.instance.setAutoInitEnabled(true);
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Got a message whilst in the foreground!');
-      print('Message data: ${message.data}');
-
-      if (message.notification != null) {
-        print('Message also contained a notification: ${message.notification}');
-      }
-    });
-    print("setup complete");
-  }
 }
 
 class MainPage extends StatefulWidget {
@@ -428,7 +400,6 @@ class _MainPageState extends State<MainPage> {
                                   color: Theme.of(context).colorScheme.primary),
                               textAlign: TextAlign.center,
                             ),
-                            FloatingActionButton(onPressed: () {appState.setupNotifications();}),
                           ],
                         ),
                       ],
@@ -436,8 +407,6 @@ class _MainPageState extends State<MainPage> {
                   ),
                   floatingActionButton: FloatingActionButton.extended(
                       onPressed: () {
-                        DbTest().test();
-
                         appState.numOfTeams = 2;
                         showDialog(
                             context: context,
