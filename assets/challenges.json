@@ -33,13 +33,13 @@
         {
             "header":"Find some graffiti.",
             "text":"Take a photo of some graffiti.",
-            "coins":20,
+            "coins":10,
             "veto_time":5
         },
         {
             "header":"Take a picture with a strangers dog.",
             "text":"Ask someone with a dog whether you may take a picture with it. Only one of you has to be on the picture, the other one can be taking it with their phone. The dog must be on the picture as well. The dog must also be real and alive.",
-            "coins":50,
+            "coins":70,
             "veto_time":9
         },
         {
@@ -110,8 +110,8 @@
         },
         {
             "header":"Jackpot!!",
-            "text":"You get 100 free coins! Just click on complete.",
-            "coins":100,
+            "text":"You get 50 free coins! Just click on complete.",
+            "coins":50,
             "veto_time":0
         },
         {
@@ -127,20 +127,14 @@
             "veto_time":5
         },
         {
-            "header":"Meet the other hunter team.",
-            "text":"Take a selfie of you and the other hunter team holding hands. Only you get coins for this challenge, not the other team.",
-            "coins":50,
-            "veto_time":20
-        },
-        {
             "header":"Pick up trash.",
-            "text":"You should have a bag with you. Fill this bag completely up with trash you find on the street. You may NOT get this trash from any existing trash bins and you also may not put any of your own trash in the bag (at least not for the challenge). In the end, take a picture of your full bag and properly dispose it.",
+            "text":"Get a bag. Fill this bag completely up with trash you find on the street. You may NOT get this trash from any existing trash bins and you also may not put any of your own trash in the bag (at least not for the challenge). In the end, take a picture of your full bag and properly dispose it.",
             "coins":35,
             "veto_time":30
         },
         {
             "header":"A bit of math!",
-            "text":"Go to the nearest gas station and determine the cross-sum of the current diesel price per 2.6 liters.",
+            "text":"Go to the nearest gas station and determine the cross-sum of the current diesel price per 2.6 liters. You must take a photo of you in front of the gas station.",
             "coins":45,
             "veto_time":14
         },
@@ -206,14 +200,14 @@
         },
         {
             "header":"Take four S-bahns in order.",
-            "text":"Go at least one station with e.g., S1, S2, S3, S4 in that specific order. You don't have to start at S1, you may take S3, S4, S5, S6. Taking descending numbers is also allowed, you may take S7, S6, S5, S4. There are eight S-bahn lines in Munich. You may walk between stations and you may choose which station to start at.",
+            "text":"Go at least one station with e.g., S1, S2, S3, S4 in that specific order. You don't have to start at S1, you may for example take S3, S4, S5, S6. Taking descending numbers is also allowed, so you may take S7, S6, S5, S4. There are eight S-bahn lines in Munich. You may walk between stations and you may choose which station to start at.",
             "coins":80,
             "veto_time":18
         },
         {
             "header":"Visit 5 schools.",
             "text":"Use the game's allowed transport to visit and take pictures of 5 schools. If you don't want to or do not have the means to afford public transport to complete this challenge, you must start and finish at the exact same spot. If you want to have the challenge complete at the site, you must walk or use coins to buy stations.",
-            "coins":30,
+            "coins":50,
             "veto_time":13
         },
         {
@@ -254,7 +248,7 @@
         },
         {
             "header":"Find five different types of tree leaves.",
-            "text":"You must find and take pictures of five different tree leaf types. You must find out the exact tree species of all collected leaves. You may only walk to complete this challenge.",
+            "text":"You must find and take pictures of five different tree leaf types. They must be real leaves. You must find out the exact tree species of all collected leaves. You may only walk to complete this challenge.",
             "coins":54,
             "veto_time":14
         },
@@ -273,7 +267,7 @@
         {
             "header":"Find an LGBTQ+ flag.",
             "text":"Find and take a picture of any LGBTQ+ pride flag. You may only walk to complete this challenge.",
-            "coins":100,
+            "coins":50,
             "veto_time":20
         },
         {
@@ -299,6 +293,30 @@
             "text":"Find and take pictures of two cats. The cats need to be clearly visible, although they may be blurred. Multiple pictures may be taken, they do not have to be on the same picture.",
             "coins":30,
             "veto_time":6
+        },
+        {
+            "header":"Find the alphabet on numberplates.",
+            "text":"Take 26 photos of numberplates. The first numberplate must have an 'A' on it. The second one a 'B' and so on. you may NOT photograph the same numberplate twice. The photos must be taken in alphabetical order.",
+            "coins":75,
+            "veto_time":17
+        },
+        {
+            "header":"Find 4 regional restaurant.",
+            "text":"Find 4 different restaurants (takeout places do not count) which are clearly assignable to a different country/nationality each.",
+            "coins":30,
+            "veto_time":13
+        },
+        {
+            "header":"Make art exclusively from natural materials.",
+            "text":"Go to a park or something like it. Gather some natural materials like rocks and sticks and build a piece of art from it. Take a video showing your creation and explain its meaning in the video.",
+            "coins":60,
+            "veto_time":18
+        },
+        {
+            "header":"Find an expensive car.",
+            "text":"Locate a car worth more than 100000€. You may use your phones to determine the price of any car you see. If you found one, take a photo of it. The car must be on the streets or in a public parking lot. Automotive museums or anything like that don't count.",
+            "coins":55,
+            "veto_time":18
         }
     ]
 }
