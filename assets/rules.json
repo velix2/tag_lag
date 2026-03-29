@@ -12,32 +12,32 @@
         },
         {
             "id":"3",
-            "rule":"Follow traffic laws",
+            "rule":"Traffic laws",
             "explanation":"You must follow all traffic laws throughout the game (e.g., no crossing the street during a red light.)"
         },
         {
             "id":"4",
-            "rule":"Stay within game borders",
+            "rule":"Game borders",
             "explanation":"You must stay within the borders of the city seen on Google Maps (search for Munich and then click on the city). Your recources 3 and 4 in your teams folder show what U-Bahn and S-Bahn stations are within this border. This rule may temporarily be disabled by challenges."
         },
         {
             "id":"5",
-            "rule":"No hiding in inaccessble spots",
+            "rule":"Hiding",
             "explanation":"You may only hide in places that are widely accessible. Any buildings are not allowed as hiding places. If you need to enter one because of a challenge, then try to leave as soon as you are done. Visits to any bathrooms are always allowed, but not for hiding."
         },
         {
             "id":"6",
-            "rule":"Stay together as a team",
+            "rule":"Together as a team",
             "explanation":"You always need to stay within a sensible distance of your teammember. All team members are also required to always be on the same transport (if they are at all), so if one member of your team is on a U-Bahn, then your entire team needs to be on that train. This rule can be temporarily disabled by some challenges."
         },
         {
             "id":"7",
-            "rule":"No bikes and scooters",
+            "rule":"Bikes and scooters",
             "explanation":"You may not use transport which is not part of the game (Busses, U-bahn, S-bahn, trams, regional trains, walking)."
         },
         {
             "id":"8",
-            "rule":"No changing clothes",
+            "rule":"Changing clothes",
             "explanation":"You may not change your appearance in order to go under the radar and progress in the game. This rule does not apply to changing items of clothing due to environmental reasons (e.g., temperature, rainfall, etc.)."
         }
     ]
