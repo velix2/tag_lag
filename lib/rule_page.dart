@@ -76,7 +76,8 @@ appBar: AppBar(
                   ),
                   child: ExpansionTile(
                     title: Text(
-                      ruleList[index]["rule"],
+                      ruleList[index]["rule"].toUpperCase(),
+                      style: GoogleFonts.righteous()
                     ),
                     leading: Text(
                       ruleList[index]["id"] + ".",
