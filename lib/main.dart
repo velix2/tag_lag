@@ -16,6 +16,7 @@ import 'challenges_page.dart';
 import 'rule_page.dart';
 import 'shop_page.dart';
 import 'game_page.dart';
+import 'map_page.dart';
 
 void main() {
   runApp(const TagLag());
@@ -318,6 +319,9 @@ class _MainPageState extends State<MainPage> {
         page = const ShopPage();
         break;
       case 3:
+        page = const MapPage();
+        break;
+      case 4:
         page = const RulePage();
         break;
       default:
@@ -335,6 +339,8 @@ class _MainPageState extends State<MainPage> {
                 icon: Icon(Icons.assistant_photo), label: "Challenges"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.train), label: "Transport"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.map), label: "Game Map"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.handshake), label: "Rules"),
           ],
